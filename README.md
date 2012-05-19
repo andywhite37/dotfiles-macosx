@@ -10,7 +10,7 @@
 - Xcode (via AppStore)
 - Xcode Command Line Tools (via Xcode Preferences)
 - [JetBrains AppCode](http://www.jetbrains.com/objc/)
-    - IDEAVim plugin (AppCode plugin manager)
+    - [IDEAVim plugin (AppCode plugin manager)](http://plugins.intellij.net/plugin/?objc&id=164)
 - [iTerm2](http://www.iterm2.com)
 - [Oh My Zsh!](https://github.com/robbyrussell/oh-my-zsh)
 - [homebrew](https://github.com/mxcl/homebrew)
