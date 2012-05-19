@@ -1,20 +1,24 @@
 # Mac OSX Setup
 
-## Core tools
+## Core Tools
 
-- Mac OSX (clean install!)
-- Google Chrome
-- Dropbox/Google Drive/Microsoft SkyDrive
+- [Mac OSX (clean install!)](http://apple.com)
+- [Google Chrome](https://www.google.com/intl/en/chrome/browser/)
+- [Dropbox](http://dropbox.com)
+- [Google Drive](http://drive.google.com)
+- [Microsoft SkyDrive](https://skydrive.live.com)
 - Xcode (via AppStore)
 - Xcode Command Line Tools (via Xcode Preferences)
-- iTerm2 (zsh)
-    - Set to zsh as default
-    - Fix path issues (put /usr/local/bin before /usr/bin)
-- Oh My Zsh!
-- homebrew
-- Git (via homebrew)
-- MacVim (via homebrew)
-- Janus
-- JetBrains AppCode
-    - IDEAVim plugin
-- SourceGear DiffMerge
+- [JetBrains AppCode](http://www.jetbrains.com/objc/)
+    - IDEAVim plugin (AppCode plugin manager)
+- [iTerm2](http://www.iterm2.com)
+- [Oh My Zsh!](https://github.com/robbyrussell/oh-my-zsh)
+- [homebrew](https://github.com/mxcl/homebrew)
+    - git
+    - macvim
+    - ack
+    - wget
+    - etc.
+- [Janus (vim plugins)](https://github.com/carlhuda/janus)
+- [SourceGear DiffMerge](http://www.sourcegear.com/diffmerge/)
+
