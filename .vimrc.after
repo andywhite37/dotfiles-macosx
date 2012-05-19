@@ -12,13 +12,22 @@ colorscheme torte
 hi LineNr guifg=#505050 guibg=Black
 
 if has("statusline") && !&cp
-  set laststatus=2  " always show the status bar
+    set laststatus=2  " always show the status bar
 
-  " Start the status line
-  set statusline=%f\ %m%r
-  set statusline+=[Line:\ %l/%L]
-  set statusline+=[Col:\ %v]
-  set statusline+=[Buf:\ #%n]
-  set statusline+=[Char:\ %b\ (0x%B)]
-  set statusline+=%{fugitive#statusline()}
+    " Start the status line
+    set statusline=%F\ %y%m%r
+    set statusline+=[Line:\ %l/%L]
+    set statusline+=[Col:\ %v]
+    set statusline+=[Buf:\ %n]
+    set statusline+=[Char:\ %b\ (0x%B)]
+
+    if janus#is_plugin_enabled('fugitive')
+        set statusline+=%{fugitive#statusline()}
+    endif
+
+    if janus#is_plugin_enabled('syntastic')
+        set statusline+=%#warningmsg#
+        set statusline+=%{SyntasticStatuslineFlag()}
+        set statusline+=%*
+    endif
 endif
