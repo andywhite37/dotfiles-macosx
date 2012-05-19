@@ -1,0 +1,23 @@
+x Mac OSX 10.7 (Lion)
+x Google Chrome
+x Dropbox
+x Google Drive (?)
+x Xcode 4.3.2
+x Xcode Command Line Tools
+x iTerm2
+x zsh (switch default shell)
+x Oh My Zsh!
+    - custom settings in .zshrc/.zshenv
+    - customizations in ~/.oh-my-zsh/custom
+    - custom prompt
+x Homebrew
+    - git
+    - macvim
+    - wget
+x Fix path issues (.zshrc path /usr/local/bin before /usr/bin)
+x Janus for Vim
+    - custom .vimrc.after, .gvimrc.after
+    - custom plugins in ~/.janus
+x JetBrains AppCode
+    - ideavim plugin
+    - JSLint/JSHint!

@@ -1,0 +1,24 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" awhite Janus .vimrc.after
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"set nonumber
+set shiftwidth=4
+set tabstop=4
+
+colorscheme torte
+
+" Make line numbers less abrasive
+hi LineNr guifg=#505050 guibg=Black
+
+if has("statusline") && !&cp
+  set laststatus=2  " always show the status bar
+
+  " Start the status line
+  set statusline=%f\ %m%r
+  set statusline+=[Line:\ %l/%L]
+  set statusline+=[Col:\ %v]
+  set statusline+=[Buf:\ #%n]
+  set statusline+=[Char:\ %b\ (0x%B)]
+  set statusline+=%{fugitive#statusline()}
+endif

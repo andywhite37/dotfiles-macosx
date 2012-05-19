@@ -1,0 +1,4 @@
+- Install homebrew
+- Install Oh My ZSH
+- Install MacVim (homebrew)
+- Install Janus

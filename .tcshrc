@@ -1,0 +1,283 @@
+######################################################################
+## .tcshrc for andy
+######################################################################
+
+######################################################################
+## General Settings
+######################################################################
+
+# Add /Users/andy/bin to front of PATH
+set home_path = '/Users/andy/bin'
+if (`echo ${PATH} | tr ':' '\n' | grep $home_path` != $home_path) then
+    setenv PATH "${home_path}:${PATH}"
+endif
+
+set postgresql_path = '/Library/PostgreSQL/8.4/bin'
+if (`echo ${PATH} | tr ':' '\n' | grep $postgresql_path` != $postgresql_path) then
+    setenv PATH "${PATH}:${postgresql_path}"
+endif
+
+# Add . to front of PATH
+# Actually, don't do this, it's a security hazard
+#if (`echo ${PATH} | tr ':' '\n' | grep '^\.$'` != '.') then
+#    setenv PATH ".:${PATH}"
+#endif
+
+setenv SHELL                            '/bin/tcsh'
+#setenv EDITOR                           '/usr/bin/vim'
+#setenv EDITOR                           '~/Downloads/MacVim-7_2-stable-1_2/MacVim.app/Contents/MacOS/MacVim'
+#setenv EDITOR                           '~/Downloads/MacVim-7_2-stable-1_2/mvim'
+#setenv EDITOR                           '/Applications/MacVim.app/Contents/MacOS/MacVim'  
+#setenv EDITOR                           'open -a /Applications/MacVim.app'
+setenv EDITOR                           '/Applications/MacVim.app/Contents/MacOS/Vim -g'  
+#setenv EDITOR                           '~/dev/git/vim7/src/MacVim/build/Release/MacVim.app/Contents/MacOS/Vim -g'  
+
+# LSCOLORS
+# 
+# a     black
+# b     red
+# c     green
+# d     brown
+# e     blue
+# f     magenta
+# g     cyan
+# h     light grey
+# A     bold black, usually shows up as dark grey
+# B     bold red
+# C     bold green
+# D     bold brown, usually shows up as yellow
+# E     bold blue
+# F     bold magenta
+# G     bold cyan
+# H     bold light grey; looks like bright white
+# x     default foreground or background
+#
+# Note that the above are standard ANSI colors.  The actual display may differ depending on the color capa-
+# bilities of the terminal in use.
+#
+# The order of the attributes are as follows:
+#
+# 1.   directory
+# 2.   symbolic link
+# 3.   socket
+# 4.   pipe
+# 5.   executable
+# 6.   block special
+# 7.   character special
+# 8.   executable with setuid bit set
+# 9.   executable with setgid bit set
+# 10.  directory writable to others, with sticky bit
+# 11.  directory writable to others, without sticky bit
+
+setenv LSCOLORS 'Gxgxcxdxbxegedabagacad'
+
+set autolist = ambiguous
+#set autolist
+#set complete = enhance
+set complete = igncase
+set autocorrect
+set correct = cmd
+set fignore = (\~ .o .pyc)
+
+#setenv VIM_HOME                         '/usr/share/vim'
+setenv VIM_HOME                        '/Applications/MacVim.app/Contents/Resources/vim'
+
+# Only set this if MacVim has not been property installed in /Applications
+#setenv VIM_APP_DIR                     '~/Downloads/MacVim-7_2-stable-1_2/'
+#setenv VIM_APP_DIR                      '~/dev/git/vim7/src/MacVim/build/Release/'
+
+######################################################################
+## Python
+######################################################################
+
+# .profile for Python
+#setenv PYTHONSTARTUP  '~/.pythonrc.py'
+
+# Path to location python modules
+#setenv PYTHONPATH "${PYTHONPATH}:/Users/andy/dev/Django"
+#setenv PYTHONPATH "/Users/andy/dev/Django"
+
+set pyhome = "/Library/Frameworks/Python.framework/Versions/Current/"
+set pysp   = "${pyhome}/lib/python2.6/site-packages/"
+set pybin  = "${pyhome}/bin"
+
+alias pyhome 'cd ${pyhome}'
+alias pysp   'cd ${pysp}'
+alias pybin  'cd ${pybin}'
+alias lssp       "find . -type d -maxdepth 1 -not -name '*.egg' -not -name '*.egg-info' -print"
+
+#alias djhome 'cd /Users/andy/dev/Django'
+
+alias ve         'virtualenv --no-site-packages \!*'
+alias veact      'source ~/bin/activate.tcsh \!*'
+alias vedeact    'source ~/bin/deactivate.tcsh'
+
+if ($?VIRTUAL_ENV) then
+    alias vehome     'cd ${VIRTUAL_ENV}'
+    alias vesp       'cd ${VIRTUAL_ENV}/lib/python2.6/site-packages/'
+    alias veapps     'cd ${VIRTUAL_ENV}/apps'
+    alias veproj     'cd ${VIRTUAL_ENV}/project'
+    set vesp = "${VIRTUAL_ENV}/lib/python2.6/site-packages"
+endif
+
+######################################################################
+## WebFaction
+######################################################################
+
+alias scb        'ssh scb@scb.webfactional.com' # Ted....Mos.....
+
+######################################################################
+## Homebrew
+######################################################################
+
+alias brewhome              'cd ~/homebrew'
+
+set homebrew_path = '/Users/andy/homebrew/bin'
+if (`echo ${PATH} | tr ':' '\n' | grep ${homebrew_path}` != ${homebrew_path}) then
+    setenv PATH "${PATH}:${homebrew_path}"
+endif
+
+######################################################################
+## Prompt
+######################################################################
+
+source ~/.prompt.tcsh
+alias precmd 'echo; source ~/.prompt.tcsh'
+
+## 30 - black
+## 31 - brick red
+## 32 - green
+## 33 - yellow ochre
+## 34 - dark blue
+## 35 - magenta
+## 36 - cyan
+## 37 - white/gray
+
+#set black     = '%{\033[30m%}'
+#set red       = '%{\033[31m%}'
+#set green     = '%{\033[32m%}'
+#set yellow    = '%{\033[33m%}'
+#set blue      = '%{\033[34m%}'
+#set magenta   = '%{\033[35m%}'
+#set cyan      = '%{\033[36m%}'
+#set white     = '%{\033[37m%}'
+#set nocolor   = '%{\033[0m%}'
+
+#if ( $?VIRTUAL_ENV ) then
+    #set VESTR = `basename $VIRTUAL_ENV`
+#else
+    #set VESTR = "-- NONE --"
+#endif
+
+#set prompt = '[%{\033[31m%}%n%{\033[0m%}@%{\033[31m%}%m%{\033[0m%}][%{\033[32m%}%${VESTR}%{\033[0m%}][%{\033[36m%}%~%{\033[0m%}][%{\033[33m%}%h%{\033[0m%}]>%b '
+#set prompt = "[${red}%n@%m${nocolor}][${green}${VESTR}${nocolor}][${cyan}%~${nocolor}][${yellow}%h${nocolor}]>%b "
+
+######################################################################
+## Autocompletions
+######################################################################
+
+complete man        'p/*/c/'
+complete which      'p/*/c/'
+complete where      'p/*/c/'
+complete sudo       'p/1/c/'
+complete cd         'p/*/d/'
+
+######################################################################
+## General Shortcuts
+######################################################################
+
+alias path                              'echo $PATH | ddown'
+
+alias ee                                'gvim ~/.tcshrc'
+alias se                                'source ~/.tcshrc'
+alias ev                                '${EDITOR} ~/.vimrc'
+
+alias rm                                'rm -i \!*'
+#alias rmt                               'rm *.*~'
+
+#alias gvim                             '${EDITOR} \!* &'
+alias gvimraw                           '${EDITOR}'
+alias gvim                              '${EDITOR} --servername GVIM --remote-tab-silent \!*'
+
+alias ddown                             "tr ':' '\n'"
+
+alias srch                              'find . -print | grep'
+alias rgrep                             'find . -type f -print0 | xargs -0 grep \!* |& grep -v "Binary file.*matches"'
+alias grepfiles                         'cut -d: -f1 | sort | uniq'
+
+alias psall                             'ps -e -o pid,ppid,user,command'
+alias psme                              'ps -u andy -o pid,ppid,user,command'
+
+alias p                                 'less -fiMQ'
+
+alias hexf                              'open /Applications/Hex\ Fiend.app'
+
+######################################################################
+## cd Shortcuts
+######################################################################
+
+alias up                                'cd ../\!*'
+alias up2                               'cd ../../\!*'
+alias up3                               'cd ../../../\!*'
+alias up4                               'cd ../../../../\!*'
+alias up5                               'cd ../../../../../\!*'
+alias up6                               'cd ../../../../../../\!*'
+
+alias back                              'cd -'
+
+alias githome                           'cd ~/dev/git/'
+alias hghome                            'cd ~/dev/hg/'
+
+######################################################################
+## ls Shortcuts
+######################################################################
+
+alias ls                                'ls -G'
+alias lf                                'ls -F'
+alias ll                                'ls -la'
+alias la                                'ls -la'
+alias llrt                              'ls -lrt'
+alias llart                             'ls -lart'
+alias l1                                'ls -1'
+
+######################################################################
+## Apache Shortcuts
+######################################################################
+
+alias apachehome                        'cd /etc/apache2'
+alias aphome                            'apachehome'
+
+alias apachelogs                        'cd /var/log/apache2'
+alias apachelog                         'apachelogs'
+alias aplogs                            'apachelogs'
+alias aplog                             'apachelogs'
+
+alias apacheroot                        'cd /Library/WebServer'
+alias aproot                            'apacheroot'
+
+alias apstart                           'sudo apachectl start'
+alias apstop                            'sudo apachectl stop'
+alias aprestart                         'sudo apachectl restart'
+
+######################################################################
+## Django Shortcuts
+######################################################################
+
+alias rserv                             'kserv; ./manage.py runserver_plus &'
+alias lserv                             "psme | grep './manage.py runserver' | grep -v grep"
+alias kserv                             "lserv | sed 's/^[ ]*//' | cut -f1 -d' ' | xargs kill"
+
+alias opensite                          'open http://127.0.0.1:8000/\!*'
+
+alias rshell                            './manage.py shell_plus'
+
+alias dumpdata                          './manage.py dumpdata --format=json --indent=4'
+alias dumpdatasave                      'dumpdata \!* > /Users/andy/dev/Python/vidalist/project/apps/vidalist/fixtures/initial_data.json'
+
+alias rtest                             './manage.py test vidalist'
+
+#####################################################################
+## Other
+#####################################################################
+
+alias appcode                           'open /Applications/AppCode.app'

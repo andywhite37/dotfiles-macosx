@@ -1,0 +1,32 @@
+[user]
+    name = Andy White
+    email = greatwhitehope@gmail.com
+
+[color]
+    branch = auto
+    diff = auto
+    interactive = auto
+    status = auto
+
+[alias]
+    s = status
+    a = add
+    b = branch
+    co = checkout
+    ci = commit
+    d = diff
+    #dt = difftool #difftool not configured for diffmerge
+    dt = diff
+    m = merge
+    mt = mergetool
+    sm = submodule
+
+[merge]
+    tool = diffmerge
+
+[mergetool "diffmerge"]
+    cmd = \"${HOME}/bin/git-diffmerge-merge.sh\" \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+    trustExitCode = false
+
+[diff]
+    external = \"${HOME}/bin/git-diffmerge-diff.sh\"

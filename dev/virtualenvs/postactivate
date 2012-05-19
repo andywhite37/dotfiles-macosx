@@ -1,0 +1,13 @@
+#!/bin/zsh
+# This hook is run after every virtualenv is activated.
+
+#echo "postactivate:"
+#echo "PROMPT = $PROMPT"
+#echo "PS1 = $PS1"
+#export PROMPT="${_OLD_VIRTUAL_PROMPT}"
+
+# Remove the activate prompt update
+export PROMPT=$(echo $PROMPT | sed "s/($(basename $VIRTUAL_ENV))//")
+
+cd $VIRTUAL_ENV
+

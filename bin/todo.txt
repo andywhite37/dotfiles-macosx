@@ -1,0 +1,5 @@
+macvim
+janus
+appcode
+python?
+ruby?
