@@ -22,3 +22,7 @@
 - [Janus (vim plugins)](https://github.com/carlhuda/janus)
 - [SourceGear DiffMerge](http://www.sourcegear.com/diffmerge/)
 
+## Python Tools
+
+- [Pythonbrew](https://github.com/utahta/pythonbrew)
+- [virtualenvwrapper](http://www.doughellmann.com/docs/virtualenvwrapper/)
