@@ -3,11 +3,12 @@
 SOURCE_ROOT=~/Dropbox/DevelopmentTools/Mac
 
 echo "Linking shell files"
-rm ~/.zshrc ~/.zshenv ~/.tcshrc ~/.prompt.tcsh >& /dev/null
+rm ~/.zshrc ~/.zshenv ~/.tcshrc ~/.prompt.tcsh ~/.ackrc >& /dev/null
 ln -s $SOURCE_ROOT/.zshrc ~/.zshrc
 ln -s $SOURCE_ROOT/.zshenv ~/.zshenv
 ln -s $SOURCE_ROOT/.tcshrc ~/.tcshrc
 ln -s $SOURCE_ROOT/.prompt.tcsh ~/.prompt.tcsh
+ln -s $SOURCE_ROOT/.ackrc ~/.ackrc
 
 echo "Linking vim files (.vimrc and .gvimrc created by Janus install)"
 rm ~/.vimrc.before ~/.vimrc.after ~/.gvimrc.before ~/.gvimrc.after >& /dev/null
