@@ -3,47 +3,17 @@
 ################################################################################
 
 ################################################################################
-# Begin oh-my-zsh Setup
+# Oh My ZSH
 ################################################################################
-# Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
+ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="awhite"
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+COMPLETION_WAITING_DOTS="true"
 
-# Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
-
-# Comment this out to disable weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
-
-# Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment following line if you want red dots to be displayed while waiting for completion
-# COMPLETION_WAITING_DOTS="true"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git vi-mode)
 
 source $ZSH/oh-my-zsh.sh
-
-################################################################################
-# End .oh-my-zsh stuff
-# Begin awhite customizations
-################################################################################
 
 ################################################################################
 # Path updates
@@ -66,6 +36,8 @@ appendPathDir()
     dir="$1"
     if ! $(echo "$PATH" | tr ":" "\n" | grep -qx "$dir" ); then export PATH="${PATH}:${dir}"; fi
 }
+
+prependPathDir '/usr/local/Cellar/ruby/1.9.3-p194/bin'
 
 removePathDir "/usr/local/bin"
 prependPathDir "/usr/local/bin"
@@ -116,8 +88,7 @@ alias ddown="tr ':' '\n'"
 alias srch='find . -print | grep'
 rgrep()
 {
-    # TODO: $* doesn't handle args like -i for grep
-    find . -type f -print0 | xargs -0 grep "$*" |& grep -v 'Binary file.*matches'
+    find . -type f -print0 | xargs -0 grep $* |& grep -v 'Binary file.*matches'
 }
 
 alias grepfiles='cut -d: -f1 | sort | uniq'
@@ -131,6 +102,8 @@ alias h='history'
 alias hgrep='history | grep'
 
 alias dt='~/bin/diffmerge.sh'
+
+alias lock='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
 
 ################################################################################
 # cd shortcuts
@@ -173,7 +146,16 @@ alias l1='ls -1'
 alias xcode='open /Applications/Xcode.app'
 alias appcode='open /Applications/AppCode.app'
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --allow-file-access-from-files &!'
+alias canary='/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary --allow-file-access-from-files &!'
 alias weinre='githome && apache/incubator-cordova-weinre/weinre.server/weinre &'
+
+################################################################################
+# Websites
+################################################################################
+
+alias github='open https://github.com/organizations/bluedot'
+alias teamcity='open http://buildserver65/overview.html'
+alias rally='open https://rally1.rallydev.com'
 
 ################################################################################
 # Python
@@ -191,3 +173,11 @@ export WORKON_HOME=~/dev/virtualenvs
 where virtualenvwrapper.sh >& /dev/null && source `where virtualenvwrapper.sh`
 alias wohome="cd $WORKON_HOME"
 
+################################################################################
+# Ruby
+################################################################################
+
+# TODO: need to install RVM for better gem support than homebrew provides
+
+#alias sass='/usr/local/lib/ruby/gems/1.9.1/gems/sass-3.1.18/bin/sass'
+#alias scss='/usr/local/lib/ruby/gems/1.9.1/gems/sass-3.1.18/bin/scss'
