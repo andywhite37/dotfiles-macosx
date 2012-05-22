@@ -7,7 +7,7 @@
 #export PROMPT="${_OLD_VIRTUAL_PROMPT}"
 
 # Remove the activate prompt update
-export PROMPT=$(echo $PROMPT | sed "s/($(basename $VIRTUAL_ENV))//")
+#export PROMPT=$(echo $PROMPT | sed "s/($(basename $VIRTUAL_ENV))//")
 
 cd $VIRTUAL_ENV
 

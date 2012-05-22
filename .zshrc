@@ -50,8 +50,8 @@ prependPathDir "${HOME}/bin"
 # Environment variables
 ################################################################################
 
-export EDITOR='/Applications/MacVim.app/Contents/MacOS/Vim -g' 
-export GIT_EDITOR='/Applications/MacVim.app/Contents/MacOS/Vim' 
+export EDITOR='/Applications/MacVim.app/Contents/MacOS/Vim -g'
+export GIT_EDITOR='/Applications/MacVim.app/Contents/MacOS/Vim'
 export VIM_HOME='/Applications/MacVim.app/Contents/Resources/vim'
 
 ################################################################################
@@ -59,6 +59,7 @@ export VIM_HOME='/Applications/MacVim.app/Contents/Resources/vim'
 ################################################################################
 
 bindkey "^P" up-line-or-history
+bindkey "^N" down-line-or-history
 
 ################################################################################
 # Command-line shortcuts
@@ -86,10 +87,7 @@ alias gvim="${EDITOR} --servername GVIM --remote-tab-silent"
 alias ddown="tr ':' '\n'"
 
 alias srch='find . -print | grep'
-rgrep()
-{
-    find . -type f -print0 | xargs -0 grep $* |& grep -v 'Binary file.*matches'
-}
+alias rgrep="ack"
 
 alias grepfiles='cut -d: -f1 | sort | uniq'
 
@@ -119,13 +117,13 @@ alias up7='cd ../../../../../../../'
 alias up8='cd ../../../../../../../../'
 
 alias omz='cd $ZSH'
-
-alias githome='cd ~/dev'
-alias am-ios='githome && cd bluedot/am-ios' 
-
 alias isim='cd ~/Library/Application\ Support/iPhone\ Simulator/5.1/Applications'
 alias dl='cd ~/Downloads'
 alias mac='cd ~/Dropbox/DevelopmentTools/Mac'
+
+alias devhome='cd ~/dev'
+alias githome='devhome'
+alias am-ios='githome && cd bluedot/am-ios' 
 
 ################################################################################
 # ls shortcuts
@@ -163,15 +161,26 @@ alias rally='open https://rally1.rallydev.com'
 
 # Pythonbrew
 [[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
+alias pbhome='cd ~/.pythonbrew'
 alias pb="pythonbrew"
 
 # virtualenv
+export VIRTUAL_ENV_DISABLE_PROMPT="true"
 alias vehome='cd $VIRTUAL_ENV'
 
 # virtualenvwrapper
 export WORKON_HOME=~/dev/virtualenvs
-where virtualenvwrapper.sh >& /dev/null && source `where virtualenvwrapper.sh`
+export PROJECT_HOME=~/dev/virtualprojects
+#export VIRTUALENVWRAPPER_PROJECT_FILENAME
+#export VIRTUALENVWRAPPER_HOOK_DIR
+#export VIRTUALENVWRAPPER_LOG_DIR
+#export VIRTUALENVWRAPPER_PYTHON
+#export VIRTUALENVWRAPPER_VIRTUALENV
+#export VIRTUALENVWRAPPER_VIRTUALENV_ARGS
+#export VIRTUALENVWRAPPER_TMPDIR
+which virtualenvwrapper.sh >& /dev/null && source `which virtualenvwrapper.sh`
 alias wohome="cd $WORKON_HOME"
+alias projhome="cd $PROJECT_HOME"
 
 ################################################################################
 # Ruby
