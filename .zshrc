@@ -15,6 +15,9 @@ plugins=(git vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
+# Undo some oh my zsh defaults
+unset -f cd
+
 ################################################################################
 # Path updates
 ################################################################################
@@ -53,6 +56,11 @@ prependPathDir "${HOME}/bin"
 export EDITOR='/Applications/MacVim.app/Contents/MacOS/Vim -g'
 export GIT_EDITOR='/Applications/MacVim.app/Contents/MacOS/Vim'
 export VIM_HOME='/Applications/MacVim.app/Contents/Resources/vim'
+
+export DROPBOX="${HOME}/Dropbox"
+export DROPBOXMAC="${DROPBOX}/DevelopmentTools/Mac"
+export DESKTOP="${HOME}/Desktop"
+export DEVHOME="${HOME}/dev"
 
 ################################################################################
 # Key Bindings
@@ -117,13 +125,20 @@ alias up7='cd ../../../../../../../'
 alias up8='cd ../../../../../../../../'
 
 alias omz='cd $ZSH'
-alias isim='cd ~/Library/Application\ Support/iPhone\ Simulator/5.1/Applications'
-alias dl='cd ~/Downloads'
-alias mac='cd ~/Dropbox/DevelopmentTools/Mac'
 
-alias devhome='cd ~/dev'
+alias isim='cd ~/Library/Application\ Support/iPhone\ Simulator/5.1/Applications'
+
+alias dl='cd ~/Downloads'
+
+alias dropbox="cd $DROPBOX"
+alias mac="cd $DROPBOXMAC"
+
+alias desktop="cd $DESKTOP"
+
+alias dev="cd $DEVHOME"
+alias devhome='devhome'
 alias githome='devhome'
-alias am-ios='githome && cd bluedot/am-ios' 
+alias am-ios='dev && cd bluedot/am-ios' 
 
 ################################################################################
 # ls shortcuts
