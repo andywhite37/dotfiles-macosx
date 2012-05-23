@@ -40,8 +40,17 @@ appendPathDir()
     if ! $(echo "$PATH" | tr ":" "\n" | grep -qx "$dir" ); then export PATH="${PATH}:${dir}"; fi
 }
 
-prependPathDir '/usr/local/Cellar/ruby/1.9.3-p194/bin'
+# Add homebrew's ruby gem install dir to path
+if [[ -d "/usr/local/Cellar/ruby/1.9.3-p194/bin" ]]; then
+    prependPathDir '/usr/local/Cellar/ruby/1.9.3-p194/bin'
+fi
 
+# RVM script adds this
+#if [[ -d "${HOME}/.rvm/bin" ]]; then
+#    prependPathDir "${HOME}/.rvm/bin"
+#fi
+
+# Remove and re-add /usr/local/bin so it appears before /usr/bin
 removePathDir "/usr/local/bin"
 prependPathDir "/usr/local/bin"
 
@@ -67,6 +76,7 @@ export MAC="${DROPBOX}/DevelopmentTools/Mac"
 export DESKTOP="${HOME}/Desktop"
 export DEV="${HOME}/dev"
 export DOWNLOADS="${HOME}/Downloads"
+export TEMP="${HOME}/tmp"
 
 ################################################################################
 # Key Bindings
@@ -107,7 +117,9 @@ alias rgrep="ack"
 alias grepfiles='cut -d: -f1 | sort | uniq'
 
 alias psall='ps -e -o pid,ppid,user,command'
-alias psme='ps -u awhite -o pid,ppid,user,command'
+alias psme='ps -u ${USER} -o pid,ppid,user,command'
+alias psgrep='psall | grep'
+alias psmegrep='psme | grep'
 
 alias p="$PAGER"
 alias more="$PAGER"
@@ -137,6 +149,9 @@ alias mac="cd $MAC"
 alias desktop="cd $DESKTOP"
 alias dl="cd $DOWNLOADS"
 alias omz="cd $ZSH"
+alias temp="cd $TEMP"
+alias tmp="cd $TEMP"
+alias ulb="cd /usr/local/bin"
 
 alias isim='cd ~/Library/Application\ Support/iPhone\ Simulator/5.1/Applications'
 
@@ -181,14 +196,19 @@ alias rally='open https://rally1.rallydev.com'
 [[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
 alias pbhome='cd ~/.pythonbrew'
 alias pb="pythonbrew"
+alias pbon="pythonbrew switch 2.7.3"
+alias pboff="pythonbrew off"
 
-# virtualenv
-export VIRTUAL_ENV_DISABLE_PROMPT="true"
+# pip/virtualenv
+export VIRTUAL_ENV_DISABLE_PROMPT=true
+export PIP_REQUIRE_VIRTUALENV=true
+export PIP_RESPECT_VIRTUALENV=true
 alias vehome='cd $VIRTUAL_ENV'
 
 # virtualenvwrapper
 export WORKON_HOME=~/dev/virtualenvs
 export PROJECT_HOME=~/dev/virtualprojects
+export PIP_VIRTUALENV_BASE="$WORKON_HOME"
 #export VIRTUALENVWRAPPER_PROJECT_FILENAME=".project"
 #export VIRTUALENVWRAPPER_HOOK_DIR
 #export VIRTUALENVWRAPPER_LOG_DIR
@@ -204,7 +224,8 @@ alias projhome="cd $PROJECT_HOME"
 # Ruby
 ################################################################################
 
-# TODO: need to install RVM for better gem support than homebrew provides
-
-#alias sass='/usr/local/lib/ruby/gems/1.9.1/gems/sass-3.1.18/bin/sass'
-#alias scss='/usr/local/lib/ruby/gems/1.9.1/gems/sass-3.1.18/bin/scss'
+# RVM
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+alias rvmhome="cd ~/.rvm"
+alias rvmon="rvm use 1.9.3 --default"
+alias rvmoff="rvm use system"

@@ -25,4 +25,9 @@
 ## Python Tools
 
 - [Pythonbrew](https://github.com/utahta/pythonbrew)
+- pip/virtualenv
 - [virtualenvwrapper](http://www.doughellmann.com/docs/virtualenvwrapper/)
+
+## Ruby Tools
+
+- [RVM](https://rvm.io)
