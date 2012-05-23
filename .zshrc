@@ -15,7 +15,7 @@ plugins=(git vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
-# Undo some oh my zsh defaults
+# Undo some of the defaults
 unset -f cd
 
 ################################################################################
@@ -53,14 +53,18 @@ prependPathDir "${HOME}/bin"
 # Environment variables
 ################################################################################
 
-export EDITOR='/Applications/MacVim.app/Contents/MacOS/Vim -g'
-export GIT_EDITOR='/Applications/MacVim.app/Contents/MacOS/Vim'
-export VIM_HOME='/Applications/MacVim.app/Contents/Resources/vim'
+#export VIM_HOME='/Applications/MacVim.app/Contents/Resources/vim'
+export VIM_COMMAND='/Applications/MacVim.app/Contents/MacOS/Vim'
+export GVIM_COMMAND='/Applications/MacVim.app/Contents/MacOS/Vim -g'
+
+export EDITOR="${GVIM_COMMAND}"
+export GIT_EDITOR="${VIM_COMMAND}"
 
 export DROPBOX="${HOME}/Dropbox"
-export DROPBOXMAC="${DROPBOX}/DevelopmentTools/Mac"
+export MAC="${DROPBOX}/DevelopmentTools/Mac"
 export DESKTOP="${HOME}/Desktop"
-export DEVHOME="${HOME}/dev"
+export DEV="${HOME}/dev"
+export DOWNLOADS="${HOME}/Downloads"
 
 ################################################################################
 # Key Bindings
@@ -70,8 +74,13 @@ bindkey "^P" up-line-or-history
 bindkey "^N" down-line-or-history
 
 ################################################################################
-# Command-line shortcuts
+# Shell-related shortcuts
 ################################################################################
+
+alias editor="${EDITOR}"
+alias vim="${VIM_COMMAND}"
+alias gvim="${GVIM_COMMAND} --servername GVIM --remote-tab-silent"
+alias gvimraw="${GVIM_COMMAND}"
 
 alias path='echo $PATH | ddown'
 
@@ -87,10 +96,6 @@ alias egvb='gvim ~/.gvimrc.before'
 alias egva='gvim ~/.gvimrc.after'
 
 alias rm='rm -i'
-
-alias editor="${EDITOR}"
-alias gvimraw="${EDITOR}"
-alias gvim="${EDITOR} --servername GVIM --remote-tab-silent"
 
 alias ddown="tr ':' '\n'"
 
@@ -124,21 +129,16 @@ alias up6='cd ../../../../../../'
 alias up7='cd ../../../../../../../'
 alias up8='cd ../../../../../../../../'
 
-alias omz='cd $ZSH'
+alias dropbox="cd $DROPBOX"
+alias mac="cd $MAC"
+alias desktop="cd $DESKTOP"
+alias dl="cd $DOWNLOADS"
+alias omz="cd $ZSH"
 
 alias isim='cd ~/Library/Application\ Support/iPhone\ Simulator/5.1/Applications'
 
-alias dl='cd ~/Downloads'
-
-alias dropbox="cd $DROPBOX"
-alias mac="cd $DROPBOXMAC"
-
-alias desktop="cd $DESKTOP"
-
-alias dev="cd $DEVHOME"
-alias devhome='devhome'
-alias githome='devhome'
-alias am-ios='dev && cd bluedot/am-ios' 
+alias dev="cd $DEV"
+alias am-ios="cd $DEV/bluedot/am-ios"
 
 ################################################################################
 # ls shortcuts
@@ -160,7 +160,7 @@ alias xcode='open /Applications/Xcode.app'
 alias appcode='open /Applications/AppCode.app'
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --allow-file-access-from-files &!'
 alias canary='/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary --allow-file-access-from-files &!'
-alias weinre='githome && apache/incubator-cordova-weinre/weinre.server/weinre &'
+alias weinre='$DEV/apache/incubator-cordova-weinre/weinre.server/weinre &'
 
 ################################################################################
 # Websites
@@ -186,7 +186,7 @@ alias vehome='cd $VIRTUAL_ENV'
 # virtualenvwrapper
 export WORKON_HOME=~/dev/virtualenvs
 export PROJECT_HOME=~/dev/virtualprojects
-#export VIRTUALENVWRAPPER_PROJECT_FILENAME
+#export VIRTUALENVWRAPPER_PROJECT_FILENAME=".project"
 #export VIRTUALENVWRAPPER_HOOK_DIR
 #export VIRTUALENVWRAPPER_LOG_DIR
 #export VIRTUALENVWRAPPER_PYTHON
