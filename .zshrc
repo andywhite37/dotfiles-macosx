@@ -60,6 +60,8 @@ export GVIM_COMMAND='/Applications/MacVim.app/Contents/MacOS/Vim -g'
 export EDITOR="${GVIM_COMMAND}"
 export GIT_EDITOR="${VIM_COMMAND}"
 
+export PAGER="less -fiMQ"
+
 export DROPBOX="${HOME}/Dropbox"
 export MAC="${DROPBOX}/DevelopmentTools/Mac"
 export DESKTOP="${HOME}/Desktop"
@@ -107,7 +109,8 @@ alias grepfiles='cut -d: -f1 | sort | uniq'
 alias psall='ps -e -o pid,ppid,user,command'
 alias psme='ps -u awhite -o pid,ppid,user,command'
 
-alias p='less -fiMQ'
+alias p="$PAGER"
+alias more="$PAGER"
 
 alias h='history'
 alias hgrep='history | grep'
