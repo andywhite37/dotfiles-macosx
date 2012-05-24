@@ -2,6 +2,9 @@
 # awhite's .zshrc
 ################################################################################
 
+#echo "~/.zshrc"
+#echo "PATH = $PATH"
+
 ################################################################################
 # Oh My ZSH
 ################################################################################
@@ -42,6 +45,7 @@ appendPathDir()
 
 # Add homebrew's ruby gem install dir to path
 if [[ -d "/usr/local/Cellar/ruby/1.9.3-p194/bin" ]]; then
+    removePathDir '/usr/local/Cellar/ruby/1.9.3-p194/bin'
     prependPathDir '/usr/local/Cellar/ruby/1.9.3-p194/bin'
 fi
 
@@ -54,6 +58,7 @@ fi
 removePathDir "/usr/local/bin"
 prependPathDir "/usr/local/bin"
 
+removePathDir "${HOME}/bin"
 prependPathDir "${HOME}/bin"
 
 #appendPathDir "/usr/libexec"
@@ -79,6 +84,13 @@ export DOWNLOADS="${HOME}/Downloads"
 export TEMP="${HOME}/tmp"
 
 ################################################################################
+# Autocorrect
+################################################################################
+
+unsetopt correct_all
+setopt correct
+
+################################################################################
 # Key Bindings
 ################################################################################
 
@@ -90,6 +102,7 @@ bindkey "^N" down-line-or-history
 ################################################################################
 
 alias editor="${EDITOR}"
+#alias e="${EDITOR}"
 alias vim="${VIM_COMMAND}"
 alias gvim="${GVIM_COMMAND} --servername GVIM --remote-tab-silent"
 alias gvimraw="${GVIM_COMMAND}"
@@ -229,3 +242,11 @@ alias projhome="cd $PROJECT_HOME"
 alias rvmhome="cd ~/.rvm"
 alias rvmon="rvm use 1.9.3 --default"
 alias rvmoff="rvm use system"
+
+################################################################################
+# Node.js
+################################################################################
+
+export NODE_PATH="/usr/local/lib/node_modules"
+
+#echo "PATH = $PATH"

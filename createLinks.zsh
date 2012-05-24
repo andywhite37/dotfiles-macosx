@@ -1,47 +1,83 @@
 #! /usr/bin/env zsh
 
-SOURCE_ROOT=~/Dropbox/DevelopmentTools/Mac
+################################################################################
+# Links files in this diretory to their proper places in $HOME
+################################################################################
 
-echo "Linking shell files"
-rm ~/.zshrc ~/.zshenv ~/.tcshrc ~/.prompt.tcsh ~/.ackrc >& /dev/null
-ln -s $SOURCE_ROOT/.zshrc ~
-ln -s $SOURCE_ROOT/.zshenv ~
-ln -s $SOURCE_ROOT/.tcshrc ~
-ln -s $SOURCE_ROOT/.prompt.tcsh ~
-ln -s $SOURCE_ROOT/.ackrc ~
+################################################################################
+# Script setup
+################################################################################
 
-echo "Linking vim files (.vimrc and .gvimrc created by Janus install)"
-rm ~/.vimrc.before ~/.vimrc.after ~/.gvimrc.before ~/.gvimrc.after >& /dev/null
-ln -s $SOURCE_ROOT/.vimrc.before ~
-ln -s $SOURCE_ROOT/.vimrc.after ~
-ln -s $SOURCE_ROOT/.gvimrc.before ~
-ln -s $SOURCE_ROOT/.gvimrc.after ~
+SRC_DIR="${HOME}/Dropbox/DevelopmentTools/Mac"
+DEST_DIR="${HOME}"
 
-echo "Linking ~/.janus directory"
-rm -rf ~/.janus >& /dev/null
-ln -s $SOURCE_ROOT/.janus ~
+removeAndLink() {
+    local src=${SRC_DIR}/$1
+    local dest=${DEST_DIR}/$1
 
-if [[ -d ~/.oh-my-zsh/custom ]]; then
-    echo "Linking .oh-my-zsh/custom files"
-    rm ~/.oh-my-zsh/custom/awhite.zsh-theme >& /dev/null
-    ln -s $SOURCE_ROOT/.oh-my-zsh/custom/awhite.zsh-theme ~/.oh-my-zsh/custom
+    echo "rm -rf "$dest" >& /dev/null"
+    rm -rf "$dest" >& /dev/null
+
+    echo "ln -s "$src" "$dest""
+    ln -s "$src" "$dest"
+}
+
+################################################################################
+# Create the list of items to link
+################################################################################
+
+items=()
+
+# Shell files
+echo "Shell files"
+items+=.zshrc
+items+=.zshenv
+items+=.tcshrc
+items+=.prompt.tcsh
+items+=.ackrc
+items+=.hushlogin
+
+# Vim files
+echo "Vim files"
+items+=.vimrc.before
+items+=.vimrc.after
+items+=.gvimrc.before
+items+=.gvimrc.after
+
+# Vim Janus directory
+echo "Vim .janus directory"
+items+=.janus
+
+# Oh My ZSH files
+echo "Oh My ZSH files"
+if [[ -d ${DEST_DIR}/.oh-my-zsh/custom ]]; then
+    items+=.oh-my-zsh/custom/awhite.zsh-theme
 else
-    echo ".oh-my-zsh/custom does not exist, not linking"
+    echo "    Not linking to .oh-my-zsh/custom"
 fi
 
-echo "Linking git files"
-rm ~/.gitconfig >& /dev/null
-ln -s $SOURCE_ROOT/.gitconfig ~
+# Git files
+echo "Git files"
+items+=.gitconfig
 
-echo "Linking ~/bin directory"
-rm -rf ~/bin >& /dev/null
-ln -s $SOURCE_ROOT/bin ~/bin
+# bin directory
+echo "bin directory"
+items+=bin
 
-if [[ -d ~/dev/virtualenvs ]]; then
-    echo "Linking ~/dev/virtualenvs files"
-    rm ~/dev/virtualenvs/postactivate >& /dev/null
-    ln -s $SOURCE_ROOT/dev/virtualenvs/postactivate ~/dev/virtualenvs
+# virtualenvwrapper files
+echo "virtualenvwrapper files"
+if [[ -d ${DEST_DIR}/dev/virtualenvs ]]; then
+    items+=dev/virtualenvs/postactivate
 else
-    echo "~/dev/virtualenvs does not exist, not linking"
+    echo "    Not linking to /dev/virtualenvs"
 fi
+
+################################################################################
+# Do the linking
+################################################################################
+
+for item in $items
+do
+    removeAndLink $item
+done
 
