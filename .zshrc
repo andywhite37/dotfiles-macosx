@@ -2,9 +2,6 @@
 # awhite's .zshrc
 ################################################################################
 
-#echo "~/.zshrc"
-#echo "PATH = $PATH"
-
 ################################################################################
 # Oh My ZSH
 ################################################################################
@@ -22,7 +19,7 @@ source $ZSH/oh-my-zsh.sh
 unset -f cd
 
 ################################################################################
-# Path updates
+# $PATH
 ################################################################################
 
 removePathDir()
@@ -249,4 +246,6 @@ alias rvmoff="rvm use system"
 
 export NODE_PATH="/usr/local/lib/node_modules"
 
-#echo "PATH = $PATH"
+alias npmupdate="npm update -g npm"
+alias npmupdateall="npm update -g"
+

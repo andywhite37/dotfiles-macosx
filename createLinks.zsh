@@ -48,10 +48,10 @@ items+=.gvimrc.after
 echo "Vim .janus directory"
 items+=.janus
 
-# Oh My ZSH files
-echo "Oh My ZSH files"
-if [[ -d ${DEST_DIR}/.oh-my-zsh/custom ]]; then
-    items+=.oh-my-zsh/custom/awhite.zsh-theme
+# Oh My ZSH custom directory
+echo "Oh My ZSH custom directory"
+if [[ -d ${DEST_DIR}/.oh-my-zsh ]]; then
+    items+=.oh-my-zsh/custom
 else
     echo "    Not linking to .oh-my-zsh/custom"
 fi
