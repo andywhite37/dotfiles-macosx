@@ -67,9 +67,10 @@ prependPathDir "${HOME}/bin"
 #export VIM_HOME='/Applications/MacVim.app/Contents/Resources/vim'
 export VIM_COMMAND='/Applications/MacVim.app/Contents/MacOS/Vim'
 export GVIM_COMMAND='/Applications/MacVim.app/Contents/MacOS/Vim -g'
+export GVIMF_COMMAND='/Applications/MacVim.app/Contents/MacOS/Vim -gf'
 
-export EDITOR="${GVIM_COMMAND}"
-export GIT_EDITOR="${VIM_COMMAND}"
+export EDITOR="${GVIMF_COMMAND}"
+export GIT_EDITOR="${GVIMF_COMMAND}"
 
 export PAGER="less -fiMQ"
 
