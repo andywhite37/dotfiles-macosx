@@ -11,7 +11,7 @@ ZSH_THEME="awhite"
 
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(git vi-mode)
+plugins=(git vi-mode brew)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -117,6 +117,7 @@ alias evb='gvim ~/.vimrc.before'
 alias eva='gvim ~/.vimrc.after'
 alias egvb='gvim ~/.gvimrc.before'
 alias egva='gvim ~/.gvimrc.after'
+alias eg='gvim ~/.gitconfig'
 
 alias rm='rm -i'
 
@@ -156,6 +157,7 @@ alias up7='cd ../../../../../../../'
 alias up8='cd ../../../../../../../../'
 
 alias dropbox="cd $DROPBOX"
+alias db="cd $DROPBOX"
 alias mac="cd $MAC"
 alias desktop="cd $DESKTOP"
 alias dl="cd $DOWNLOADS"
