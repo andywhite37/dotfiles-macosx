@@ -156,6 +156,9 @@ alias up6='cd ../../../../../../'
 alias up7='cd ../../../../../../../'
 alias up8='cd ../../../../../../../../'
 
+alias home="cd"
+alias back="cd -"
+
 alias dropbox="cd $DROPBOX"
 alias db="cd $DROPBOX"
 alias mac="cd $MAC"
@@ -200,6 +203,12 @@ alias weinre='$DEV/apache/incubator-cordova-weinre/weinre.server/weinre &'
 alias github='open https://github.com/organizations/bluedot'
 alias teamcity='open http://buildserver65/overview.html'
 alias rally='open https://rally1.rallydev.com'
+
+################################################################################
+# Homebrew
+################################################################################
+
+alias cellar="cd $(brew --cellar)"
 
 ################################################################################
 # Python
