@@ -20,6 +20,9 @@
     m = merge
     mt = mergetool
     sm = submodule
+    hist = log --pretty=format:'%H %d | %ad | %an - %s' --graph --date=short
+    type = cat-file -t
+    dump = cat-file -p
 
 [merge]
     tool = diffmerge
