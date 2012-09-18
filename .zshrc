@@ -79,7 +79,7 @@ export MAC="${DROPBOX}/DevelopmentTools/Mac"
 export DESKTOP="${HOME}/Desktop"
 export DEV="${HOME}/dev"
 export DOWNLOADS="${HOME}/Downloads"
-export TEMP="${HOME}/tmp"
+export MYTEMP="${HOME}/tmp"
 
 ################################################################################
 # Autocorrect
@@ -165,8 +165,8 @@ alias mac="cd $MAC"
 alias desktop="cd $DESKTOP"
 alias dl="cd $DOWNLOADS"
 alias omz="cd $ZSH"
-alias temp="cd $TEMP"
-alias tmp="cd $TEMP"
+alias temp="cd $MYTEMP"
+alias tmp="cd $MYTEMP"
 alias ulb="cd /usr/local/bin"
 
 alias isim='cd ~/Library/Application\ Support/iPhone\ Simulator/5.1/Applications'
