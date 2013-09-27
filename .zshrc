@@ -65,9 +65,15 @@ prependPathDir "${HOME}/bin"
 ################################################################################
 
 #export VIM_HOME='/Applications/MacVim.app/Contents/Resources/vim'
-export VIM_COMMAND='/Applications/MacVim.app/Contents/MacOS/Vim'
-export GVIM_COMMAND='/Applications/MacVim.app/Contents/MacOS/Vim -g'
-export GVIMF_COMMAND='/Applications/MacVim.app/Contents/MacOS/Vim -gf'
+if [[ -d /Applications/MacVim.app ]]; then
+    export VIM_COMMAND='/Applications/MacVim.app/Contents/MacOS/Vim'
+    export GVIM_COMMAND='/Applications/MacVim.app/Contents/MacOS/Vim -g'
+    export GVIMF_COMMAND='/Applications/MacVim.app/Contents/MacOS/Vim -gf'
+else
+    export VIM_COMMAND='/usr/bin/vim'
+    export GVIM_COMMAND='/usr/bin/gvim'
+    export GVIMF_COMMAND='/usr/bin/gvim -f'
+fi
 
 export EDITOR="${GVIMF_COMMAND}"
 export GIT_EDITOR="${GVIMF_COMMAND}"
@@ -124,6 +130,7 @@ alias rm='rm -i'
 alias ddown="tr ':' '\n'"
 
 alias srch='find . -print | grep'
+alias ff='find . -type f -print'
 alias rgrep="ack"
 
 alias grepfiles='cut -d: -f1 | sort | uniq'
@@ -169,7 +176,8 @@ alias temp="cd $MYTEMP"
 alias tmp="cd $MYTEMP"
 alias ulb="cd /usr/local/bin"
 
-alias isim='cd ~/Library/Application\ Support/iPhone\ Simulator/5.1/Applications'
+alias isim5.1='cd ~/Library/Application\ Support/iPhone\ Simulator/5.1/Applications'
+alias isim='cd ~/Library/Application\ Support/iPhone\ Simulator/6.0/Applications'
 
 alias dev="cd $DEV"
 alias am-ios="cd $DEV/bluedot/am-ios"
@@ -178,7 +186,12 @@ alias am-ios="cd $DEV/bluedot/am-ios"
 # ls shortcuts
 ################################################################################
 
-alias ls='ls -G'
+if [[ -d /Applications ]]; then
+    alias ls='ls -G'
+else
+    alias ls='ls --color'
+fi
+
 alias lf='ls -F'
 alias ll='ls -la'
 alias la='ls -la'
@@ -208,7 +221,7 @@ alias rally='open https://rally1.rallydev.com'
 # Homebrew
 ################################################################################
 
-alias cellar="cd $(brew --cellar)"
+#alias cellar="cd $(brew --cellar)"
 
 ################################################################################
 # Python
