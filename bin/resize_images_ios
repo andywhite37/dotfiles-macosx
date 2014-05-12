@@ -1,0 +1,44 @@
+#! /bin/bash
+
+imageBase=$1
+echo "imageBase = $imageBase"
+
+copyAndResize() {
+    origSize=$1
+    newSize=$2
+
+    echo "Copying ${imageBase} from ${origSize} to ${newSize}..."
+    cp "${imageBase}-${origSize}.png" "${imageBase}-${newSize}.png"
+
+    echo "Resizing ${newSize}..."
+    mogrify -resize "${newSize}!" "${imageBase}-${newSize}.png"
+}
+
+# Icons
+
+copyAndResize "58x58" "57x57"
+copyAndResize "120x120" "114x114"
+copyAndResize "58x58" "50x50"
+copyAndResize "120x120" "100x100"
+copyAndResize "76x76" "72x72"
+copyAndResize "152x152" "144x144"
+
+# Launch Images
+
+copyAndResize "1024x768" "1024x748"
+#copyAndResize "" "1024x768"
+#copyAndResize "" "1024x768"
+copyAndResize "1536x2048" "1536x2008"
+#copyAndResize "" "1536x2048"
+#copyAndResize "" "1536x2048"
+copyAndResize "2048x1536" "2048x1496"
+#copyAndResize "" "2048x1536"
+#copyAndResize "" "2048x1536"
+copyAndResize "640x960" "320x480"
+#copyAndResize "" "640x960"
+#copyAndResize "" "640x960"
+#copyAndResize "" "640x1136"
+#copyAndResize "" "640x1136"
+copyAndResize "768x1024" "768x1004"
+#copyAndResize "" "768x1024"
+#copyAndResize "" "768x1024"

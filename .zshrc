@@ -18,6 +18,11 @@ source $ZSH/oh-my-zsh.sh
 # Undo some of the defaults
 unset -f cd
 
+# Setup online help (recommended by homebrew)
+unalias run-help
+autoload run-help
+HELPDIR=/usr/local/share/zsh/helpfiles
+
 ################################################################################
 # $PATH
 ################################################################################
@@ -41,9 +46,21 @@ appendPathDir()
 }
 
 # Add homebrew's ruby gem install dir to path
-if [[ -d "/usr/local/Cellar/ruby/1.9.3-p194/bin" ]]; then
-    removePathDir '/usr/local/Cellar/ruby/1.9.3-p194/bin'
-    prependPathDir '/usr/local/Cellar/ruby/1.9.3-p194/bin'
+#if [[ -d "/usr/local/Cellar/ruby/1.9.3-p194/bin" ]]; then
+#    removePathDir '/usr/local/Cellar/ruby/1.9.3-p194/bin'
+#    prependPathDir '/usr/local/Cellar/ruby/1.9.3-p194/bin'
+#fi
+
+# Add homebrew's ruby gem install dir to path
+#if [[ -d "/usr/local/Cellar/ruby/2.0.0-p353/bin" ]]; then
+#    removePathDir '/usr/local/Cellar/ruby/2.0.0-p353/bin'
+#    prependPathDir '/usr/local/Cellar/ruby/2.0.0-p353/bin'
+#fi
+
+# Add homebrew's ruby gem install dir to path
+if [[ -d "/usr/local/Cellar/ruby/2.1.1_1/bin" ]]; then
+    removePathDir '/usr/local/Cellar/ruby/2.1.1_1/bin'
+    prependPathDir '/usr/local/Cellar/ruby/2.1.1_1/bin'
 fi
 
 # RVM script adds this
@@ -180,7 +197,11 @@ alias isim5.1='cd ~/Library/Application\ Support/iPhone\ Simulator/5.1/Applicati
 alias isim='cd ~/Library/Application\ Support/iPhone\ Simulator/6.0/Applications'
 
 alias dev="cd $DEV"
+alias src="cd ~/src"
 alias am-ios="cd $DEV/bluedot/am-ios"
+
+alias cyani="cd ~/dev/bluedot/cyan-client-engine-ios"
+alias iphone="cd ~/dev/bluedot/iphone"
 
 ################################################################################
 # ls shortcuts
@@ -200,6 +221,12 @@ alias llart='ls -lart'
 alias l1='ls -1'
 
 ################################################################################
+# Networking Shortcuts
+################################################################################
+
+alias iphonedev2='ssh BDS@172.0.1.124'
+
+################################################################################
 # Applications
 ################################################################################
 
@@ -208,6 +235,11 @@ alias appcode='open /Applications/AppCode.app'
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --allow-file-access-from-files &!'
 alias canary='/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary --allow-file-access-from-files &!'
 alias weinre='$DEV/apache/incubator-cordova-weinre/weinre.server/weinre &'
+
+################################################################################
+# Git
+################################################################################
+alias gfo='git fetch origin'
 
 ################################################################################
 # Websites
@@ -222,6 +254,13 @@ alias rally='open https://rally1.rallydev.com'
 ################################################################################
 
 #alias cellar="cd $(brew --cellar)"
+alias brewup="brew update; brew upgrade"
+
+################################################################################
+# Java
+################################################################################
+
+export JAVA_HOME=$( /usr/libexec/java_home )
 
 ################################################################################
 # Python
@@ -270,7 +309,10 @@ alias rvmoff="rvm use system"
 ################################################################################
 
 export NODE_PATH="/usr/local/lib/node_modules"
+prependPathDir "/usr/local/share/npm/bin"
 
 alias npmupdate="npm update -g npm"
 alias npmupdateall="npm update -g"
 
+
+[ -s "/Users/awhite/.nvm/nvm.sh" ] && . "/Users/awhite/.nvm/nvm.sh" # This loads nvm

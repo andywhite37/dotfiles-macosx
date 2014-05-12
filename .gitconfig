@@ -35,3 +35,5 @@
 
 [diff]
     external = \"${HOME}/bin/git-diffmerge-diff.sh\"
+[push]
+	default = simple

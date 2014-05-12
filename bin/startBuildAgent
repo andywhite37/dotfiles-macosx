@@ -1,0 +1,3 @@
+#! /bin/bash
+
+/Applications/buildAgent/bin/agent.sh start
