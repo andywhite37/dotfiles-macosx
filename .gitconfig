@@ -1,6 +1,6 @@
 [user]
-    name = Andy White
-    email = greatwhitehope@gmail.com
+	name = Andy White
+	email = greatwhitehope@gmail.com
 
 [color]
     branch = auto
@@ -37,3 +37,11 @@
     external = \"${HOME}/bin/git-diffmerge-diff.sh\"
 [push]
 	default = simple
+[core]
+	excludesfile = /Users/awhite/.gitignore_global
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

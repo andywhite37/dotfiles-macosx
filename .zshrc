@@ -27,18 +27,21 @@ HELPDIR=/usr/local/share/zsh/helpfiles
 # $PATH
 ################################################################################
 
+# Remove a directory from the PATH
 removePathDir()
 {
     dir="$1"
     export PATH=$(echo "$PATH" | tr ":" "\n" | grep -vx "$dir" | paste -s -d ':' -)
 }
 
+# Prepend a directory to the PATH (at the beginning)
 prependPathDir()
 {
     dir="$1"
     if ! $(echo "$PATH" | tr ":" "\n" | grep -qx "$dir" ); then export PATH="${dir}:${PATH}"; fi
 }
 
+# Append a directory to the PATH (at the end)
 appendPathDir()
 {
     dir="$1"
@@ -58,10 +61,10 @@ appendPathDir()
 #fi
 
 # Add homebrew's ruby gem install dir to path
-if [[ -d "/usr/local/Cellar/ruby/2.1.1_1/bin" ]]; then
-    removePathDir '/usr/local/Cellar/ruby/2.1.1_1/bin'
-    prependPathDir '/usr/local/Cellar/ruby/2.1.1_1/bin'
-fi
+#if [[ -d "/usr/local/Cellar/ruby/2.1.1_1/bin" ]]; then
+#    removePathDir '/usr/local/Cellar/ruby/2.1.1_1/bin'
+#    prependPathDir '/usr/local/Cellar/ruby/2.1.1_1/bin'
+#fi
 
 # RVM script adds this
 #if [[ -d "${HOME}/.rvm/bin" ]]; then
@@ -193,15 +196,23 @@ alias temp="cd $MYTEMP"
 alias tmp="cd $MYTEMP"
 alias ulb="cd /usr/local/bin"
 
-alias isim5.1='cd ~/Library/Application\ Support/iPhone\ Simulator/5.1/Applications'
-alias isim='cd ~/Library/Application\ Support/iPhone\ Simulator/6.0/Applications'
+#alias isim5.1='cd ~/Library/Application\ Support/iPhone\ Simulator/5.1/Applications'
+#alias isim='cd ~/Library/Application\ Support/iPhone\ Simulator/6.0/Applications'
 
 alias dev="cd $DEV"
-alias src="cd ~/src"
-alias am-ios="cd $DEV/bluedot/am-ios"
+#alias src="cd ~/src"
 
-alias cyani="cd ~/dev/bluedot/cyan-client-engine-ios"
-alias iphone="cd ~/dev/bluedot/iphone"
+# Pellucid locations
+alias pa="cd ~/dev/pellucidanalytics"
+
+alias cdp="pa; cd cdp"
+alias wa="cdp; cd modules/webApp"
+alias wadesktop="wa; cd desktop"
+alias wamobile="wa; cd mobile"
+alias waios="wamobile; cd platforms/ios; appcode PellucidApp.xcodeproj"
+
+alias lui="pa; cd Lui.js"
+alias hackday="pa; cd hackday"
 
 ################################################################################
 # ls shortcuts
@@ -224,14 +235,14 @@ alias l1='ls -1'
 # Networking Shortcuts
 ################################################################################
 
-alias iphonedev2='ssh BDS@172.0.1.124'
+#alias iphonedev2='ssh BDS@172.0.1.124'
 
 ################################################################################
 # Applications
 ################################################################################
 
-alias xcode='open /Applications/Xcode.app'
-alias appcode='open /Applications/AppCode.app'
+alias xcode='open -a /Applications/Xcode.app'
+alias appcode='open -a /Applications/AppCode.app'
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --allow-file-access-from-files &!'
 alias canary='/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary --allow-file-access-from-files &!'
 alias weinre='$DEV/apache/incubator-cordova-weinre/weinre.server/weinre &'
@@ -239,15 +250,16 @@ alias weinre='$DEV/apache/incubator-cordova-weinre/weinre.server/weinre &'
 ################################################################################
 # Git
 ################################################################################
+
 alias gfo='git fetch origin'
 
 ################################################################################
 # Websites
 ################################################################################
 
-alias github='open https://github.com/organizations/bluedot'
-alias teamcity='open http://buildserver65/overview.html'
-alias rally='open https://rally1.rallydev.com'
+alias github='open https://github.com/organizations/pellucidanalytics'
+#alias teamcity='open http://buildserver65/overview.html'
+#alias rally='open https://rally1.rallydev.com'
 
 ################################################################################
 # Homebrew
@@ -263,26 +275,34 @@ alias brewup="brew update; brew upgrade"
 export JAVA_HOME=$( /usr/libexec/java_home )
 
 ################################################################################
+# Android
+################################################################################
+
+export ANDROID_HOME=~/Downloads/Android/android-sdk-macosx
+appendPathDir ${ANDROID_HOME}/tools
+appendPathDir ${ANDROID_HOME}/platform-tools
+
+################################################################################
 # Python
 ################################################################################
 
 # Pythonbrew
-[[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
-alias pbhome='cd ~/.pythonbrew'
-alias pb="pythonbrew"
-alias pbon="pythonbrew switch 2.7.3"
-alias pboff="pythonbrew off"
+#[[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
+#alias pbhome='cd ~/.pythonbrew'
+#alias pb="pythonbrew"
+#alias pbon="pythonbrew switch 2.7.3"
+#alias pboff="pythonbrew off"
 
 # pip/virtualenv
-export VIRTUAL_ENV_DISABLE_PROMPT=true
-export PIP_REQUIRE_VIRTUALENV=true
-export PIP_RESPECT_VIRTUALENV=true
-alias vehome='cd $VIRTUAL_ENV'
+#export VIRTUAL_ENV_DISABLE_PROMPT=true
+#export PIP_REQUIRE_VIRTUALENV=true
+#export PIP_RESPECT_VIRTUALENV=true
+#alias vehome='cd $VIRTUAL_ENV'
 
 # virtualenvwrapper
-export WORKON_HOME=~/dev/virtualenvs
-export PROJECT_HOME=~/dev/virtualprojects
-export PIP_VIRTUALENV_BASE="$WORKON_HOME"
+#export WORKON_HOME=~/dev/virtualenvs
+#export PROJECT_HOME=~/dev/virtualprojects
+#export PIP_VIRTUALENV_BASE="$WORKON_HOME"
 #export VIRTUALENVWRAPPER_PROJECT_FILENAME=".project"
 #export VIRTUALENVWRAPPER_HOOK_DIR
 #export VIRTUALENVWRAPPER_LOG_DIR
@@ -290,19 +310,19 @@ export PIP_VIRTUALENV_BASE="$WORKON_HOME"
 #export VIRTUALENVWRAPPER_VIRTUALENV
 #export VIRTUALENVWRAPPER_VIRTUALENV_ARGS
 #export VIRTUALENVWRAPPER_TMPDIR
-which virtualenvwrapper.sh >& /dev/null && source `which virtualenvwrapper.sh`
-alias wohome="cd $WORKON_HOME"
-alias projhome="cd $PROJECT_HOME"
+#which virtualenvwrapper.sh >& /dev/null && source `which virtualenvwrapper.sh`
+#alias wohome="cd $WORKON_HOME"
+#alias projhome="cd $PROJECT_HOME"
 
 ################################################################################
 # Ruby
 ################################################################################
 
 # RVM
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-alias rvmhome="cd ~/.rvm"
-alias rvmon="rvm use 1.9.3 --default"
-alias rvmoff="rvm use system"
+#[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+#alias rvmhome="cd ~/.rvm"
+#alias rvmon="rvm use 1.9.3 --default"
+#alias rvmoff="rvm use system"
 
 ################################################################################
 # Node.js
@@ -314,5 +334,16 @@ prependPathDir "/usr/local/share/npm/bin"
 alias npmupdate="npm update -g npm"
 alias npmupdateall="npm update -g"
 
+################################################################################
+# NVM (Node version manager)
+################################################################################
 
-[ -s "/Users/awhite/.nvm/nvm.sh" ] && . "/Users/awhite/.nvm/nvm.sh" # This loads nvm
+[ -s "/Users/awhite/.nvm/nvm.sh" ] && . "/Users/awhite/.nvm/nvm.sh"
+
+################################################################################
+# Pellucid Analytics Shortcuts
+################################################################################
+
+alias ip="ifconfig | grep inet | grep -v inet6 | grep -v '127.0.0.1' | tail -1 | cut -d' ' -f2"
+alias gruntapi='ip; grunt --apiurl=http://$( ip ):9000'
+alias opencdp='ip; open http://$( ip ):9000'
