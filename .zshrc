@@ -11,7 +11,7 @@ ZSH_THEME="awhite"
 
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(git vi-mode brew)
+plugins=(brew colored-man extract git jsontools sbt vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -209,7 +209,8 @@ alias cdp="pa; cd cdp"
 alias wa="cdp; cd modules/webApp"
 alias wadesktop="wa; cd desktop"
 alias wamobile="wa; cd mobile"
-alias waios="wamobile; cd platforms/ios; appcode PellucidApp.xcodeproj"
+alias waxcode="wamobile; cd platforms/ios; open PellucidApp.xcodeproj"
+alias waappcode="wamobile; cd platforms/ios; appcode PellucidApp.xcodeproj"
 
 alias lui="pa; cd Lui.js"
 alias hackday="pa; cd hackday"
@@ -251,7 +252,8 @@ alias weinre='$DEV/apache/incubator-cordova-weinre/weinre.server/weinre &'
 # Git
 ################################################################################
 
-alias gfo='git fetch origin'
+alias gfo='git fetch --prune origin'
+alias gmom='git merge origin/master'
 
 ################################################################################
 # Websites
