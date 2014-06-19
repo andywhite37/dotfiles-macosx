@@ -168,6 +168,7 @@ alias more="$PAGER"
 alias h='history'
 alias hist='history'
 alias hgrep='history | grep'
+alias rmhistory='mv "${HISTFILE}" "${HISTFILE}.bak"'
 
 alias dt='~/bin/diffmerge.sh'
 
