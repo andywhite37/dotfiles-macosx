@@ -2,6 +2,12 @@
 	name = Andy White
 	email = greatwhitehope@gmail.com
 
+[core]
+	excludesfile = /Users/awhite/.gitignore_global
+
+[push]
+	default = simple
+
 [color]
     branch = auto
     diff = auto
@@ -15,8 +21,7 @@
     co = checkout
     ci = commit
     d = diff
-    #dt = difftool #difftool not configured for diffmerge
-    dt = diff
+    dt = difftool
     m = merge
     mt = mergetool
     sm = submodule
@@ -26,22 +31,15 @@
     type = cat-file -t
     dump = cat-file -p
 
+[diff]
+	tool = diffmerge
+
+[difftool "diffmerge"]
+	cmd = /usr/bin/diffmerge \"$LOCAL\" \"$REMOTE\"
+
 [merge]
-    tool = diffmerge
+	tool = diffmerge
 
 [mergetool "diffmerge"]
-    cmd = \"${HOME}/bin/git-diffmerge-merge.sh\" \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
-    trustExitCode = false
-
-[diff]
-    external = \"${HOME}/bin/git-diffmerge-diff.sh\"
-[push]
-	default = simple
-[core]
-	excludesfile = /Users/awhite/.gitignore_global
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	cmd = /usr/bin/diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
 	trustExitCode = true
