@@ -12,19 +12,41 @@
 	ui = true
 
 [alias]
-    s = status
-    a = add
-    b = branch
-    co = checkout
-    ci = commit
-    d = diff
-    dt = difftool
-    m = merge
-    mt = mergetool
-    sm = submodule
-    cc = rev-parse HEAD
-    hist = log --pretty=format:'%H %d | %ad | %an - %s' --graph --date=short
-    h = log --pretty=format:'%H %d | %ad | %an - %s' --graph --date=short --all
+    # common command shortcuts
+    s           = status
+    a           = add
+    b           = branch
+    co          = checkout
+    com         = checkout master
+    ci          = commit
+    d           = diff
+    dt          = difftool
+    m           = merge
+    mt          = mergetool
+    sm          = submodule
+    fo          = fetch --prune origin
+    mom         = merge origin/master
+
+    # show "current commit" hash
+    cc          = rev-parse HEAD
+
+    # history - log graphs with color and other decorations
+    #hist        = log --pretty=format:'%H %d | %ad | %an - %s' --graph --date=short
+    #h           = log --pretty=format:'%H %d | %ad | %an - %s' --graph --date=short --all
+    h           = log --oneline --decorate --graph --all
+    hb          = log --oneline --decorate --graph
+
+    # diff/list/log files that are different in HEAD compared to master
+    # or files that are different in master compared to HEAD
+    dtom        = diff --name-only master...HEAD
+    dfromm      = diff --name-only HEAD...master
+    dttom       = difftool master...HEAD
+    dtfromm     = difftool HEAD...master
+    ltom        = log --oneline --decorate --graph master..HEAD
+    lfromm      = log --oneline --decorate --graph HEAD..master
+    lm          = log --oneline --decorate --graph --left-right master...HEAD
+
+    # low-level utilities
     type = cat-file -t
     dump = cat-file -p
 

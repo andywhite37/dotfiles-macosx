@@ -260,15 +260,14 @@ alias weinre='$DEV/apache/incubator-cordova-weinre/weinre.server/weinre &'
 # Git
 ################################################################################
 
-alias gfo='git fetch --prune origin'
-
-alias gmom='git merge origin/master'
+#alias gfo='git fetch --prune origin'
+#alias gmom='git merge origin/master'
 
 # List files that are different in my branch compared to master (files to merge to master)
-alias gdm='git diff --name-only master..HEAD | cat'
+#alias gdm='git diff --name-only master..HEAD | cat'
 
 # Difftool files that are different in my branch compared to master (files to merge to master)
-alias gdtm='git diff master..HEAD'
+#alias gdtm='git diff master..HEAD'
 
 ################################################################################
 # Websites
