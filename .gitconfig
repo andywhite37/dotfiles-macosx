@@ -9,10 +9,7 @@
 	default = simple
 
 [color]
-    branch = auto
-    diff = auto
-    interactive = auto
-    status = auto
+	ui = true
 
 [alias]
     s = status
@@ -34,15 +31,40 @@
 [diff]
 	tool = diffmerge
 
-[difftool "diffmerge"]
-	cmd = /usr/bin/diffmerge \"$LOCAL\" \"$REMOTE\"
+[difftool]
+    prompt = false
 
 [merge]
 	tool = diffmerge
 
+[mergetool]
+    prompt = false
+
+# SourceGear Diffmerge
+[difftool "diffmerge"]
+	cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge --nosplash \"$LOCAL\" \"$REMOTE\"
+	path = 
 [mergetool "diffmerge"]
-	cmd = /usr/bin/diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
+	cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
 	trustExitCode = true
+
+# P4Merge (perforce)
+[difftool "p4merge"]
+	cmd = /Applications/p4merge.app/Contents/MacOS/p4merge \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "p4merge"]
+	cmd = /Applications/p4merge.app/Contents/MacOS/p4merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+	trustExitCode = true
+
+# kdiff3
+[difftool "kdiff3"]
+	cmd = /Applications/kdiff3.app/Contents/MacOS/kdiff3 \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "kdiff3"]
+	cmd = /Applications/kdiff3.app/Contents/MacOS/kdiff3 \"$BASE\" \"$LOCAL\" \"$REMOTE\" -o \"$MERGED\"
+	trustExitCode = true
+
+# SourceTree (default -> opendiff)
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
