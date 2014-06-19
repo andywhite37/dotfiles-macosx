@@ -86,10 +86,12 @@ prependPathDir "${HOME}/bin"
 
 #export VIM_HOME='/Applications/MacVim.app/Contents/Resources/vim'
 if [[ -d /Applications/MacVim.app ]]; then
+    # Mac OSX
     export VIM_COMMAND='/Applications/MacVim.app/Contents/MacOS/Vim'
     export GVIM_COMMAND='/Applications/MacVim.app/Contents/MacOS/Vim -g'
     export GVIMF_COMMAND='/Applications/MacVim.app/Contents/MacOS/Vim -gf'
 else
+    # Linux
     export VIM_COMMAND='/usr/bin/vim'
     export GVIM_COMMAND='/usr/bin/gvim'
     export GVIMF_COMMAND='/usr/bin/gvim -f'
@@ -164,6 +166,7 @@ alias p="$PAGER"
 alias more="$PAGER"
 
 alias h='history'
+alias hist='history'
 alias hgrep='history | grep'
 
 alias dt='~/bin/diffmerge.sh'
@@ -206,22 +209,27 @@ alias dev="cd $DEV"
 alias pa="cd ~/dev/pellucidanalytics"
 
 alias cdp="pa; cd cdp"
+alias cdp2="pa; cd cdp2"
 alias wa="cdp; cd modules/webApp"
 alias wadesktop="wa; cd desktop"
 alias wamobile="wa; cd mobile"
 alias waxcode="wamobile; cd platforms/ios; open PellucidApp.xcodeproj"
 alias waappcode="wamobile; cd platforms/ios; appcode PellucidApp.xcodeproj"
+alias waios="waappcode"
 
 alias lui="pa; cd Lui.js"
 alias hackday="pa; cd hackday"
+alias w2="pa; cd website2"
 
 ################################################################################
 # ls shortcuts
 ################################################################################
 
 if [[ -d /Applications ]]; then
+    # Mac OSX
     alias ls='ls -G'
 else
+    # Linux
     alias ls='ls --color'
 fi
 
@@ -253,7 +261,14 @@ alias weinre='$DEV/apache/incubator-cordova-weinre/weinre.server/weinre &'
 ################################################################################
 
 alias gfo='git fetch --prune origin'
+
 alias gmom='git merge origin/master'
+
+# List files that are different in my branch compared to master (files to merge to master)
+alias gdm='git diff --name-only master..HEAD | cat'
+
+# Difftool files that are different in my branch compared to master (files to merge to master)
+alias gdtm='git diff master..HEAD'
 
 ################################################################################
 # Websites
@@ -331,6 +346,8 @@ appendPathDir ${ANDROID_HOME}/platform-tools
 ################################################################################
 
 export NODE_PATH="/usr/local/lib/node_modules"
+
+# This is not required for homebrew node install
 prependPathDir "/usr/local/share/npm/bin"
 
 alias npmupdate="npm update -g npm"
@@ -340,7 +357,15 @@ alias npmupdateall="npm update -g"
 # NVM (Node version manager)
 ################################################################################
 
-[ -s "/Users/awhite/.nvm/nvm.sh" ] && . "/Users/awhite/.nvm/nvm.sh"
+#[ -s "/Users/awhite/.nvm/nvm.sh" ] && . "/Users/awhite/.nvm/nvm.sh"
+#[[ -r "$NVM_DIR/bash_completion" ]] && . "$NVM_DIR/bash_completion"
+
+################################################################################
+# JavaScript
+################################################################################
+
+alias findconsolelogs="ack -l --js 'console\.log'"
+alias editconsolelogs="findconsolelogs | xargs gvim"
 
 ################################################################################
 # Pellucid Analytics Shortcuts
