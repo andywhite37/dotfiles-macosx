@@ -170,9 +170,21 @@ alias hist='history'
 alias hgrep='history | grep'
 alias rmhistory='mv "${HISTFILE}" "${HISTFILE}.bak"'
 
-alias dt='~/bin/diffmerge.sh'
+alias dt='diffmerge'
 
 alias lock='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
+
+# Bash/AppleScript for opening new tabs from the command line
+. ~/bin/tab.bash
+
+# Startup the cdp stuff in separate tabs
+function gocdp() {
+    tab "cdp; pwd; sbt run"
+    tab "wadesktop; pwd; gruntapi"
+    tab "wamobile; pwd; gruntapi"
+    tab "waios; pwd; wawstorm; pwd; opencdp"
+    exit
+}
 
 ################################################################################
 # cd shortcuts
@@ -214,6 +226,7 @@ alias cdp2="pa; cd cdp2"
 alias wa="cdp; cd modules/webApp"
 alias wadesktop="wa; cd desktop"
 alias wamobile="wa; cd mobile"
+alias wawstorm="wa; wstorm ."
 alias waxcode="wamobile; cd platforms/ios; open PellucidApp.xcodeproj"
 alias waappcode="wamobile; cd platforms/ios; appcode PellucidApp.xcodeproj"
 alias waios="waappcode"
@@ -330,6 +343,8 @@ appendPathDir ${ANDROID_HOME}/platform-tools
 #which virtualenvwrapper.sh >& /dev/null && source `which virtualenvwrapper.sh`
 #alias wohome="cd $WORKON_HOME"
 #alias projhome="cd $PROJECT_HOME"
+
+alias pyhttp="python -m SimpleHTTPServer"
 
 ################################################################################
 # Ruby

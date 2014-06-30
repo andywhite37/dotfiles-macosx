@@ -82,9 +82,8 @@ sub diffFiles {
         my $sourceFileFullPath = "$sourcePathPrefix/$sourceFile";
         my $destinationFileFullPath = "$destinationPathPrefix/$sourceFile";
 
-        print BOLD, BLUE, "$sourceFileFullPath\n", RESET;
-
         while (1) {
+            print BOLD, BLUE, "$sourceFileFullPath\n>>>\n$destinationFileFullPath\n", RESET;
 
             # Check if the destination file exists for this source file
             if (-e "$destinationFileFullPath") {
@@ -118,39 +117,58 @@ sub diffFiles {
                 print GREEN, "$sourceName and $destinationName files do not differ in master branch\n", RESET;
             }
 
-            print YELLOW, "skip (s), copy (c), diff working desktop/mobile (d), diff master desktop/mobile (m), quit (q)? ", RESET;
+            my $instructions = <<"END_DOCUMENT";
+n - next
+c - copy source file to destination file
+d - difftool working directory source file and destination file
+m - difftool master source file and destination file
+es - edit source file
+ed - edit destination file
+q - quit
+END_DOCUMENT
+            print YELLOW, "${instructions}> ", RESET;
 
             my $answer = <STDIN>;
             chomp $answer;
 
-            if ($answer eq "s") {
+            if ($answer eq "n") {
 
-                # Skip the file
-                print "skipping\n";
+                # Skip the file (go to next)
+                print "next\n";
                 last;
 
             } elsif ($answer eq "c") {
 
                 # Copy the file
-                my $copyCommand = "cp $sourceFileFullPath $destinationFileFullPath";
-                print "$copyCommand\n";
-                system("$copyCommand");
-                last;
+                my $command = "cp $sourceFileFullPath $destinationFileFullPath";
+                print "$command\n";
+                system("$command");
 
             } elsif ($answer eq "d") {
 
-                # Diff the file using diff tool
-                my $diffCommand = "$diffToolCommand $sourceFileFullPath $destinationFileFullPath &> /dev/null";
-                print "$diffCommand\n";
-                system "$diffCommand";
+                # Diff the desktop/mobile files in this current working directory
+                my $command = "$diffToolCommand $sourceFileFullPath $destinationFileFullPath";
+                print "$command\n";
+                system "$command";
 
             } elsif ($answer eq "m") {
 
-                # Diff the file using diff tool
-                my $diffCommand = "git diff master:$sourceFileFullPath master:$destinationFileFullPath &> /dev/null";
-                #my $editCommand = "$ENV{'EDITOR'} $destinationFileFullPath";
-                #my $command = "$diffCommand; $editCommand";
-                my $command = "$diffCommand";
+                # Diff the desktop/mobile files in the master branch
+                my $command = "git difftool master:$sourceFileFullPath master:$destinationFileFullPath";
+                print "$command\n";
+                system "$command";
+
+            } elsif ($answer eq "es") {
+
+                # Edit the source file in $EDITOR
+                my $command = "$ENV{'EDITOR'} $sourceFileFullPath";
+                print "$command\n";
+                system "$command";
+
+            } elsif ($answer eq "ed") {
+
+                # Edit the destination file in $EDITOR
+                my $command = "$ENV{'EDITOR'} $destinationFileFullPath";
                 print "$command\n";
                 system "$command";
 

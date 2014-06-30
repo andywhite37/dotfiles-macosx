@@ -16,6 +16,8 @@
     s           = status
     a           = add
     b           = branch
+    bm          = branch --merged
+    bnm         = branch --no-merged
     co          = checkout
     com         = checkout master
     ci          = commit
@@ -38,8 +40,8 @@
 
     # diff/list/log files that are different in HEAD compared to master
     # or files that are different in master compared to HEAD
-    dtom        = diff --name-only master...HEAD
-    dfromm      = diff --name-only HEAD...master
+    dtom        = diff --name-status master...HEAD
+    dfromm      = diff --name-status HEAD...master
     dttom       = difftool master...HEAD
     dtfromm     = difftool HEAD...master
     ltom        = log --oneline --decorate --graph master..HEAD
