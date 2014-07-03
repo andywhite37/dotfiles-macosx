@@ -120,6 +120,7 @@ setopt correct
 # Key Bindings
 ################################################################################
 
+# ctrl-p and ctrl-n go up and down in history
 bindkey "^P" up-line-or-history
 bindkey "^N" down-line-or-history
 
@@ -174,17 +175,8 @@ alias dt='diffmerge'
 
 alias lock='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
 
-# Bash/AppleScript for opening new tabs from the command line
+# Creates a Bash/AppleScript function for opening new iTerm2 tabs from the command line
 . ~/bin/tab.bash
-
-# Startup the cdp stuff in separate tabs
-function gocdp() {
-    tab "cdp; pwd; sbt run"
-    tab "wadesktop; pwd; gruntapi"
-    tab "wamobile; pwd; gruntapi"
-    tab "waios; pwd; wawstorm; pwd; opencdp"
-    exit
-}
 
 ################################################################################
 # cd shortcuts
@@ -218,23 +210,6 @@ alias ulb="cd /usr/local/bin"
 alias dev="cd $DEV"
 #alias src="cd ~/src"
 
-# Pellucid locations
-alias pa="cd ~/dev/pellucidanalytics"
-
-alias cdp="pa; cd cdp"
-alias cdp2="pa; cd cdp2"
-alias wa="cdp; cd modules/webApp"
-alias wadesktop="wa; cd desktop"
-alias wamobile="wa; cd mobile"
-alias wawstorm="wa; wstorm ."
-alias waxcode="wamobile; cd platforms/ios; open PellucidApp.xcodeproj"
-alias waappcode="wamobile; cd platforms/ios; appcode PellucidApp.xcodeproj"
-alias waios="waappcode"
-
-alias lui="pa; cd Lui.js"
-alias hackday="pa; cd hackday"
-alias w2="pa; cd website2"
-
 ################################################################################
 # ls shortcuts
 ################################################################################
@@ -259,6 +234,9 @@ alias l1='ls -1'
 ################################################################################
 
 #alias iphonedev2='ssh BDS@172.0.1.124'
+#
+# Print my current IP address
+alias ip="ifconfig | grep inet | grep -v inet6 | grep -v '127.0.0.1' | tail -1 | cut -d' ' -f2"
 
 ################################################################################
 # Applications
@@ -273,6 +251,8 @@ alias weinre='$DEV/apache/incubator-cordova-weinre/weinre.server/weinre &'
 ################################################################################
 # Git
 ################################################################################
+
+# Git aliases moved to ~/.gitconfig
 
 #alias gfo='git fetch --prune origin'
 #alias gmom='git merge origin/master'
@@ -386,6 +366,63 @@ alias editconsolelogs="findconsolelogs | xargs gvim"
 # Pellucid Analytics Shortcuts
 ################################################################################
 
-alias ip="ifconfig | grep inet | grep -v inet6 | grep -v '127.0.0.1' | tail -1 | cut -d' ' -f2"
+# Pellucid shortcuts
+alias pa="cd ~/dev/pellucidanalytics"
+alias cdp="pa; cd cdp"
+alias cdp2="pa; cd cdp2"
+alias cdpweb="cdp; cd modules/webApp"
+alias cdpdesktop="cdpweb; cd desktop"
+alias cdpmobile="cdpweb; cd mobile"
+alias cdpwstorm="cdpweb; wstorm ."
+alias cdpxcode="cdpmobile; cd platforms/ios; open PellucidApp.xcodeproj"
+alias cdpappcode="cdpmobile; cd platforms/ios; appcode PellucidApp.xcodeproj"
+alias cdpios="cdpappcode"
+alias cdpopen='ip; open http://$( ip ):9000'
+alias lui="pa; cd Lui.js"
+alias hackday="pa; cd hackday"
+alias w2="pa; cd website2"
+
+# Run grunt watcher with current IP address
 alias gruntapi='ip; grunt --apiurl=http://$( ip ):9000'
-alias opencdp='ip; open http://$( ip ):9000'
+
+# Startup the cdp services in separate iTerm2 tabs
+function cdprun() {
+    # sbt run in a tab
+    tab "cdp; pwd; sbt run"
+
+    # grunt watcher for desktop in a tab
+    tab "cdpdesktop; pwd; gruntapi"
+
+    # grunt watcher for mobile in a tab
+    tab "cdpmobile; pwd; gruntapi"
+
+    # open cdp iOS project, cdp WebStorm project, and cdp app in a browser
+    # then leave the tab running
+    tab "cdpios; pwd; cdpwstorm; pwd; cdp; pwd; cdpopen"
+
+    # exit this shell
+    exit
+}
+
+function cdpclean() {
+    echo "Clean everything..."
+    cdp
+    pwd
+    ./cleanEverything.sh
+
+    echo "Clean desktop npm dependencies..."
+    cdpdesktop
+    pwd
+    rm -rf node_modules
+    npm install
+
+    echo "Clean mobile npm dependencies..."
+    cdpmobile
+    pwd
+    rm -rf node_modules
+    npm install
+
+    cdp
+    pwd
+}
+
