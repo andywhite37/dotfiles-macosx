@@ -43,6 +43,7 @@ items+=.vimrc.before
 items+=.vimrc.after
 items+=.gvimrc.before
 items+=.gvimrc.after
+items+=.ideavimrc
 
 # Vim Janus directory
 echo "Vim .janus directory"

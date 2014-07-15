@@ -18,6 +18,7 @@
     b           = branch
     bm          = branch --merged
     bnm         = branch --no-merged
+    bd          = branch -d
     co          = checkout
     com         = checkout master
     ci          = commit
