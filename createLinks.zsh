@@ -57,9 +57,11 @@ else
     echo "    Not linking to .oh-my-zsh/custom"
 fi
 
-# Git files
+# Git/etc. files
 echo "Git files"
 items+=.gitconfig
+items+=.gitignore_global
+items+=.hgignore_global
 
 # bin directory
 echo "bin directory"

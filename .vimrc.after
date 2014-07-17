@@ -6,7 +6,11 @@
 set shiftwidth=4
 set tabstop=4
 
+" Set colorscheme
 colorscheme torte
+
+" Shortcut for formatting .json text
+com! FormatJSON %!python -m json.tool
 
 " Make line numbers less abrasive
 hi LineNr guifg=#505050 guibg=Black
