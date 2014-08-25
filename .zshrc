@@ -133,6 +133,7 @@ alias editor="${EDITOR}"
 alias vim="${VIM_COMMAND}"
 alias gvim="${GVIM_COMMAND} --servername GVIM --remote-tab-silent"
 alias gvimraw="${GVIM_COMMAND}"
+#alias subl='/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl'
 
 alias path='echo $PATH | ddown'
 
@@ -175,8 +176,11 @@ alias dt='diffmerge'
 
 alias lock='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
 
+alias :q="echo Not in vim"
+
 # Creates a Bash/AppleScript function for opening new iTerm2 tabs from the command line
 . ~/bin/tab.bash
+
 
 ################################################################################
 # cd shortcuts
@@ -199,6 +203,8 @@ alias db="cd $DROPBOX"
 alias mac="cd $MAC"
 alias desktop="cd $DESKTOP"
 alias dl="cd $DOWNLOADS"
+alias docs="cd ~/Documents"
+alias doc="docs"
 alias omz="cd $ZSH"
 alias temp="cd $MYTEMP"
 alias tmp="cd $MYTEMP"
@@ -277,6 +283,12 @@ alias github='open https://github.com/organizations/pellucidanalytics'
 
 #alias cellar="cd $(brew --cellar)"
 alias brewup="brew update; brew upgrade"
+
+################################################################################
+# JetBrains IDEs (IntelliJ IDEA, WebStorm)
+################################################################################
+
+alias idea="/Applications/IntelliJ\ IDEA\ 13\ CE.app/Contents/MacOS/idea"
 
 ################################################################################
 # Java
@@ -363,6 +375,12 @@ alias findconsolelogs="ack -l --js 'console\.log'"
 alias editconsolelogs="findconsolelogs | xargs gvim"
 
 ################################################################################
+# Haxe
+################################################################################
+
+export HAXE_STD_PATH="/usr/local/lib/haxe/std"
+
+################################################################################
 # Pellucid Analytics Shortcuts
 ################################################################################
 
@@ -371,6 +389,8 @@ alias pa="cd ~/dev/pellucidanalytics"
 alias cdp="pa; cd cdp"
 alias cdp2="pa; cd cdp2"
 alias cdpweb="cdp; cd modules/webApp"
+alias cdpcore="cdpweb; cd core"
+alias cdptestcore="cdpweb; cd test-core"
 alias cdpdesktop="cdpweb; cd desktop"
 alias cdpmobile="cdpweb; cd mobile"
 alias cdpwstorm="cdpweb; wstorm ."
@@ -380,7 +400,12 @@ alias cdpios="cdpappcode"
 alias cdpopen='ip; open http://$( ip ):9000'
 alias lui="pa; cd Lui.js"
 alias hackday="pa; cd hackday"
+alias content="pa; cd content"
 alias w2="pa; cd website2"
+alias live="pa; cd pellucid-live"
+alias fp="dev; cd fponticelli"
+alias thxcore="fp; cd thx.core"
+alias thxpromise="fp; cd thx.promise"
 
 # Run grunt watcher with current IP address
 alias gruntapi='ip; grunt --apiurl=http://$( ip ):9000'
@@ -419,6 +444,12 @@ function cdpclean() {
     echo "Clean mobile npm dependencies..."
     cdpmobile
     pwd
+    rm -rf node_modules
+    npm install
+
+    echo "Clean test-core npm dependencies..."
+    cdp
+    cd modules/webApp/test-core
     rm -rf node_modules
     npm install
 

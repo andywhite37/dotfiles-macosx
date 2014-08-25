@@ -1,0 +1,3 @@
+# Ignore cloned vim plugins
+.janus/vim-jade
+.janus/vaxe

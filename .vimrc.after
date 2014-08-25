@@ -15,6 +15,10 @@ com! FormatJSON %!python -m json.tool
 " Make line numbers less abrasive
 hi LineNr guifg=#505050 guibg=Black
 
+" Enable autowrite for vaxe plugin
+set autowrite
+
+" Customize statusline
 if has("statusline") && !&cp
     set laststatus=2  " always show the status bar
 
