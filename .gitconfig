@@ -16,6 +16,7 @@
     s           = status
     a           = add
     b           = branch
+    ba          = branch -a
     bm          = branch --merged
     bnm         = branch --no-merged
     bd          = branch -d

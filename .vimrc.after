@@ -2,12 +2,20 @@
 " awhite Janus .vimrc.after
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Allow local (per directory) .vimrc files
+"set exrc
+"set secure
+
 "set nonumber
+set expandtab
 set shiftwidth=4
 set tabstop=4
+set softtabstop=4
 
 " Set colorscheme
-colorscheme torte
+"colorscheme torte
+"colorscheme Candycode
+colorscheme Molokai
 
 " Shortcut for formatting .json text
 com! FormatJSON %!python -m json.tool
@@ -15,8 +23,16 @@ com! FormatJSON %!python -m json.tool
 " Make line numbers less abrasive
 hi LineNr guifg=#505050 guibg=Black
 
-" Enable autowrite for vaxe plugin
+" vaxe plugin settings
 set autowrite
+set completeopt=menu
+
+" CtrlP plugin settings
+set wildignore+=*/node_modules/*,*.so,*.swp,*.zip
+
+" vim-localvimrc plugin settings
+" Must go in .vimrc.before
+"let g:localvimrc_whitelist="/Users/awhite/dev/pellucidanalytics/pellucid-live/.*"
 
 " Customize statusline
 if has("statusline") && !&cp

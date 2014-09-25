@@ -1,3 +1,6 @@
 # Ignore cloned vim plugins
-.janus/vim-jade
+.janus/AutoComplPop
 .janus/vaxe
+.janus/vim-jade
+.janus/vim-stylus
+.janus/vim-localvimrc

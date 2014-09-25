@@ -1,0 +1,8 @@
+" Allow per-directory .vimrc files
+"set exrc
+"set secure
+
+" vim-localvimrc plugin settings
+" Allow .lvimrc files from the following dirs
+"let g:localvimrc_whitelist="/Users/awhite/dev/pellucidanalytics/(cdp\|pellucid-live)/.*"
+let g:localvimrc_persistent=1

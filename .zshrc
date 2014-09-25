@@ -131,8 +131,10 @@ bindkey "^N" down-line-or-history
 alias editor="${EDITOR}"
 #alias e="${EDITOR}"
 alias vim="${VIM_COMMAND}"
-alias gvim="${GVIM_COMMAND} --servername GVIM --remote-tab-silent"
+#alias gvim="${GVIM_COMMAND} --servername GVIM --remote-tab-silent"
+alias gvim="${GVIM_COMMAND}"
 alias gvimraw="${GVIM_COMMAND}"
+alias gvim.="${GVIM_COMMAND} ."
 #alias subl='/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl'
 
 alias path='echo $PATH | ddown'
@@ -402,10 +404,11 @@ alias lui="pa; cd Lui.js"
 alias hackday="pa; cd hackday"
 alias content="pa; cd content"
 alias w2="pa; cd website2"
-alias live="pa; cd pellucid-live"
+alias io="pa; cd pellucid-io"
 alias fp="dev; cd fponticelli"
 alias thxcore="fp; cd thx.core"
 alias thxpromise="fp; cd thx.promise"
+alias decks="pa; cd decks"
 
 # Run grunt watcher with current IP address
 alias gruntapi='ip; grunt --apiurl=http://$( ip ):9000'
