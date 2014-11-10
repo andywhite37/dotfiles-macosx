@@ -29,6 +29,7 @@
     mt          = mergetool
     sm          = submodule
     fo          = fetch --prune origin
+    fu          = fetch --prune upstream
     mom         = merge origin/master
 
     # show "current commit" hash

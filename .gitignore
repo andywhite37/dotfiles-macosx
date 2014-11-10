@@ -4,3 +4,7 @@
 .janus/vim-jade
 .janus/vim-stylus
 .janus/vim-localvimrc
+.janus/vim-jsdoc
+
+# Private scripts
+bin/sauce_hmac.py

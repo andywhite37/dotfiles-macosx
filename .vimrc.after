@@ -30,6 +30,8 @@ set completeopt=menu
 " CtrlP plugin settings
 set wildignore+=*/node_modules/*,*.so,*.swp,*.zip
 
+au! BufRead,BufNewFile .jshintrc setfiletype JavaScript
+
 " vim-localvimrc plugin settings
 " Must go in .vimrc.before
 "let g:localvimrc_whitelist="/Users/awhite/dev/pellucidanalytics/pellucid-live/.*"

@@ -7,6 +7,6 @@ if has("gui_macvim")
     "set transparency=15
     "set transparency=5
     set transparency=0
-    set columns=160
-    set lines=50
+    set columns=200
+    set lines=80
 endif

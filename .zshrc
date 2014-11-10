@@ -24,7 +24,7 @@ autoload run-help
 HELPDIR=/usr/local/share/zsh/helpfiles
 
 ################################################################################
-# $PATH
+# PATH configurations
 ################################################################################
 
 # Remove a directory from the PATH
@@ -81,8 +81,12 @@ prependPathDir "${HOME}/bin"
 #appendPathDir "/usr/libexec"
 
 ################################################################################
-# Environment variables
+# Environment variables/tools
 ################################################################################
+
+sourceIfExists() {
+    [ -f "$1" ] && source "$1"
+}
 
 #export VIM_HOME='/Applications/MacVim.app/Contents/Resources/vim'
 if [[ -d /Applications/MacVim.app ]]; then
@@ -396,10 +400,15 @@ alias cdptestcore="cdpweb; cd test-core"
 alias cdpdesktop="cdpweb; cd desktop"
 alias cdpmobile="cdpweb; cd mobile"
 alias cdpwstorm="cdpweb; wstorm ."
+alias cdpgvim="cdpweb; gvim ."
 alias cdpxcode="cdpmobile; cd platforms/ios; open PellucidApp.xcodeproj"
 alias cdpappcode="cdpmobile; cd platforms/ios; appcode PellucidApp.xcodeproj"
 alias cdpios="cdpappcode"
-alias cdpopen='ip; open http://$( ip ):9000'
+alias cdpopen='ip; open http://$( ip ):3000'
+alias cdpopen9000='ip; open http://$( ip ):9000'
+alias cdpclean="cdp && ./cleanEverything.sh && ./cleanFrontEnd.sh"
+alias cdprun="cdp && sbt run"
+alias cdpcleanrun="cdpclean && cdprun"
 alias lui="pa; cd Lui.js"
 alias hackday="pa; cd hackday"
 alias content="pa; cd content"
@@ -409,54 +418,13 @@ alias fp="dev; cd fponticelli"
 alias thxcore="fp; cd thx.core"
 alias thxpromise="fp; cd thx.promise"
 alias decks="pa; cd decks"
+alias hammer="pa; cd hammer.js"
 
-# Run grunt watcher with current IP address
-alias gruntapi='ip; grunt --apiurl=http://$( ip ):9000'
+sourceIfExists "$HOME/.saucerc"
 
-# Startup the cdp services in separate iTerm2 tabs
-function cdprun() {
-    # sbt run in a tab
-    tab "cdp; pwd; sbt run"
+################################################################################
+# Travis CI
+################################################################################
 
-    # grunt watcher for desktop in a tab
-    tab "cdpdesktop; pwd; gruntapi"
-
-    # grunt watcher for mobile in a tab
-    tab "cdpmobile; pwd; gruntapi"
-
-    # open cdp iOS project, cdp WebStorm project, and cdp app in a browser
-    # then leave the tab running
-    tab "cdpios; pwd; cdpwstorm; pwd; cdp; pwd; cdpopen"
-
-    # exit this shell
-    exit
-}
-
-function cdpclean() {
-    echo "Clean everything..."
-    cdp
-    pwd
-    ./cleanEverything.sh
-
-    echo "Clean desktop npm dependencies..."
-    cdpdesktop
-    pwd
-    rm -rf node_modules
-    npm install
-
-    echo "Clean mobile npm dependencies..."
-    cdpmobile
-    pwd
-    rm -rf node_modules
-    npm install
-
-    echo "Clean test-core npm dependencies..."
-    cdp
-    cd modules/webApp/test-core
-    rm -rf node_modules
-    npm install
-
-    cdp
-    pwd
-}
-
+# added by travis gem
+[ -f /Users/awhite/.travis/travis.sh ] && source /Users/awhite/.travis/travis.sh
