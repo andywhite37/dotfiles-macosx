@@ -1,0 +1,11 @@
+#! /bin/bash
+
+# Strict mode
+set -euo pipefail
+IFS=$'\n\t'
+
+echo "Adding VPN routes..."
+/etc/ppp/ip-up
+
+echo "Checking fundamentals..."
+curl http://fundamentals-feed.stg.pellucid.com:14003

@@ -9,3 +9,6 @@ let g:NERDTreeShowHidden = 1
 
 " Ack plugin settings
 let g:ack_autoclose = 1
+
+" vim-json plugin settings
+let g:vim_json_syntax_conceal = 0

@@ -384,7 +384,10 @@ alias editconsolelogs="findconsolelogs | xargs gvim"
 # Haxe
 ################################################################################
 
-export HAXE_STD_PATH="/usr/local/lib/haxe/std"
+#appendPathDir "${HOME}/Downloads/Haxe/haxe-3.1.3"
+#export HAXE_STD_PATH="/usr/local/lib/haxe/std"
+#export HAXE_STD_PATH="${HOME}/Downloads/Haxe/haxe-3.1.3"
+export HAXE_STD_PATH="/usr/lib/haxe/std"
 
 ################################################################################
 # Pellucid Analytics Shortcuts
@@ -409,6 +412,7 @@ alias cdpopen9000='ip; open http://$( ip ):9000'
 alias cdpclean="cdp && ./cleanEverything.sh && ./cleanFrontEnd.sh"
 alias cdprun="cdp && sbt run"
 alias cdpcleanrun="cdpclean && cdprun"
+alias cdppackagejson="cdp && gvim modules/webApp/desktop/package.json modules/webApp/mobile/package.json modules/webApp/test-core/package.json"
 alias lui="pa; cd Lui.js"
 alias hackday="pa; cd hackday"
 alias content="pa; cd content"
@@ -418,6 +422,7 @@ alias fp="dev; cd fponticelli"
 alias thxcore="fp; cd thx.core"
 alias thxpromise="fp; cd thx.promise"
 alias decks="pa; cd decks"
+alias pillbox="pa; cd pillbox"
 alias hammer="pa; cd hammer.js"
 
 sourceIfExists "$HOME/.saucerc"
