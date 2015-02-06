@@ -3,6 +3,7 @@
 // This script updates dependency versions for multiple package.json files.
 
 var fs = require("fs");
+var exec = require("child_process").exec;
 
 function usage() {
     console.error("Usage: cdpbump.js [dependency name] [version]");
@@ -27,12 +28,19 @@ if (!dependencyName || !version) {
     usage();
 }
 
-var filesToUpdate = [
-    "modules/webApp/desktop/package.json",
-    "modules/webApp/mobile/package.json",
-    "modules/webApp/test-core/package.json"
+var dirsToUpdate = [
+    "modules/webApp/desktop",
+    "modules/webApp/mobile",
+    "modules/webApp/test-core"
 ];
 
-filesToUpdate.forEach(function(fileName) {
+dirsToUpdate.forEach(function(dirName) {
+    var fileName = dirName + "/package.json";
+
     updatePackageJSON(fileName, dependencyName, version);
+
+    console.log("Updating package from npm...");
+
+    // Ignore failures for now
+    exec("cd " + dirName + " && npm update " + dependencyName);
 });

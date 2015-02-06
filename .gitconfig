@@ -1,100 +1,100 @@
 [user]
-	name = Andy White
-	email = greatwhitehope@gmail.com
+  name = Andy White
+  email = greatwhitehope@gmail.com
 
 [core]
-	excludesfile = /Users/awhite/.gitignore_global
+  excludesfile = /Users/awhite/.gitignore_global
 
 [push]
-	default = simple
+  default = simple
 
 [color]
-	ui = true
+  ui = true
 
 [alias]
-    # common command shortcuts
-    s           = status
-    a           = add
-    b           = branch
-    ba          = branch -a
-    bm          = branch --merged
-    bnm         = branch --no-merged
-    bd          = branch -d
-    co          = checkout
-    com         = checkout master
-    ci          = commit
-    d           = diff
-    dt          = difftool
-    m           = merge
-    mt          = mergetool
-    sm          = submodule
-    fo          = fetch --prune origin
-    fu          = fetch --prune upstream
-    mom         = merge origin/master
+  # common command shortcuts
+  s           = status
+  a           = add
+  b           = branch
+  ba          = branch -a
+  bm          = branch --merged
+  bnm         = branch --no-merged
+  bd          = branch -d
+  co          = checkout
+  com         = checkout master
+  ci          = commit
+  d           = diff
+  dt          = difftool
+  m           = merge
+  mt          = mergetool
+  sm          = submodule
+  fo          = fetch --prune origin
+  fu          = fetch --prune upstream
+  mom         = merge origin/master
 
-    # show "current commit" hash
-    cc          = rev-parse HEAD
+  # show "current commit" hash
+  cc          = rev-parse HEAD
 
-    # history - log graphs with color and other decorations
-    #hist        = log --pretty=format:'%H %d | %ad | %an - %s' --graph --date=short
-    #h           = log --pretty=format:'%H %d | %ad | %an - %s' --graph --date=short --all
-    h           = log --oneline --decorate --graph --all
-    hb          = log --oneline --decorate --graph
+  # history - log graphs with color and other decorations
+  #hist        = log --pretty=format:'%H %d | %ad | %an - %s' --graph --date=short
+  #h           = log --pretty=format:'%H %d | %ad | %an - %s' --graph --date=short --all
+  h           = log --oneline --decorate --graph --all
+  hb          = log --oneline --decorate --graph
 
-    # diff/list/log files that are different in HEAD compared to master
-    # or files that are different in master compared to HEAD
-    dtom        = diff --name-status master...HEAD
-    dfromm      = diff --name-status HEAD...master
-    dttom       = difftool master...HEAD
-    dtfromm     = difftool HEAD...master
-    ltom        = log --oneline --decorate --graph master..HEAD
-    lfromm      = log --oneline --decorate --graph HEAD..master
-    lm          = log --oneline --decorate --graph --left-right master...HEAD
+  # diff/list/log files that are different in HEAD compared to master
+  # or files that are different in master compared to HEAD
+  dtom        = diff --name-status master...HEAD
+  dfromm      = diff --name-status HEAD...master
+  dttom       = difftool master...HEAD
+  dtfromm     = difftool HEAD...master
+  ltom        = log --oneline --decorate --graph master..HEAD
+  lfromm      = log --oneline --decorate --graph HEAD..master
+  lm          = log --oneline --decorate --graph --left-right master...HEAD
 
-    # low-level utilities
-    type = cat-file -t
-    dump = cat-file -p
+  # low-level utilities
+  type = cat-file -t
+  dump = cat-file -p
 
 [diff]
-	tool = diffmerge
+  tool = diffmerge
 
 [difftool]
-    prompt = false
+  prompt = false
 
 [merge]
-	tool = diffmerge
+  tool = diffmerge
 
 [mergetool]
-    prompt = false
+  prompt = false
 
 # SourceGear Diffmerge
 [difftool "diffmerge"]
-	cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge --nosplash \"$LOCAL\" \"$REMOTE\"
-	path = 
+  cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge --nosplash \"$LOCAL\" \"$REMOTE\"
+  path = 
 [mergetool "diffmerge"]
-	cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
-	trustExitCode = true
+  cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
+  trustExitCode = true
 
 # P4Merge (perforce)
 [difftool "p4merge"]
-	cmd = /Applications/p4merge.app/Contents/MacOS/p4merge \"$LOCAL\" \"$REMOTE\"
-	path = 
+  cmd = /Applications/p4merge.app/Contents/MacOS/p4merge \"$LOCAL\" \"$REMOTE\"
+  path = 
 [mergetool "p4merge"]
-	cmd = /Applications/p4merge.app/Contents/MacOS/p4merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
-	trustExitCode = true
+  cmd = /Applications/p4merge.app/Contents/MacOS/p4merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+  trustExitCode = true
 
 # kdiff3
 [difftool "kdiff3"]
-	cmd = /Applications/kdiff3.app/Contents/MacOS/kdiff3 \"$LOCAL\" \"$REMOTE\"
-	path = 
+  cmd = /Applications/kdiff3.app/Contents/MacOS/kdiff3 \"$LOCAL\" \"$REMOTE\"
+  path = 
 [mergetool "kdiff3"]
-	cmd = /Applications/kdiff3.app/Contents/MacOS/kdiff3 \"$BASE\" \"$LOCAL\" \"$REMOTE\" -o \"$MERGED\"
-	trustExitCode = true
+  cmd = /Applications/kdiff3.app/Contents/MacOS/kdiff3 \"$BASE\" \"$LOCAL\" \"$REMOTE\" -o \"$MERGED\"
+  trustExitCode = true
 
 # SourceTree (default -> opendiff)
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path = 
 [mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+  cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true

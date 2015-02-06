@@ -148,7 +148,8 @@ alias path='echo $PATH | ddown'
 alias ee='gvim ~/.zshrc'
 alias se='source ~/.zshrc'
 alias eth="gvim $ZSH/custom/awhite.zsh-theme"
-alias ev='gvim ~/.vimrc ~/.vimrc.before ~/.vimrc.after ~/.gvimrc ~/.gvimrc.before ~/.gvimrc.after'
+alias ev='gvim ~/.vimrc.before ~/.vimrc.after'
+alias egv='gvim ~/.gvimrc.before ~/.gvimrc.after'
 alias evb='gvim ~/.vimrc.before'
 alias eva='gvim ~/.vimrc.after'
 alias egvb='gvim ~/.gvimrc.before'
@@ -182,6 +183,7 @@ alias dt='diffmerge'
 
 alias lock='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
 
+alias rmswp="rm ~/.vim/_temp/*.swp"
 alias :q="echo Not in vim"
 
 # Creates a Bash/AppleScript function for opening new iTerm2 tabs from the command line
@@ -322,10 +324,10 @@ appendPathDir ${ANDROID_HOME}/platform-tools
 #alias pboff="pythonbrew off"
 
 # pip/virtualenv
-#export VIRTUAL_ENV_DISABLE_PROMPT=true
-#export PIP_REQUIRE_VIRTUALENV=true
-#export PIP_RESPECT_VIRTUALENV=true
-#alias vehome='cd $VIRTUAL_ENV'
+export VIRTUAL_ENV_DISABLE_PROMPT=true
+export PIP_REQUIRE_VIRTUALENV=true
+export PIP_RESPECT_VIRTUALENV=true
+alias vehome='cd $VIRTUAL_ENV'
 
 # virtualenvwrapper
 #export WORKON_HOME=~/dev/virtualenvs
@@ -365,6 +367,10 @@ prependPathDir "/usr/local/share/npm/bin"
 
 alias npmupdate="npm update -g npm"
 alias npmupdateall="npm update -g"
+
+npmlatest() {
+    curl -s "https://registry.npmjs.org/$1" | python -m json.tool | grep latest | cut -d'"' -f4
+}
 
 ################################################################################
 # NVM (Node version manager)
@@ -412,7 +418,13 @@ alias cdpopen9000='ip; open http://$( ip ):9000'
 alias cdpclean="cdp && ./cleanEverything.sh && ./cleanFrontEnd.sh"
 alias cdprun="cdp && sbt run"
 alias cdpcleanrun="cdpclean && cdprun"
-alias cdppackagejson="cdp && gvim modules/webApp/desktop/package.json modules/webApp/mobile/package.json modules/webApp/test-core/package.json"
+alias cdppackagejson="cdp && gvim modules/webApp/package.json modules/webApp/desktop/package.json modules/webApp/mobile/package.json modules/webApp/test-core/package.json"
+
+# Update a npm module in all cdp folders
+cdpupdate() {
+  cdp && cdpbump.js $1 $(npmlatest $1)
+}
+
 alias lui="pa; cd Lui.js"
 alias hackday="pa; cd hackday"
 alias content="pa; cd content"

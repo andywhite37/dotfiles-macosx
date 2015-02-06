@@ -4,7 +4,7 @@
 let g:localvimrc_persistent=1
 
 " NERDTree plugin settings
-let g:NERDTreeWinSize = 60
+let g:NERDTreeWinSize = 40
 let g:NERDTreeShowHidden = 1
 
 " Ack plugin settings

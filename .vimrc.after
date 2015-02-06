@@ -8,9 +8,9 @@
 
 "set nonumber
 set expandtab
-set shiftwidth=4
-set tabstop=4
-set softtabstop=4
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
 
 " Set colorscheme
 "colorscheme torte
@@ -30,7 +30,12 @@ set completeopt=menu
 " CtrlP plugin settings
 set wildignore+=*/node_modules/*,*.so,*.swp,*.zip
 
+" Treat .jshintrc as JavaScript code
 au! BufRead,BufNewFile .jshintrc setfiletype JavaScript
+
+" Use ,m to run :NERDTree, and ,n to :NERDTreeFind
+nmap <C-n> :NERDTreeToggle<CR>
+nmap <C-f> :NERDTreeFind<CR>
 
 " vim-localvimrc plugin settings
 " Must go in .vimrc.before
