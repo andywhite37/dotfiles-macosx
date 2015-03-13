@@ -28,7 +28,7 @@ set autowrite
 set completeopt=menu
 
 " CtrlP plugin settings
-set wildignore+=*/node_modules/*,*.so,*.swp,*.zip
+"set wildignore+=*/node_modules/*,*.so,*.swp,*.zip
 
 " Treat .jshintrc as JavaScript code
 au! BufRead,BufNewFile .jshintrc setfiletype JavaScript

@@ -16,10 +16,10 @@ plugins=(brew colored-man extract git jsontools sbt vi-mode)
 source $ZSH/oh-my-zsh.sh
 
 # Undo some of the defaults
-unset -f cd
+unset -f cd &> /dev/null
 
 # Setup online help (recommended by homebrew)
-unalias run-help
+unalias run-help &> /dev/null
 autoload run-help
 HELPDIR=/usr/local/share/zsh/helpfiles
 
@@ -391,9 +391,11 @@ alias editconsolelogs="findconsolelogs | xargs gvim"
 ################################################################################
 
 #appendPathDir "${HOME}/Downloads/Haxe/haxe-3.1.3"
-#export HAXE_STD_PATH="/usr/local/lib/haxe/std"
+export HAXE_STD_PATH="/usr/local/lib/haxe/std"
 #export HAXE_STD_PATH="${HOME}/Downloads/Haxe/haxe-3.1.3"
-export HAXE_STD_PATH="/usr/lib/haxe/std"
+#export HAXE_STD_PATH="/usr/lib/haxe/std"
+
+alias haxes="env HAXE_STD_PATH=/usr/lib/haxe/std /usr/bin/haxe"
 
 ################################################################################
 # Pellucid Analytics Shortcuts
@@ -419,6 +421,8 @@ alias cdpclean="cdp && ./cleanEverything.sh && ./cleanFrontEnd.sh"
 alias cdprun="cdp && sbt run"
 alias cdpcleanrun="cdpclean && cdprun"
 alias cdppackagejson="cdp && gvim modules/webApp/package.json modules/webApp/desktop/package.json modules/webApp/mobile/package.json modules/webApp/test-core/package.json"
+alias store="pa; cd store"
+alias cms="pa; cd cmsapi"
 
 # Update a npm module in all cdp folders
 cdpupdate() {

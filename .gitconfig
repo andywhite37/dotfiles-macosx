@@ -6,7 +6,7 @@
   excludesfile = /Users/awhite/.gitignore_global
 
 [push]
-  default = simple
+  default = nothing
 
 [color]
   ui = true
@@ -31,6 +31,7 @@
   fo          = fetch --prune origin
   fu          = fetch --prune upstream
   mom         = merge origin/master
+  mum         = merge upstream/master
 
   # show "current commit" hash
   cc          = rev-parse HEAD
