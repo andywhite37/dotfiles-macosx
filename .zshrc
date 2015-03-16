@@ -423,6 +423,7 @@ alias cdpcleanrun="cdpclean && cdprun"
 alias cdppackagejson="cdp && gvim modules/webApp/package.json modules/webApp/desktop/package.json modules/webApp/mobile/package.json modules/webApp/test-core/package.json"
 alias store="pa; cd store"
 alias cms="pa; cd cmsapi"
+alias inv="pa; cd in-ventory"
 
 # Update a npm module in all cdp folders
 cdpupdate() {

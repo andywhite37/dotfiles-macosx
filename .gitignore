@@ -1,17 +1,18 @@
 # Ignore cloned vim plugins
 .janus/AutoComplPop
+.janus/html5.vim
+.janus/jedi-vim
 .janus/neocomplete.vim
 .janus/tagbar
 .janus/vaxe
 .janus/vim-airline
 .janus/vim-gitgutter
-.janus/vim-nerdtree-tabs
+.janus/vim-nodejs-complete
 .janus/vim-jade
-.janus/vim-stylus
-.janus/vim-localvimrc
 .janus/vim-jsdoc
-.janus/html5.vim
-.janus/jedi-vim
+.janus/vim-localvimrc
+.janus/vim-nerdtree-tabs
+.janus/vim-stylus
 .janus/vim-jsx
 
 # Private scripts
