@@ -6,7 +6,7 @@
   excludesfile = /Users/awhite/.gitignore_global
 
 [push]
-  default = nothing
+  default = simple
 
 [color]
   ui = true
