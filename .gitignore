@@ -2,6 +2,7 @@
 .janus/AutoComplPop
 .janus/html5.vim
 .janus/jedi-vim
+.janus/neocomplcache.vim
 .janus/neocomplete.vim
 .janus/tagbar
 .janus/vaxe
@@ -10,10 +11,11 @@
 .janus/vim-nodejs-complete
 .janus/vim-jade
 .janus/vim-jsdoc
+.janus/vim-jsx
 .janus/vim-localvimrc
 .janus/vim-nerdtree-tabs
+.janus/vim-nodejs-complete
 .janus/vim-stylus
-.janus/vim-jsx
 
 # Private scripts
 bin/sauce_hmac.py

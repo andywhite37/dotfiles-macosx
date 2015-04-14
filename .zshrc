@@ -134,11 +134,11 @@ bindkey "^N" down-line-or-history
 
 alias editor="${EDITOR}"
 #alias e="${EDITOR}"
-alias vim="${VIM_COMMAND}"
+#alias vim="${VIM_COMMAND}"
 #alias gvim="${GVIM_COMMAND} --servername GVIM --remote-tab-silent"
-alias gvim="${GVIM_COMMAND}"
-alias gvimraw="${GVIM_COMMAND}"
-alias gvim.="${GVIM_COMMAND} ."
+#alias gvim="${GVIM_COMMAND}"
+#alias gvimraw="${GVIM_COMMAND}"
+#alias gvim.="${GVIM_COMMAND} ."
 #alias subl='/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl'
 
 alias path='echo $PATH | ddown'
@@ -162,6 +162,7 @@ alias ddown="tr ':' '\n'"
 
 alias srch='find . -print | grep'
 alias ff='find . -type f -print'
+alias grep="egrep"
 alias rgrep="ack"
 
 alias grepfiles='cut -d: -f1 | sort | uniq'
@@ -217,6 +218,7 @@ alias omz="cd $ZSH"
 alias temp="cd $MYTEMP"
 alias tmp="cd $MYTEMP"
 alias ulb="cd /usr/local/bin"
+alias aw="cd ~/dev/andywhite37"
 
 #alias isim5.1='cd ~/Library/Application\ Support/iPhone\ Simulator/5.1/Applications'
 #alias isim='cd ~/Library/Application\ Support/iPhone\ Simulator/6.0/Applications'

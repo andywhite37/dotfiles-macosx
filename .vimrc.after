@@ -12,53 +12,77 @@ set shiftwidth=2
 set tabstop=2
 set softtabstop=2
 
+
+
 " Set colorscheme
 "colorscheme torte
 "colorscheme Candycode
 colorscheme Molokai
 
+
+
 " Shortcut for formatting .json text
-com! FormatJSON %!python -m json.tool
+"com! FormatJSON %!python -m json.tool
+com! FormatJSON %!underscore print --outfmt stringify
+
+
 
 " Make line numbers less abrasive
 hi LineNr guifg=#505050 guibg=Black
+
+
 
 " vaxe plugin settings
 set autowrite
 set completeopt=menu
 
+
+
+" jedi plugin settings
+autocmd FileType python setlocal completeopt-=preview
+
+
+
 " CtrlP plugin settings
 "set wildignore+=*/node_modules/*,*.so,*.swp,*.zip
+"
+"
 
 " Treat .jshintrc as JavaScript code
 au! BufRead,BufNewFile .jshintrc setfiletype JavaScript
 
+
+
 " Use ,m to run :NERDTree, and ,n to :NERDTreeFind
-nmap <C-n> :NERDTreeToggle<CR>
-nmap <C-f> :NERDTreeFind<CR>
+nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+
+
 
 " vim-localvimrc plugin settings
 " Must go in .vimrc.before
 "let g:localvimrc_whitelist="/Users/awhite/dev/pellucidanalytics/pellucid-live/.*"
 
+
+
 " Customize statusline
-if has("statusline") && !&cp
-    set laststatus=2  " always show the status bar
-
-    " Start the status line
-    set statusline=%F\ %y%m%r
-    set statusline+=[Line:\ %l/%L]
-    set statusline+=[Col:\ %v]
-    set statusline+=[Buf:\ %n]
-    set statusline+=[Char:\ %b\ (0x%B)]
-
-    if janus#is_plugin_enabled('fugitive')
-        set statusline+=%{fugitive#statusline()}
-    endif
-
-    if janus#is_plugin_enabled('syntastic')
-        set statusline+=%#warningmsg#
-        set statusline+=%{SyntasticStatuslineFlag()}
-        set statusline+=%*
-    endif
-endif
+"if has("statusline") && !&cp
+"    set laststatus=2  " always show the status bar
+"
+"    " Start the status line
+"    set statusline=%F\ %y%m%r
+"    set statusline+=[Line:\ %l/%L]
+"    set statusline+=[Col:\ %v]
+"    set statusline+=[Buf:\ %n]
+"    set statusline+=[Char:\ %b\ (0x%B)]
+"
+"    if janus#is_plugin_enabled('fugitive')
+"        set statusline+=%{fugitive#statusline()}
+"    endif
+"
+"    if janus#is_plugin_enabled('syntastic')
+"        set statusline+=%#warningmsg#
+"        set statusline+=%{SyntasticStatuslineFlag()}
+"        set statusline+=%*
+"    endif
+"endif
