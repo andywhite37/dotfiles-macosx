@@ -31,6 +31,8 @@
   fo          = fetch --prune origin
   fu          = fetch --prune upstream
   mom         = merge origin/master
+  mor         = merge origin/release
+  mod         = merge origin/dev
   mum         = merge upstream/master
 
   # show "current commit" hash

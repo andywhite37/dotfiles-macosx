@@ -426,6 +426,7 @@ alias cdppackagejson="cdp && gvim modules/webApp/package.json modules/webApp/des
 alias store="pa; cd store"
 alias cms="pa; cd cmsapi"
 alias inv="pa; cd in-ventory"
+alias bootswatch="pa; cd bootswatch"
 
 # Update a npm module in all cdp folders
 cdpupdate() {

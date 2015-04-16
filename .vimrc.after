@@ -21,6 +21,16 @@ colorscheme Molokai
 
 
 
+" Easier window navigation
+nmap <C-h> <C-w>h
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-l> <C-w>l
+nmap <D-H> :split<enter>
+nmap <D-V> :vsplit<enter>
+
+
+
 " Shortcut for formatting .json text
 "com! FormatJSON %!python -m json.tool
 com! FormatJSON %!underscore print --outfmt stringify
@@ -29,6 +39,12 @@ com! FormatJSON %!underscore print --outfmt stringify
 
 " Make line numbers less abrasive
 hi LineNr guifg=#505050 guibg=Black
+
+
+
+" Ack
+" Use :Ack! instead of :Ack (! does not auto-open first result)
+call janus#add_mapping('ack', 'map', '<D-F>', ':Ack!<space>')
 
 
 
