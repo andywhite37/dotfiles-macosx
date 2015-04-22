@@ -190,7 +190,6 @@ alias :q="echo Not in vim"
 # Creates a Bash/AppleScript function for opening new iTerm2 tabs from the command line
 . ~/bin/tab.bash
 
-
 ################################################################################
 # cd shortcuts
 ################################################################################
@@ -378,15 +377,25 @@ npmlatest() {
 # NVM (Node version manager)
 ################################################################################
 
+# Manual install
 #[ -s "/Users/awhite/.nvm/nvm.sh" ] && . "/Users/awhite/.nvm/nvm.sh"
 #[[ -r "$NVM_DIR/bash_completion" ]] && . "$NVM_DIR/bash_completion"
 
+# Homebrew install
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
+
 ################################################################################
-# JavaScript
+# JavaScript/Node.js
 ################################################################################
 
 alias findconsolelogs="ack -l --js 'console\.log'"
 alias editconsolelogs="findconsolelogs | xargs gvim"
+
+alias node-debug-10="nvm run v0.10.38 `which node-debug`"
+alias node-debug-11="nvm run v0.11.13 `which node-debug`"
+alias node-inspector-10="nvm run v0.10.38 `which node-inspector`"
+alias node-inspector-11="nvm run v0.11.13 `which node-inspector`"
 
 ################################################################################
 # Haxe
