@@ -44,7 +44,7 @@ hi LineNr guifg=#505050 guibg=Black
 
 " Ack
 " Use :Ack! instead of :Ack (! does not auto-open first result)
-call janus#add_mapping('ack', 'map', '<D-F>', ':Ack!<space>')
+call janus#add_mapping('ack', 'map', '<D-F>', ':Ack! -i ')
 
 
 
@@ -70,8 +70,8 @@ au! BufRead,BufNewFile .jshintrc setfiletype JavaScript
 
 
 " Use ,m to run :NERDTree, and ,n to :NERDTreeFind
-nnoremap <C-n> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
+"nnoremap <C-n> :NERDTreeToggle<CR>
+"nnoremap <C-f> :NERDTreeFind<CR>
 
 
 

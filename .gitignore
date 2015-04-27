@@ -8,11 +8,11 @@
 .janus/vaxe
 .janus/vim-airline
 .janus/vim-gitgutter
-.janus/vim-nodejs-complete
 .janus/vim-jade
 .janus/vim-jsdoc
 .janus/vim-jsx
 .janus/vim-localvimrc
+.janus/vim-indent-guides
 .janus/vim-nerdtree-tabs
 .janus/vim-nodejs-complete
 .janus/vim-stylus
