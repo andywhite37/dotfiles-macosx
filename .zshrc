@@ -11,7 +11,7 @@ ZSH_THEME="awhite"
 
 COMPLETION_WAITING_DOTS="true"
 
-plugins=(brew colored-man extract git jsontools sbt vi-mode)
+plugins=(brew colored-man extract git jsontools sbt vi-mode zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -28,24 +28,21 @@ HELPDIR=/usr/local/share/zsh/helpfiles
 ################################################################################
 
 # Remove a directory from the PATH
-removePathDir()
-{
-    dir="$1"
-    export PATH=$(echo "$PATH" | tr ":" "\n" | grep -vx "$dir" | paste -s -d ':' -)
+removePathDir() {
+  dir="$1"
+  export PATH=$(echo "$PATH" | tr ":" "\n" | grep -vx "$dir" | paste -s -d ':' -)
 }
 
 # Prepend a directory to the PATH (at the beginning)
-prependPathDir()
-{
-    dir="$1"
-    if ! $(echo "$PATH" | tr ":" "\n" | grep -qx "$dir" ); then export PATH="${dir}:${PATH}"; fi
+prependPathDir() {
+  dir="$1"
+  if ! $(echo "$PATH" | tr ":" "\n" | grep -qx "$dir" ); then export PATH="${dir}:${PATH}"; fi
 }
 
 # Append a directory to the PATH (at the end)
-appendPathDir()
-{
-    dir="$1"
-    if ! $(echo "$PATH" | tr ":" "\n" | grep -qx "$dir" ); then export PATH="${PATH}:${dir}"; fi
+appendPathDir() {
+  dir="$1"
+  if ! $(echo "$PATH" | tr ":" "\n" | grep -qx "$dir" ); then export PATH="${PATH}:${dir}"; fi
 }
 
 # Add homebrew's ruby gem install dir to path
@@ -80,25 +77,25 @@ prependPathDir "${HOME}/bin"
 
 #appendPathDir "/usr/libexec"
 
+sourceIfExists() {
+  [ -f "$1" ] && source "$1"
+}
+
 ################################################################################
 # Environment variables/tools
 ################################################################################
 
-sourceIfExists() {
-    [ -f "$1" ] && source "$1"
-}
-
 #export VIM_HOME='/Applications/MacVim.app/Contents/Resources/vim'
 if [[ -d /Applications/MacVim.app ]]; then
-    # Mac OSX
-    export VIM_COMMAND='/Applications/MacVim.app/Contents/MacOS/Vim'
-    export GVIM_COMMAND='/Applications/MacVim.app/Contents/MacOS/Vim -g'
-    export GVIMF_COMMAND='/Applications/MacVim.app/Contents/MacOS/Vim -gf'
+  # Mac OSX
+  export VIM_COMMAND='/Applications/MacVim.app/Contents/MacOS/Vim'
+  export GVIM_COMMAND='/Applications/MacVim.app/Contents/MacOS/Vim -g'
+  export GVIMF_COMMAND='/Applications/MacVim.app/Contents/MacOS/Vim -gf'
 else
-    # Linux
-    export VIM_COMMAND='/usr/bin/vim'
-    export GVIM_COMMAND='/usr/bin/gvim'
-    export GVIMF_COMMAND='/usr/bin/gvim -f'
+  # Linux
+  export VIM_COMMAND='/usr/bin/vim'
+  export GVIM_COMMAND='/usr/bin/gvim'
+  export GVIMF_COMMAND='/usr/bin/gvim -f'
 fi
 
 export EDITOR="${GVIMF_COMMAND}"
@@ -230,11 +227,11 @@ alias dev="cd $DEV"
 ################################################################################
 
 if [[ -d /Applications ]]; then
-    # Mac OSX
-    alias ls='ls -G'
+  # Mac OSX
+  alias ls='ls -G'
 else
-    # Linux
-    alias ls='ls --color'
+  # Linux
+  alias ls='ls --color'
 fi
 
 alias lf='ls -F'
@@ -370,7 +367,7 @@ alias npmupdate="npm update -g npm"
 alias npmupdateall="npm update -g"
 
 npmlatest() {
-    curl -s "https://registry.npmjs.org/$1" | python -m json.tool | grep latest | cut -d'"' -f4
+  curl -s "https://registry.npmjs.org/$1" | python -m json.tool | grep latest | cut -d'"' -f4
 }
 
 ################################################################################
@@ -383,7 +380,7 @@ npmlatest() {
 
 # Homebrew install
 export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
+sourceIfExists "$(brew --prefix nvm)/nvm.sh"
 
 ################################################################################
 # JavaScript/Node.js
@@ -435,6 +432,8 @@ alias cdppackagejson="cdp && gvim modules/webApp/package.json modules/webApp/des
 alias store="pa; cd store"
 alias cms="pa; cd cmsapi"
 alias inv="pa; cd in-ventory"
+alias inve="pa; cd in-ventory-explore"
+alias invm="pa; cd in-ventory-mizuho"
 alias bootswatch="pa; cd bootswatch"
 alias abedev="cd ~/dev/abedev"
 alias abe="abedev; cd abe"
@@ -458,10 +457,10 @@ alias pillbox="pa; cd pillbox"
 alias hammer="pa; cd hammer.js"
 
 sourceIfExists "$HOME/.saucerc"
+sourceIfExists "$HOME/.cmsapirc"
 
 ################################################################################
 # Travis CI
 ################################################################################
 
-# added by travis gem
-[ -f /Users/awhite/.travis/travis.sh ] && source /Users/awhite/.travis/travis.sh
+sourceIfExists "$HOME/.travis/travis.sh"

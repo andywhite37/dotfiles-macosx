@@ -1,8 +1,10 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" awhite Janus .vimrc.after
+" .vimrc.after
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Allow local (per directory) .vimrc files
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "set exrc
 "set secure
 
@@ -12,68 +14,52 @@ set shiftwidth=2
 set tabstop=2
 set softtabstop=2
 
-
-
 " Set colorscheme
 "colorscheme torte
 "colorscheme Candycode
 colorscheme Molokai
 
-
-
 " Easier window navigation
-nmap <C-h> <C-w>h
-nmap <C-j> <C-w>j
-nmap <C-k> <C-w>k
-nmap <C-l> <C-w>l
-nmap <D-H> :split<enter>
-nmap <D-V> :vsplit<enter>
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nnoremap <D-H> :split<enter>
+nnoremap <D-V> :vsplit<enter>
 
-
+" Command-Shift-b = build
+nnoremap <D-B> :make<enter>
 
 " Shortcut for formatting .json text
 "com! FormatJSON %!python -m json.tool
 com! FormatJSON %!underscore print --outfmt stringify
 
-
-
 " Make line numbers less abrasive
 hi LineNr guifg=#505050 guibg=Black
-
-
 
 " Ack
 " Use :Ack! instead of :Ack (! does not auto-open first result)
 call janus#add_mapping('ack', 'map', '<D-F>', ':Ack! -i ')
 
-
-
 " vaxe plugin settings
 set autowrite
 set completeopt=menu
 
-
-
 " jedi plugin settings
 autocmd FileType python setlocal completeopt-=preview
 
-
-
 " CtrlP plugin settings
 "set wildignore+=*/node_modules/*,*.so,*.swp,*.zip
-"
-"
 
 " Treat .jshintrc as JavaScript code
 au! BufRead,BufNewFile .jshintrc setfiletype JavaScript
 
-
+" Treat .mmd (multi-markdown files) as yaml
+au! BufRead,BufNewFile .mmd setfiletype yaml
 
 " Use ,m to run :NERDTree, and ,n to :NERDTreeFind
 "nnoremap <C-n> :NERDTreeToggle<CR>
 "nnoremap <C-f> :NERDTreeFind<CR>
-
-
 
 " vim-localvimrc plugin settings
 " Must go in .vimrc.before

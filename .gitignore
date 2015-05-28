@@ -1,5 +1,6 @@
 # Ignore cloned vim plugins
 .janus/AutoComplPop
+.janus/CamelCaseMotion
 .janus/html5.vim
 .janus/jedi-vim
 .janus/neocomplcache.vim

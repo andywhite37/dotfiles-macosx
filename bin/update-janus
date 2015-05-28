@@ -3,6 +3,9 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+cd "${HOME}/.vim"
+rake
+
 cd "${HOME}/.janus"
 
 for dir in $(ls)
