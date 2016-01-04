@@ -24,7 +24,7 @@ let g:NERDTreeShowHidden = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Ack
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ack_autoclose = 1
+"let g:ack_autoclose = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vaxe
@@ -53,7 +53,7 @@ let g:vim_json_syntax_conceal = 0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Show tabline
 let g:airline#extensions#tabline#enabled = 1
-"let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 1
 "let g:airline#extensions#tabline#left_sep = ' '
 "let g:airline#extensions#tabline#left_alt_sep = '|'
 

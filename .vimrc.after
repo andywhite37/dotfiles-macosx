@@ -19,16 +19,27 @@ set softtabstop=2
 "colorscheme Candycode
 colorscheme Molokai
 
-" Easier window navigation
+" Easier window navigation (e.g. "Ctrl-h" rather than "Ctrl-w h")
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+" Command-Shift-h -> horizontal split
 nnoremap <D-H> :split<enter>
+
+" Command-Shift-v -> vertical split
 nnoremap <D-V> :vsplit<enter>
 
+" Command left/right goes to prev/next buffer
+nnoremap <D-LEFT> :bp<enter>
+nnoremap <D-RIGHT> :bn<enter>
+
 " Command-Shift-b = build
-nnoremap <D-B> :make<enter>
+nnoremap <D-B> :Make<enter>
+
+" Command-Shift-o
+nnoremap <D-O> :call vaxe#ImportClass()<enter>
 
 " Shortcut for formatting .json text
 "com! FormatJSON %!python -m json.tool
@@ -36,6 +47,13 @@ com! FormatJSON %!underscore print --outfmt stringify
 
 " Make line numbers less abrasive
 hi LineNr guifg=#505050 guibg=Black
+
+" Cursor color
+set cursorline
+"set cursorcolumn
+hi Cursor guifg=black guibg=Green
+hi CursorLine guibg=#003000
+"hi CursorColumn guibg=#151515
 
 " Ack
 " Use :Ack! instead of :Ack (! does not auto-open first result)

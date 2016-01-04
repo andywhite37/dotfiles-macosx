@@ -1,0 +1,2 @@
+#!/bin/sh
+exec haxe -cp /Users/awhite/dev/andywhite37/haxelib/src/ --run tools.haxelib.Main "$@"

@@ -7,13 +7,31 @@
 ################################################################################
 
 ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="awhite"
+#ZSH_THEME="awhite"
+ZSH_THEME="zsh2000"
+ZSH_2000_DISABLE_RVM="true"
+ZSH_2000_DISABLE_RIGHT_PROMPT="true"
 
-COMPLETION_WAITING_DOTS="true"
+#COMPLETION_WAITING_DOTS="true"
 
-plugins=(brew colored-man extract git jsontools sbt vi-mode zsh-syntax-highlighting)
+#zsh-syntax-highlighting
+plugins=(brew colored-man extract git jsontools vi-mode aws httpie node npm web-search)
 
 source $ZSH/oh-my-zsh.sh
+
+# zsh-autosuggestions
+#if [[ -f ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/autosuggestions.zsh ]]; then
+  #source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/autosuggestions.zsh
+  #zle-line-init() {
+    #zle autosuggest-start
+  #}
+  #zle -N zle-line-init
+  #bindkey '^e' end-of-line
+  #bindkey '^f' vi-forward-word
+  #AUTOSUGGESTION_HIGHLIGHT_COLOR='fg=black,bg=white'
+#else
+  ##echo "Not using autosuggestions"
+#fi
 
 # Undo some of the defaults
 unset -f cd &> /dev/null
@@ -78,7 +96,12 @@ prependPathDir "${HOME}/bin"
 #appendPathDir "/usr/libexec"
 
 sourceIfExists() {
-  [ -f "$1" ] && source "$1"
+  local file_path="${1:-}"
+  if [[ -f "$file_path" ]]; then
+    source "$file_path"
+  else
+    echo "Warning: not sourcing '$file_path' - does not exist"
+  fi
 }
 
 ################################################################################
@@ -152,6 +175,7 @@ alias eva='gvim ~/.vimrc.after'
 alias egvb='gvim ~/.gvimrc.before'
 alias egva='gvim ~/.gvimrc.after'
 alias eg='gvim ~/.gitconfig'
+alias et="gvim ~/.oh-my-zsh/custom/${ZSH_THEME}.zsh-theme"
 
 alias rm='rm -i'
 
@@ -187,6 +211,13 @@ alias :q="echo Not in vim"
 # Creates a Bash/AppleScript function for opening new iTerm2 tabs from the command line
 . ~/bin/tab.bash
 
+topp() {
+  local name="${1:-}"
+  pid=$(ps -e | grep "$name" | grep -v grep | awk '{print $1}')
+  echo "Running top for name: '$name', pid: '$pid'"
+  top -pid $pid
+}
+
 ################################################################################
 # cd shortcuts
 ################################################################################
@@ -215,6 +246,12 @@ alias temp="cd $MYTEMP"
 alias tmp="cd $MYTEMP"
 alias ulb="cd /usr/local/bin"
 alias aw="cd ~/dev/andywhite37"
+alias redhawk="aw && cd redhawk"
+alias vmort="aw && cd virdomort"
+alias ddore="aw && cd dombledore"
+alias hmmdir="aw && cd hmm"
+alias haxpression="aw && cd haxpression"
+alias graphx="aw && cd graphx"
 
 #alias isim5.1='cd ~/Library/Application\ Support/iPhone\ Simulator/5.1/Applications'
 #alias isim='cd ~/Library/Application\ Support/iPhone\ Simulator/6.0/Applications'
@@ -405,6 +442,8 @@ export HAXE_STD_PATH="/usr/local/lib/haxe/std"
 
 alias haxes="env HAXE_STD_PATH=/usr/lib/haxe/std /usr/bin/haxe"
 
+alias hmmre="hmm clean && yes | hmm install"
+
 ################################################################################
 # Pellucid Analytics Shortcuts
 ################################################################################
@@ -431,13 +470,18 @@ alias cdpcleanrun="cdpclean && cdprun"
 alias cdppackagejson="cdp && gvim modules/webApp/package.json modules/webApp/desktop/package.json modules/webApp/mobile/package.json modules/webApp/test-core/package.json"
 alias store="pa; cd store"
 alias cms="pa; cd cmsapi"
-alias inv="pa; cd in-ventory"
-alias inve="pa; cd in-ventory-explore"
-alias invm="pa; cd in-ventory-mizuho"
-alias bootswatch="pa; cd bootswatch"
+alias pal="pa; cd pal"
+alias inv="pa; cd inventory"
+alias inve="pa; cd inventory-explore"
+alias invm="pa; cd inventory-mizuho"
+alias ful="pa; cd fulfilment-tools"
+alias eaas="pa; cd eaas"
+alias vaas="pa; cd vaas"
+alias bootswatch="pa; cd bootlucid"
 alias abedev="cd ~/dev/abedev"
 alias abe="abedev; cd abe"
-alias abenpm="abedev; cd npm"
+alias npmdir="abedev; cd npm"
+alias pptx="pa; cd pptxtemplate"
 
 # Update a npm module in all cdp folders
 cdpupdate() {
@@ -449,18 +493,32 @@ alias hackday="pa; cd hackday"
 alias content="pa; cd content"
 alias w2="pa; cd website2"
 alias io="pa; cd pellucid-io"
-alias fp="dev; cd fponticelli"
-alias thxcore="fp; cd thx.core"
-alias thxpromise="fp; cd thx.promise"
+alias thxcore="aw; cd thx.core"
+alias thxpromise="aw; cd thx.promise"
+alias doom="aw; cd doom"
 alias decks="pa; cd decks"
 alias pillbox="pa; cd pillbox"
 alias hammer="pa; cd hammer.js"
+alias ghost="cd ~/dev/andypellucid/ghost"
+
+alias cloudfrontstatus="aws cloudfront list-distributions | jq '.DistributionList.Items | .[] | { id: .Id, domain: .Aliases.Items[0], status: .Status }'"
 
 sourceIfExists "$HOME/.saucerc"
-sourceIfExists "$HOME/.cmsapirc"
+sourceIfExists "$HOME/.cmsapi/.cmsapirc"
+
+alias ecms="gvim ~/.cmsapi/.cmsapirc"
 
 ################################################################################
 # Travis CI
 ################################################################################
 
 sourceIfExists "$HOME/.travis/travis.sh"
+
+################################################################################
+# Go Lang
+################################################################################
+
+export GOPATH="$HOME/.go"
+export GOROOTx="/usr/local/opt/go/libexec/bin"
+appendPathDir "$GOPATH/bin"
+appendPathDir "$GOROOTx"
