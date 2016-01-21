@@ -450,24 +450,24 @@ alias hmmre="hmm clean && yes | hmm install"
 
 # Pellucid shortcuts
 alias pa="cd ~/dev/pellucidanalytics"
-alias cdp="pa; cd cdp"
-alias cdp2="pa; cd cdp2"
-alias cdpweb="cdp; cd modules/webApp"
-alias cdpcore="cdpweb; cd core"
-alias cdptestcore="cdpweb; cd test-core"
-alias cdpdesktop="cdpweb; cd desktop"
-alias cdpmobile="cdpweb; cd mobile"
-alias cdpwstorm="cdpweb; wstorm ."
-alias cdpgvim="cdpweb; gvim ."
-alias cdpxcode="cdpmobile; cd platforms/ios; open PellucidApp.xcodeproj"
-alias cdpappcode="cdpmobile; cd platforms/ios; appcode PellucidApp.xcodeproj"
-alias cdpios="cdpappcode"
-alias cdpopen='ip; open http://$( ip ):3000'
-alias cdpopen9000='ip; open http://$( ip ):9000'
-alias cdpclean="cdp && ./cleanEverything.sh && ./cleanFrontEnd.sh"
-alias cdprun="cdp && sbt run"
-alias cdpcleanrun="cdpclean && cdprun"
-alias cdppackagejson="cdp && gvim modules/webApp/package.json modules/webApp/desktop/package.json modules/webApp/mobile/package.json modules/webApp/test-core/package.json"
+#alias cdp="pa; cd cdp"
+#alias cdp2="pa; cd cdp2"
+#alias cdpweb="cdp; cd modules/webApp"
+#alias cdpcore="cdpweb; cd core"
+#alias cdptestcore="cdpweb; cd test-core"
+#alias cdpdesktop="cdpweb; cd desktop"
+#alias cdpmobile="cdpweb; cd mobile"
+#alias cdpwstorm="cdpweb; wstorm ."
+#alias cdpgvim="cdpweb; gvim ."
+#alias cdpxcode="cdpmobile; cd platforms/ios; open PellucidApp.xcodeproj"
+#alias cdpappcode="cdpmobile; cd platforms/ios; appcode PellucidApp.xcodeproj"
+#alias cdpios="cdpappcode"
+#alias cdpopen='ip; open http://$( ip ):3000'
+#alias cdpopen9000='ip; open http://$( ip ):9000'
+#alias cdpclean="cdp && ./cleanEverything.sh && ./cleanFrontEnd.sh"
+#alias cdprun="cdp && sbt run"
+#alias cdpcleanrun="cdpclean && cdprun"
+#alias cdppackagejson="cdp && gvim modules/webApp/package.json modules/webApp/desktop/package.json modules/webApp/mobile/package.json modules/webApp/test-core/package.json"
 alias store="pa; cd store"
 alias cms="pa; cd cmsapi"
 alias pal="pa; cd pal"
@@ -484,22 +484,24 @@ alias npmdir="abedev; cd npm"
 alias pptx="pa; cd pptxtemplate"
 
 # Update a npm module in all cdp folders
-cdpupdate() {
-  cdp && cdpbump.js $1 $(npmlatest $1)
-}
+#cdpupdate() {
+#  cdp && cdpbump.js $1 $(npmlatest $1)
+#}
 
-alias lui="pa; cd Lui.js"
-alias hackday="pa; cd hackday"
-alias content="pa; cd content"
-alias w2="pa; cd website2"
+#alias lui="pa; cd Lui.js"
+#alias hackday="pa; cd hackday"
+#alias content="pa; cd content"
+#alias w2="pa; cd website2"
 alias io="pa; cd pellucid-io"
 alias thxcore="aw; cd thx.core"
 alias thxpromise="aw; cd thx.promise"
 alias doom="aw; cd doom"
+alias doom-bootstrap="aw; cd doom-bootstrap"
 alias decks="pa; cd decks"
 alias pillbox="pa; cd pillbox"
 alias hammer="pa; cd hammer.js"
 alias ghost="cd ~/dev/andypellucid/ghost"
+alias zuul="cd ~/dev/andypellucid/zuul"
 
 alias cloudfrontstatus="aws cloudfront list-distributions | jq '.DistributionList.Items | .[] | { id: .Id, domain: .Aliases.Items[0], status: .Status }'"
 

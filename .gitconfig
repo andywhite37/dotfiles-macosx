@@ -36,6 +36,7 @@
   mod         = merge origin/dev
   mum         = merge upstream/master
   pushup      = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
+  alias       = !git config --list | grep alias | sort | sed 's/^alias\\.//'
 
   # show "current commit" hash
   cc          = rev-parse HEAD
