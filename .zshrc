@@ -39,6 +39,7 @@ unset -f cd &> /dev/null
 # Setup online help (recommended by homebrew)
 unalias run-help &> /dev/null
 autoload run-help
+autoload -U zmv
 HELPDIR=/usr/local/share/zsh/helpfiles
 
 ################################################################################
@@ -474,6 +475,7 @@ alias pal="pa; cd pal"
 alias inv="pa; cd inventory"
 alias inve="pa; cd inventory-explore"
 alias invm="pa; cd inventory-mizuho"
+alias invs="pa; cd inventory-spgmi"
 alias ful="pa; cd fulfilment-tools"
 alias eaas="pa; cd eaas"
 alias vaas="pa; cd vaas"
@@ -524,3 +526,17 @@ export GOPATH="$HOME/.go"
 export GOROOTx="/usr/local/opt/go/libexec/bin"
 appendPathDir "$GOPATH/bin"
 appendPathDir "$GOROOTx"
+
+################################################################################
+# Heroku
+################################################################################
+
+logs() {
+  local appSuffix="$1"
+  heroku logs --app "pellucid-$appSuffix" --tail
+}
+
+restart() {
+  local appSuffix="$1"
+  heroku restart --app "pellucid-$appSuffix"
+}

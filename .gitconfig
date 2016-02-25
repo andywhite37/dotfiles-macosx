@@ -16,8 +16,9 @@
   s           = status
   a           = add
   b           = branch
-  ba          = branch -a
+  ba          = branch --all
   bm          = branch --merged
+  bam         = branch --all --merged
   bnm         = branch --no-merged
   bd          = branch -d
   co          = checkout
@@ -25,6 +26,8 @@
   ci          = commit
   d           = diff
   dt          = difftool
+  dthx        = !git diff --name-only | grep '\\.hx$' | xargs git dt
+  dtnobin     = !git diff --name-only | grep -v '^bin\\/' | xargs git dt
   m           = merge
   mt          = mergetool
   sm          = submodule

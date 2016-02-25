@@ -1,0 +1,15 @@
+#! /usr/bin/env bash
+sudo killall haxe
+brew update
+cwd=$(pwd)
+cd ~/projects/extern/haxelib/
+git pull
+haxe haxelib.hxml
+cd bin
+nekotools boot haxelib.n
+rm /usr/local/bin/haxelib
+brew reinstall haxe --HEAD
+rm /usr/local/bin/haxelib
+ln -s ~/projects/extern/haxelib/bin/haxelib /usr/local/bin/haxelib
+haxelib setup /usr/lib/haxe/lib/
+cd $cwd
