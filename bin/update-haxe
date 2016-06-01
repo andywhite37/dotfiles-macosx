@@ -1,16 +1,63 @@
-#! /bin/bash
-
+#! /usr/bin/env bash
 set -euo pipefail
 IFS=$'\n\t'
 
-#cwd=$(pwd)
-#cd ~/dev/HaxeFoundation/haxelib
-#git pull
-#haxe haxelib.hxml
-#cd bin
-#nekotools boot haxelib.n
-#mv /usr/local/bin/haxelib /usr/local/bin/haxelib.orig
-brew reinstall haxe --HEAD
-#mv /usr/local/bin/haxelib /usr/local/bin/haxelib.orig
-#ln -s ~/dev/HaxeFoundation/haxelib/bin/haxelib /usr/local/bin/haxelib
-#cd "${cwd}"
+HAXELIB_CODE_DIR=~/dev/HaxeFoundation/haxelib
+HAXELIB_LIB_DIR=~/.haxe/lib
+
+color_black='\033[0;30m'
+color_red='\033[0;31m'
+color_green='\033[0;32m'
+color_yellow='\033[0;33m'
+color_blue='\033[0;34m'
+color_purple='\033[0;35m'
+color_cyan='\033[0;36m'
+color_gray='\033[0;37m'
+color_none='\033[0m'
+
+echo_red() {
+  echo -e "${color_red}${1:-}${color_none}"
+}
+
+echo_green() {
+  echo -e "${color_green}${1:-}${color_none}"
+}
+
+echo_yellow() {
+  echo -e "${color_yellow}${1:-}${color_none}"
+}
+
+echo_blue() {
+  echo -e "${color_blue}${1:-}${color_none}"
+}
+
+echo_purple() {
+  echo -e "${color_purple}${1:-}${color_none}"
+}
+
+echo_cyan() {
+  echo -e "${color_cyan}${1:-}${color_none}"
+}
+
+run_command() {
+  local cmd="$1"
+  echo_yellow "$cmd"
+  eval "$cmd"
+}
+
+run_command "set +e; killall haxe; set -e"
+run_command "brew update"
+
+cwd=$(pwd)
+
+run_command "cd $HAXELIB_CODE_DIR"
+run_command "git pull"
+run_command "haxe haxelib.hxml"
+run_command "cd bin"
+run_command "nekotools boot haxelib.n"
+run_command "rm /usr/local/bin/haxelib"
+run_command "brew reinstall haxe --HEAD"
+run_command "rm /usr/local/bin/haxelib"
+run_command "ln -s ${HAXELIB_CODE_DIR}/bin/haxelib /usr/local/bin/haxelib"
+run_command "haxelib setup $HAXELIB_LIB_DIR"
+run_command "cd $cwd"

@@ -75,6 +75,9 @@ au! BufRead,BufNewFile .jshintrc setfiletype JavaScript
 " Treat .mmd (multi-markdown files) as yaml
 au! BufRead,BufNewFile .mmd setfiletype yaml
 
+" Enable rainbow parentheses
+"RainbowParentheses
+
 " Use ,m to run :NERDTree, and ,n to :NERDTreeFind
 "nnoremap <C-n> :NERDTreeToggle<CR>
 "nnoremap <C-f> :NERDTreeFind<CR>

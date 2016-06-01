@@ -43,6 +43,78 @@ autoload -U zmv
 HELPDIR=/usr/local/share/zsh/helpfiles
 
 ################################################################################
+# Echo utilities
+################################################################################
+
+color_black='\033[0;30m'
+color_red='\033[0;31m'
+color_green='\033[0;32m'
+color_yellow='\033[0;33m'
+color_blue='\033[0;34m'
+color_purple='\033[0;35m'
+color_cyan='\033[0;36m'
+color_gray='\033[0;37m'
+color_none='\033[0m'
+
+echo_red() {
+  echo -e "${color_red}${1:-}${color_none}"
+}
+
+echo_green() {
+  echo -e "${color_green}${1:-}${color_none}"
+}
+
+echo_yellow() {
+  echo -e "${color_yellow}${1:-}${color_none}"
+}
+
+echo_blue() {
+  echo -e "${color_blue}${1:-}${color_none}"
+}
+
+echo_purple() {
+  echo -e "${color_purple}${1:-}${color_none}"
+}
+
+echo_cyan() {
+  echo -e "${color_cyan}${1:-}${color_none}"
+}
+
+banner() {
+  local msg="$1"
+  echo_blue "--------------------------------------------------------------------------------"
+  echo_cyan "${msg}"
+  echo_blue "--------------------------------------------------------------------------------"
+}
+
+run_command() {
+  local cmd="$1"
+  echo_yellow "$cmd"
+  eval "$cmd"
+}
+
+confirm_ok() {
+  local msg="${1:-}"
+
+  if [[ "$msg" != "" ]]; then
+    echo
+    echo "$msg"
+  fi
+
+  echo
+  read -p "Is this ok? (y|n) " -n 1 -r choice
+  case "$choice" in
+    y|Y)
+      echo
+      ;;
+    *)
+      echo
+      exit_error "Aborting"
+      ;;
+  esac
+}
+
+################################################################################
 # PATH configurations
 ################################################################################
 
@@ -231,10 +303,8 @@ alias up5='cd ../../../../../'
 alias up6='cd ../../../../../../'
 alias up7='cd ../../../../../../../'
 alias up8='cd ../../../../../../../../'
-
 alias home="cd"
 alias back="cd -"
-
 alias dropbox="cd $DROPBOX"
 alias db="cd $DROPBOX"
 alias mac="cd $MAC"
@@ -246,6 +316,13 @@ alias omz="cd $ZSH"
 alias temp="cd $MYTEMP"
 alias tmp="cd $MYTEMP"
 alias ulb="cd /usr/local/bin"
+alias dev="cd $DEV"
+#alias src="cd ~/src"
+#alias isim5.1='cd ~/Library/Application\ Support/iPhone\ Simulator/5.1/Applications'
+#alias isim='cd ~/Library/Application\ Support/iPhone\ Simulator/6.0/Applications'
+
+# Personal projects
+alias ap="cd ~/dev/andypellucid"
 alias aw="cd ~/dev/andywhite37"
 alias redhawk="aw && cd redhawk"
 alias vmort="aw && cd virdomort"
@@ -253,12 +330,25 @@ alias ddore="aw && cd dombledore"
 alias hmmdir="aw && cd hmm"
 alias haxpression="aw && cd haxpression"
 alias graphx="aw && cd graphx"
+alias sqlx="aw && cd sqlx"
+alias mtg="aw && cd mtg"
 
-#alias isim5.1='cd ~/Library/Application\ Support/iPhone\ Simulator/5.1/Applications'
-#alias isim='cd ~/Library/Application\ Support/iPhone\ Simulator/6.0/Applications'
+# Open source/forks
+#alias abedev="cd ~/dev/abedev"
+#alias abe="abedev; cd abe"
+#alias npmdir="abedev; cd npm"
+alias abe="aw; cd abe"
+alias npmdir="aw; cd npm"
+alias thxcore="aw; cd thx.core"
+alias thxpromise="aw; cd thx.promise"
+alias utest="aw; cd utest"
+alias doom="aw; cd doom"
+alias doom-bootstrap="aw; cd doom-bootstrap"
 
-alias dev="cd $DEV"
-#alias src="cd ~/src"
+# Old stuff
+#alias decks="pa; cd decks"
+#alias pillbox="pa; cd pillbox"
+#alias hammer="pa; cd hammer.js"
 
 ################################################################################
 # ls shortcuts
@@ -365,6 +455,10 @@ export PIP_REQUIRE_VIRTUALENV=true
 export PIP_RESPECT_VIRTUALENV=true
 alias vehome='cd $VIRTUAL_ENV'
 
+syspip() {
+    PIP_REQUIRE_VIRTUALENV="" pip "$@"
+}
+
 # virtualenvwrapper
 #export WORKON_HOME=~/dev/virtualenvs
 #export PROJECT_HOME=~/dev/virtualprojects
@@ -449,8 +543,55 @@ alias hmmre="hmm clean && yes | hmm install"
 # Pellucid Analytics Shortcuts
 ################################################################################
 
-# Pellucid shortcuts
-alias pa="cd ~/dev/pellucidanalytics"
+clone_fork() {
+  local repo="$1"
+  run_command "git clone git@github.com:andywhite37/$repo"
+  run_command "cd $repo"
+  run_command "git remote add upstream git@github.com:pellucidanalytics/$repo"
+  run_command "git fetch --all --prune"
+  run_command "git branch -u upstream/master"
+}
+
+# Pellucid base repos
+#alias pa="cd ~/dev/pellucidanalytics"
+#alias pabootswatch="pa; cd bootlucid"
+#alias pacms="pa; cd cmsapi"
+#alias paeaas="pa; cd eaas"
+#alias paful="pa; cd fulfilment-tools"
+#alias painv="pa; cd inventory"
+#alias painve="pa; cd inventory-explore"
+#alias painvm="pa; cd inventory-mizuho"
+#alias painvs="pa; cd inventory-spgmi"
+#alias paio="pa; cd pellucid-io"
+#alias papal="pa; cd pal"
+#alias papptx="pa; cd pptxtemplate"
+#alias pastore="pa; cd store"
+#alias pavaas="pa; cd vaas"
+#alias pazuul="pa; cd zuul"
+
+# andywhite37 forks
+#alias ap="cd ~/dev/andypellucid"
+alias inv="aw; cd inventory"
+alias inve="aw; cd inventory-explore"
+alias invm="aw; cd inventory-mizuho"
+alias invs="aw; cd inventory-spgmi"
+alias io="aw; cd pellucid-io"
+alias cms="aw; cd cmsapi"
+alias cmsapi="cms"
+alias eaas="aw; cd eaas"
+alias ghost="aw; cd ghost"
+alias store="aw; cd store"
+alias vaas="aw; cd vaas"
+alias zuul="aw; cd zuul"
+alias ful="aw; cd fulfilment-tools"
+
+# Commands/shortcuts
+alias cloudfrontstatus="aws cloudfront list-distributions | jq '.DistributionList.Items | .[] | { id: .Id, domain: .Aliases.Items[0], status: .Status }'"
+sourceIfExists "$HOME/.saucerc"
+sourceIfExists "$HOME/.cmsapi/.cmsapirc"
+alias ecms="gvim ~/.cmsapi/.cmsapirc"
+
+# Deprecated junk
 #alias cdp="pa; cd cdp"
 #alias cdp2="pa; cd cdp2"
 #alias cdpweb="cdp; cd modules/webApp"
@@ -469,48 +610,15 @@ alias pa="cd ~/dev/pellucidanalytics"
 #alias cdprun="cdp && sbt run"
 #alias cdpcleanrun="cdpclean && cdprun"
 #alias cdppackagejson="cdp && gvim modules/webApp/package.json modules/webApp/desktop/package.json modules/webApp/mobile/package.json modules/webApp/test-core/package.json"
-alias store="pa; cd store"
-alias cms="pa; cd cmsapi"
-alias pal="pa; cd pal"
-alias inv="pa; cd inventory"
-alias inve="pa; cd inventory-explore"
-alias invm="pa; cd inventory-mizuho"
-alias invs="pa; cd inventory-spgmi"
-alias ful="pa; cd fulfilment-tools"
-alias eaas="pa; cd eaas"
-alias vaas="pa; cd vaas"
-alias bootswatch="pa; cd bootlucid"
-alias abedev="cd ~/dev/abedev"
-alias abe="abedev; cd abe"
-alias npmdir="abedev; cd npm"
-alias pptx="pa; cd pptxtemplate"
-
-# Update a npm module in all cdp folders
-#cdpupdate() {
-#  cdp && cdpbump.js $1 $(npmlatest $1)
-#}
-
 #alias lui="pa; cd Lui.js"
 #alias hackday="pa; cd hackday"
 #alias content="pa; cd content"
 #alias w2="pa; cd website2"
-alias io="pa; cd pellucid-io"
-alias thxcore="aw; cd thx.core"
-alias thxpromise="aw; cd thx.promise"
-alias doom="aw; cd doom"
-alias doom-bootstrap="aw; cd doom-bootstrap"
-alias decks="pa; cd decks"
-alias pillbox="pa; cd pillbox"
-alias hammer="pa; cd hammer.js"
-alias ghost="cd ~/dev/andypellucid/ghost"
-alias zuul="cd ~/dev/andypellucid/zuul"
-
-alias cloudfrontstatus="aws cloudfront list-distributions | jq '.DistributionList.Items | .[] | { id: .Id, domain: .Aliases.Items[0], status: .Status }'"
-
-sourceIfExists "$HOME/.saucerc"
-sourceIfExists "$HOME/.cmsapi/.cmsapirc"
-
-alias ecms="gvim ~/.cmsapi/.cmsapirc"
+#
+# Update a npm module in all cdp folders
+#cdpupdate() {
+#  cdp && cdpbump.js $1 $(npmlatest $1)
+#}
 
 ################################################################################
 # Travis CI

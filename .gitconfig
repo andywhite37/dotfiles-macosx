@@ -28,6 +28,7 @@
   dt          = difftool
   dthx        = !git diff --name-only | grep '\\.hx$' | xargs git dt
   dtnobin     = !git diff --name-only | grep -v '^bin\\/' | xargs git dt
+  dtnojs      = !git diff --name-only | grep -v '\\.js$' | xargs git dt
   m           = merge
   mt          = mergetool
   sm          = submodule
@@ -35,10 +36,11 @@
   fo          = fetch --prune origin
   fu          = fetch --prune upstream
   mom         = merge origin/master
-  mor         = merge origin/release
-  mod         = merge origin/dev
   mum         = merge upstream/master
   pushup      = !git push -u origin $(git rev-parse --abbrev-ref HEAD)
+  pusho       = !git push origin
+  pushu       = !git push upstream
+  pushou      = !git push origin && git push upstream
   alias       = !git config --list | grep alias | sort | sed 's/^alias\\.//'
 
   # show "current commit" hash
