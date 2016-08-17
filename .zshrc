@@ -535,9 +535,15 @@ export HAXE_STD_PATH="/usr/local/lib/haxe/std"
 #export HAXE_STD_PATH="${HOME}/Downloads/Haxe/haxe-3.1.3"
 #export HAXE_STD_PATH="/usr/lib/haxe/std"
 
-alias haxes="env HAXE_STD_PATH=/usr/lib/haxe/std /usr/bin/haxe"
+#alias haxes="env HAXE_STD_PATH=/usr/lib/haxe/std /usr/bin/haxe"
+#
+local haxe_321_path="$HOME/Downloads/Haxe/haxe-3.2.1"
+alias haxe321="HAXE_STD_PATH=$haxe_321_path/std $haxe_321_path/haxe"
 
-alias hmmre="hmm clean && yes | hmm install"
+local haxe_330_path="$HOME/Downloads/Haxe/haxe-3.3.0-rc2"
+alias haxe330="HAXE_STD_PATH=$haxe_330_path/std $haxe_330_path/haxe"
+
+alias hmmre="hmm clean && yes n | hmm install"
 
 ################################################################################
 # Pellucid Analytics Shortcuts
@@ -577,19 +583,28 @@ alias invm="aw; cd inventory-mizuho"
 alias invs="aw; cd inventory-spgmi"
 alias io="aw; cd pellucid-io"
 alias cms="aw; cd cmsapi"
+alias pal="aw; cd pal"
 alias cmsapi="cms"
 alias eaas="aw; cd eaas"
 alias ghost="aw; cd ghost"
 alias store="aw; cd store"
 alias vaas="aw; cd vaas"
 alias zuul="aw; cd zuul"
+alias pm="aw; cd pellmetrics"
+alias pellmetrics="pm"
 alias ful="aw; cd fulfilment-tools"
+alias pptxt="aw; cd pptxtemplate"
+alias pptxc="aw; cd pptxconvert"
 
 # Commands/shortcuts
 alias cloudfrontstatus="aws cloudfront list-distributions | jq '.DistributionList.Items | .[] | { id: .Id, domain: .Aliases.Items[0], status: .Status }'"
 sourceIfExists "$HOME/.saucerc"
 sourceIfExists "$HOME/.cmsapi/.cmsapirc"
 alias ecms="gvim ~/.cmsapi/.cmsapirc"
+alias scms="source ~/.cmsapi/.cmsapirc"
+
+alias restoredev="(echo 'yn' | ./tools/restore-db-to-local explore-dev) && (echo 'yy' | ./migrate local)"
+alias restoredevclean="(echo 'yy' | ./tools/restore-db-to-local explore-dev) && (echo 'yy' | ./migrate local)"
 
 # Deprecated junk
 #alias cdp="pa; cd cdp"
@@ -648,3 +663,9 @@ restart() {
   local appSuffix="$1"
   heroku restart --app "pellucid-$appSuffix"
 }
+
+################################################################################
+# Docker
+################################################################################
+
+alias denv='eval $(docker-machine env default)'

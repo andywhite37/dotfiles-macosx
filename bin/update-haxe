@@ -52,7 +52,8 @@ cwd=$(pwd)
 
 run_command "cd $HAXELIB_CODE_DIR"
 run_command "git pull"
-run_command "haxe haxelib.hxml"
+#run_command "haxe haxelib.hxml"
+run_command "haxe client.hxml"
 run_command "cd bin"
 run_command "nekotools boot haxelib.n"
 run_command "rm /usr/local/bin/haxelib"
