@@ -668,4 +668,4 @@ restart() {
 # Docker
 ################################################################################
 
-alias denv='eval $(docker-machine env default)'
+alias dockerdefault='(docker-machine start default || :) && (eval $(docker-machine env default))'

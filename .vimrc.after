@@ -20,10 +20,14 @@ set softtabstop=2
 colorscheme Molokai
 
 " Easier window navigation (e.g. "Ctrl-h" rather than "Ctrl-w h")
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+"nnoremap <C-h> <C-w>h
+"nnoremap <C-j> <C-w>j
+"nnoremap <C-k> <C-w>k
+"nnoremap <C-l> <C-w>l
+"nnoremap <M-h> <C-w>h
+"nnoremap <M-j> <C-w>j
+"nnoremap <M-k> <C-w>k
+"nnoremap <M-l> <C-w>l
 
 " Command-Shift-h -> horizontal split
 nnoremap <D-H> :split<enter>
