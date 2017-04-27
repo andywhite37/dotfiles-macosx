@@ -20,14 +20,10 @@ set softtabstop=2
 colorscheme Molokai
 
 " Easier window navigation (e.g. "Ctrl-h" rather than "Ctrl-w h")
-"nnoremap <C-h> <C-w>h
-"nnoremap <C-j> <C-w>j
-"nnoremap <C-k> <C-w>k
-"nnoremap <C-l> <C-w>l
-"nnoremap <M-h> <C-w>h
-"nnoremap <M-j> <C-w>j
-"nnoremap <M-k> <C-w>k
-"nnoremap <M-l> <C-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 " Command-Shift-h -> horizontal split
 nnoremap <D-H> :split<enter>
@@ -45,9 +41,15 @@ nnoremap <D-B> :Make<enter>
 " Command-Shift-o
 nnoremap <D-O> :call vaxe#ImportClass()<enter>
 
-" Shortcut for formatting .json text
+" Shortcut for formatting json text
 "com! FormatJSON %!python -m json.tool
 com! FormatJSON %!underscore print --outfmt stringify
+
+" Shortcut for formatting xml text
+com! FormatXML :'<,'>!xmllint --format -<enter>
+
+" Shortcut for formatting yaml text
+com! FormatYAML %!js-yaml | js-yaml
 
 " Make line numbers less abrasive
 hi LineNr guifg=#505050 guibg=Black

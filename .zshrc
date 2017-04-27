@@ -9,6 +9,7 @@
 ZSH=$HOME/.oh-my-zsh
 #ZSH_THEME="awhite"
 ZSH_THEME="zsh2000"
+#ZSH_THEME="agnoster"
 ZSH_2000_DISABLE_RVM="true"
 ZSH_2000_DISABLE_RIGHT_PROMPT="true"
 
@@ -163,6 +164,9 @@ appendPathDir() {
 removePathDir "/usr/local/bin"
 prependPathDir "/usr/local/bin"
 
+# Postgres tools
+#prependPathDir "/Applications/Postgres.app/Contents/Versions/latest/bin"
+
 removePathDir "${HOME}/bin"
 prependPathDir "${HOME}/bin"
 
@@ -233,6 +237,10 @@ alias editor="${EDITOR}"
 #alias gvimraw="${GVIM_COMMAND}"
 #alias gvim.="${GVIM_COMMAND} ."
 #alias subl='/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl'
+
+# VSCode
+alias pscode="ps -ef | grep -i code | grep -v XPCServices | grep -v egrep"
+alias killcode="killall haxe && killall 'Code Helper'"
 
 alias path='echo $PATH | ddown'
 
@@ -331,7 +339,9 @@ alias hmmdir="aw && cd hmm"
 alias haxpression="aw && cd haxpression"
 alias graphx="aw && cd graphx"
 alias sqlx="aw && cd sqlx"
-alias mtg="aw && cd mtg"
+alias mtgdir="aw && cd mtg"
+alias tk="aw && cd tiki-tk"
+alias ohm="aw && cd ohm"
 
 # Open source/forks
 #alias abedev="cd ~/dev/abedev"
@@ -543,7 +553,8 @@ alias haxe321="HAXE_STD_PATH=$haxe_321_path/std $haxe_321_path/haxe"
 local haxe_330_path="$HOME/Downloads/Haxe/haxe-3.3.0-rc2"
 alias haxe330="HAXE_STD_PATH=$haxe_330_path/std $haxe_330_path/haxe"
 
-alias hmmre="hmm clean && yes n | hmm install"
+#alias hmmre="hmm clean && yes n | hmm install"
+alias hmmre="hmm reinstall"
 
 ################################################################################
 # Pellucid Analytics Shortcuts
@@ -583,6 +594,7 @@ alias invm="aw; cd inventory-mizuho"
 alias invs="aw; cd inventory-spgmi"
 alias io="aw; cd pellucid-io"
 alias cms="aw; cd cmsapi"
+alias conf="aw; cd store-configs"
 alias pal="aw; cd pal"
 alias cmsapi="cms"
 alias eaas="aw; cd eaas"
@@ -595,16 +607,29 @@ alias pellmetrics="pm"
 alias ful="aw; cd fulfilment-tools"
 alias pptxt="aw; cd pptxtemplate"
 alias pptxc="aw; cd pptxconvert"
+alias d3ful="aw; cd d3fulfillment"
+alias d3="d3ful"
+alias chart="aw; cd chart-renderers"
+alias ft="aw; cd FancyTable"
+alias fg="aw; cd FancyGrid"
 
 # Commands/shortcuts
 alias cloudfrontstatus="aws cloudfront list-distributions | jq '.DistributionList.Items | .[] | { id: .Id, domain: .Aliases.Items[0], status: .Status }'"
 sourceIfExists "$HOME/.saucerc"
 sourceIfExists "$HOME/.cmsapi/.cmsapirc"
-alias ecms="gvim ~/.cmsapi/.cmsapirc"
-alias scms="source ~/.cmsapi/.cmsapirc"
+alias ecmsrc="gvim ~/.cmsapi/.cmsapirc"
+alias scmsrc="source ~/.cmsapi/.cmsapirc"
+alias ecms="gvim ~/.cmsapi/cmsapi-local.yaml"
+alias pcms="p ~/.cmsapi/cmsapi-local.yaml"
 
 alias restoredev="(echo 'yn' | ./tools/restore-db-to-local explore-dev) && (echo 'yy' | ./migrate local)"
 alias restoredevclean="(echo 'yy' | ./tools/restore-db-to-local explore-dev) && (echo 'yy' | ./migrate local)"
+alias restoreexp="(echo 'yn' | ./tools/restore-db-to-local explore) && (echo 'yy' | ./migrate local)"
+alias restoreexpclean="(echo 'yy' | ./tools/restore-db-to-local explore) && (echo 'yy' | ./migrate local)"
+alias restoremizuho="(echo 'yn' | ./tools/restore-db-to-local mizuho) && (echo 'yy' | ./migrate local)"
+alias restoremizuhoclean="(echo 'yy' | ./tools/restore-db-to-local mizuho) && (echo 'yy' | ./migrate local)"
+alias restorepilot="(echo 'yn' | ./tools/restore-db-to-local pilot) && (echo 'yy' | ./migrate local)"
+alias restorepilotclean="(echo 'yy' | ./tools/restore-db-to-local pilot) && (echo 'yy' | ./migrate local)"
 
 # Deprecated junk
 #alias cdp="pa; cd cdp"
@@ -668,4 +693,6 @@ restart() {
 # Docker
 ################################################################################
 
-alias dockerdefault='(docker-machine start default || :) && (eval $(docker-machine env default))'
+alias dstart='docker-machine start default'
+alias denv='eval $(docker-machine env default)'
+alias ecrlogin='eval $(aws ecr get-login --region us-east-1)'

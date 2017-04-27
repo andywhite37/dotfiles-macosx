@@ -10,10 +10,16 @@ if has("gui_macvim")
     set lines=80
 
     " show "native" tab bar (not the text-based one)
-    set guioptions+=e
-    set guitablabel=\[%N\]\ %t\ %M
+    "set guioptions+=e
+    "set guitablabel=\[%N\]\ %t\ %M
 
-    map <C-l> :tabnext<Enter>
-    map <C-h> :tabprevious<Enter>
-    map <C-n> :NERDTreeFocus<Enter>
+    "map <C-l> :tabnext<Enter>
+    "map <C-h> :tabprevious<Enter>
+    "map <C-n> :NERDTreeFocus<Enter>
+
+    " Alt-L: next tab
+    "map ¬ :tabnext<Enter>
+
+    " Alt-h: next tab
+    "map ˙ :tabprevious<Enter>
 endif

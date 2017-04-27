@@ -50,15 +50,30 @@ run_command "brew update"
 
 cwd=$(pwd)
 
+# Rebuild latest haxelib code
 run_command "cd $HAXELIB_CODE_DIR"
 run_command "git pull"
 #run_command "haxe haxelib.hxml"
 run_command "haxe client.hxml"
 run_command "cd bin"
 run_command "nekotools boot haxelib.n"
+
+# Remove the old haxelib link
 run_command "rm /usr/local/bin/haxelib"
-run_command "brew reinstall haxe --HEAD"
+
+# Remove haxe
+run_command "brew remove haxe"
+
+# Rebuild latest haxe (development branch)
+run_command "brew install haxe --HEAD"
+
+# Remove haxelib from brew install haxe
 run_command "rm /usr/local/bin/haxelib"
+
+# Link the haxelib we built above
 run_command "ln -s ${HAXELIB_CODE_DIR}/bin/haxelib /usr/local/bin/haxelib"
+
+# Configure haxelib
 run_command "haxelib setup $HAXELIB_LIB_DIR"
+
 run_command "cd $cwd"

@@ -1,0 +1,13 @@
+#! /usr/bin/env bash
+
+mapping_prefix=spgmi
+section_prefix=SPGMI
+
+#gsed -i "s/healthcare-/${mapping_prefix}-healthcare-/g" healthcare.*.yaml
+#gsed -i "s/HEALTH_/${section_prefix}_HEALTH_/g" healthcare.*.yaml
+
+#gsed -i "s/technology-/${mapping_prefix}-technology-/g" technology.*.yaml
+#gsed -i "s/TECH_/${section_prefix}_TECH_/g" technology.*.yaml
+
+gsed -i "s/training-/${mapping_prefix}-training-/g" training.*.yaml
+gsed -i "s/TRAINING_/${section_prefix}_TRAINING_/g" training.*.yaml

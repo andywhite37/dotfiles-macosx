@@ -10,6 +10,7 @@
 .janus/tagbar
 .janus/vaxe
 .janus/vim-airline
+.janus/vim-es6
 .janus/vim-gitgutter
 .janus/vim-indent-guides
 .janus/vim-jade

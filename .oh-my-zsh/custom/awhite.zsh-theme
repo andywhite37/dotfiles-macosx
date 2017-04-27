@@ -3,7 +3,7 @@ PROMPT='[\
 ][\
 %{$fg_bold[cyan]%}${PWD/#$HOME/~}%{$reset_color%}\
 ]\
-$(git_prompt_info)\
+$(git_prompt_info)$(git_remote_status)\
 $(virtualenv_info)\
 [\
 %{$fg_bold[yellow]%}%!%{$reset_color%}\
