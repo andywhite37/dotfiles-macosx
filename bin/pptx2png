@@ -1,0 +1,26 @@
+#! /bin/bash
+set -euo pipefail
+
+# Source code
+#poi_root="$HOME/dev/apache/poi"
+#cp="$poi_root/build/dist/maven/poi/poi-3.17-beta2.jar"
+#cp="$cp:$poi_root/build/dist/maven/poi-examples/poi-examples-3.17-beta2.jar"
+#cp="$cp:$poi_root/build/dist/maven/poi-excelant/poi-excelant-3.17-beta2.jar"
+#cp="$cp:$poi_root/build/dist/maven/poi-ooxml/poi-ooxml-3.17-beta2.jar"
+#cp="$cp:$poi_root/build/dist/maven/poi-ooxml-schemas/poi-ooxml-schemas-3.17-beta2.jar"
+#cp="$cp:$poi_root/build/dist/maven/poi-scratchpad/poi-scratchpad-3.17-beta2.jar"
+#cp="$cp:$poi_root/ooxml-lib/xmlbeans-2.3.0.jar"
+
+# Compiled
+poi_root="$HOME/Downloads/Apache/poi-3.16"
+cp="$poi_root/poi-3.16.jar"
+cp="$cp:$poi_root/poi-examples-3.16.jar"
+cp="$cp:$poi_root/poi-excelant-3.16.jar"
+cp="$cp:$poi_root/poi-ooxml-3.16.jar"
+cp="$cp:$poi_root/poi-ooxml-schemas-3.16.jar"
+cp="$cp:$poi_root/poi-ooxml-scratchpad-3.16.jar"
+cp="$cp:$poi_root/ooxml-lib/xmlbeans-2.6.0.jar"
+
+main="org.apache.poi.xslf.util.PPTX2PNG"
+
+java -classpath $cp $main -format png -scale 1.0 -slide 1 -outdir $HOME/Downloads $1

@@ -444,9 +444,9 @@ export JAVA_HOME=$( /usr/libexec/java_home )
 # Android
 ################################################################################
 
-export ANDROID_HOME=~/Downloads/Android/android-sdk-macosx
-appendPathDir ${ANDROID_HOME}/tools
-appendPathDir ${ANDROID_HOME}/platform-tools
+#export ANDROID_HOME=~/Downloads/Android/android-sdk-macosx
+#appendPathDir ${ANDROID_HOME}/tools
+#appendPathDir ${ANDROID_HOME}/platform-tools
 
 ################################################################################
 # Python
@@ -547,14 +547,21 @@ export HAXE_STD_PATH="/usr/local/lib/haxe/std"
 
 #alias haxes="env HAXE_STD_PATH=/usr/lib/haxe/std /usr/bin/haxe"
 #
-local haxe_321_path="$HOME/Downloads/Haxe/haxe-3.2.1"
-alias haxe321="HAXE_STD_PATH=$haxe_321_path/std $haxe_321_path/haxe"
+#local haxe_321_path="$HOME/Downloads/Haxe/haxe-3.2.1"
+#alias haxe321="HAXE_STD_PATH=$haxe_321_path/std $haxe_321_path/haxe"
 
-local haxe_330_path="$HOME/Downloads/Haxe/haxe-3.3.0-rc2"
-alias haxe330="HAXE_STD_PATH=$haxe_330_path/std $haxe_330_path/haxe"
+#local haxe_330_path="$HOME/Downloads/Haxe/haxe-3.3.0-rc2"
+#alias haxe330="HAXE_STD_PATH=$haxe_330_path/std $haxe_330_path/haxe"
 
 #alias hmmre="hmm clean && yes n | hmm install"
 alias hmmre="hmm reinstall"
+
+################################################################################
+# Haskell
+################################################################################
+
+appendPathDir "$HOME/.local/bin"
+appendPathDir "$HOME/Library/Haskell/bin"
 
 ################################################################################
 # Pellucid Analytics Shortcuts
@@ -670,10 +677,10 @@ sourceIfExists "$HOME/.travis/travis.sh"
 # Go Lang
 ################################################################################
 
-export GOPATH="$HOME/.go"
-export GOROOTx="/usr/local/opt/go/libexec/bin"
-appendPathDir "$GOPATH/bin"
-appendPathDir "$GOROOTx"
+#export GOPATH="$HOME/.go"
+#export GOROOTx="/usr/local/opt/go/libexec/bin"
+#appendPathDir "$GOPATH/bin"
+#appendPathDir "$GOROOTx"
 
 ################################################################################
 # Heroku

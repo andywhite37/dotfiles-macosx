@@ -43,6 +43,7 @@
   pusho       = !git push origin
   pushu       = !git push upstream
   pushou      = !git push origin && git push upstream
+  pp          = !git pull && git push origin
   alias       = !git config --list | grep alias | sort | sed 's/^alias\\.//'
   pr          = !git pushot && hub pull-request
   sync        = !git pull && git push origin
