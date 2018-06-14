@@ -15,11 +15,11 @@
   # common command shortcuts
   s           = status
   a           = add
-  b           = branch
-  ba          = branch --all
-  bm          = branch --merged
-  bam         = branch --all --merged
-  bnm         = branch --no-merged
+  b           = !git --no-pager branch
+  ba          = !git --no-pager branch --all
+  bm          = !git --no-pager branch --merged
+  bam         = !git --no-pager branch --all --merged
+  bnm         = !git --no-pager branch --no-merged
   bd          = branch -d
   co          = checkout
   com         = checkout master
@@ -30,6 +30,7 @@
   dtnobin     = !git diff --name-only | grep -v '^bin\\/' | xargs git dt
   dtnowww     = !git diff --name-only | grep -v '^www\\/' | xargs git dt
   dtnojs      = !git diff --name-only | grep -v '\\.js$' | xargs git dt
+  dtjs        = !git diff --name-only | grep '\\.js$' | xargs git dt
   m           = merge
   mt          = mergetool
   sm          = submodule
@@ -112,8 +113,8 @@
 
 # SourceTree (default -> opendiff)
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path = 
 [mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+  cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true

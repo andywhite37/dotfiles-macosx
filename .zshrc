@@ -2,6 +2,9 @@
 # awhite's .zshrc
 ################################################################################
 
+# Fails in oh-my-zsh
+#set -euo pipefail
+
 ################################################################################
 # Oh My ZSH
 ################################################################################
@@ -116,6 +119,17 @@ confirm_ok() {
 }
 
 ################################################################################
+# Java
+################################################################################
+
+export JAVA_HOME=$(/usr/libexec/java_home -v "1.8.0_152")
+
+# Home Bay settings
+export JAVA_TOOL_OPTIONS='-Dfile.encoding=UTF8 -Duser.timezone=UTC'
+export _JAVA_OPTIONS='-Xms64m -Xmx2G -Xss2m'
+export SBT_OPTS="-XX:MaxMetaspaceSize=512m -Xms1024m -Xmx1024m"
+
+################################################################################
 # PATH configurations
 ################################################################################
 
@@ -169,6 +183,8 @@ prependPathDir "/usr/local/bin"
 
 removePathDir "${HOME}/bin"
 prependPathDir "${HOME}/bin"
+
+prependPathDir "${JAVA_HOME}/bin"
 
 #appendPathDir "/usr/libexec"
 
@@ -239,8 +255,8 @@ alias editor="${EDITOR}"
 #alias subl='/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl'
 
 # VSCode
-alias pscode="ps -ef | grep -i code | grep -v XPCServices | grep -v egrep"
-alias killcode="killall haxe && killall 'Code Helper'"
+alias pscode="ps -ef | grep -i 'code|nvim' | grep -v XPCServices | grep -v egrep"
+alias killcode="killall haxe; killall 'Code Helper'; killall nvim"
 
 alias path='echo $PATH | ddown'
 
@@ -330,13 +346,14 @@ alias dev="cd $DEV"
 #alias isim='cd ~/Library/Application\ Support/iPhone\ Simulator/6.0/Applications'
 
 # Personal projects
-alias ap="cd ~/dev/andypellucid"
+#alias ap="cd ~/dev/andypellucid"
 alias aw="cd ~/dev/andywhite37"
 alias redhawk="aw && cd redhawk"
 alias vmort="aw && cd virdomort"
 alias ddore="aw && cd dombledore"
 alias hmmdir="aw && cd hmm"
 alias haxpression="aw && cd haxpression"
+alias h2="aw && cd haxpression2"
 alias graphx="aw && cd graphx"
 alias sqlx="aw && cd sqlx"
 alias mtgdir="aw && cd mtg"
@@ -351,6 +368,8 @@ alias abe="aw; cd abe"
 alias npmdir="aw; cd npm"
 alias thxcore="aw; cd thx.core"
 alias thxpromise="aw; cd thx.promise"
+alias thxschema="aw; cd thx.schema"
+alias thxjson="aw; cd thx.json"
 alias utest="aw; cd utest"
 alias doom="aw; cd doom"
 alias doom-bootstrap="aw; cd doom-bootstrap"
@@ -417,7 +436,7 @@ alias weinre='$DEV/apache/incubator-cordova-weinre/weinre.server/weinre &'
 # Websites
 ################################################################################
 
-alias github='open https://github.com/organizations/pellucidanalytics'
+#alias github='open https://github.com/organizations/pellucidanalytics'
 #alias teamcity='open http://buildserver65/overview.html'
 #alias rally='open https://rally1.rallydev.com'
 
@@ -432,13 +451,7 @@ alias brewup="brew update; brew upgrade"
 # JetBrains IDEs (IntelliJ IDEA, WebStorm)
 ################################################################################
 
-alias idea="/Applications/IntelliJ\ IDEA\ 13\ CE.app/Contents/MacOS/idea"
-
-################################################################################
-# Java
-################################################################################
-
-export JAVA_HOME=$( /usr/libexec/java_home )
+#alias idea="/Applications/IntelliJ\ IDEA\ 13\ CE.app/Contents/MacOS/idea"
 
 ################################################################################
 # Android
@@ -517,12 +530,12 @@ npmlatest() {
 ################################################################################
 
 # Manual install
-#[ -s "/Users/awhite/.nvm/nvm.sh" ] && . "/Users/awhite/.nvm/nvm.sh"
-#[[ -r "$NVM_DIR/bash_completion" ]] && . "$NVM_DIR/bash_completion"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 # Homebrew install
-export NVM_DIR=~/.nvm
-sourceIfExists "$(brew --prefix nvm)/nvm.sh"
+#export NVM_DIR=~/.nvm
+#sourceIfExists "$(brew --prefix nvm)/nvm.sh"
 
 ################################################################################
 # JavaScript/Node.js
@@ -535,6 +548,8 @@ alias node-debug-10="nvm run v0.10.38 `which node-debug`"
 alias node-debug-11="nvm run v0.11.13 `which node-debug`"
 alias node-inspector-10="nvm run v0.10.38 `which node-inspector`"
 alias node-inspector-11="nvm run v0.11.13 `which node-inspector`"
+
+appendPathDir "node_modules/.bin"
 
 ################################################################################
 # Haxe
@@ -595,48 +610,49 @@ clone_fork() {
 
 # andywhite37 forks
 #alias ap="cd ~/dev/andypellucid"
-alias inv="aw; cd inventory"
-alias inve="aw; cd inventory-explore"
-alias invm="aw; cd inventory-mizuho"
-alias invs="aw; cd inventory-spgmi"
-alias io="aw; cd pellucid-io"
-alias cms="aw; cd cmsapi"
-alias conf="aw; cd store-configs"
-alias pal="aw; cd pal"
-alias cmsapi="cms"
-alias eaas="aw; cd eaas"
-alias ghost="aw; cd ghost"
-alias store="aw; cd store"
-alias vaas="aw; cd vaas"
-alias zuul="aw; cd zuul"
-alias pm="aw; cd pellmetrics"
-alias pellmetrics="pm"
-alias ful="aw; cd fulfilment-tools"
-alias pptxt="aw; cd pptxtemplate"
-alias pptxc="aw; cd pptxconvert"
-alias d3ful="aw; cd d3fulfillment"
-alias d3="d3ful"
-alias chart="aw; cd chart-renderers"
-alias ft="aw; cd FancyTable"
-alias fg="aw; cd FancyGrid"
+#alias inv="aw; cd inventory"
+#alias inve="aw; cd inventory-explore"
+#alias invm="aw; cd inventory-mizuho"
+#alias invs="aw; cd inventory-spgmi"
+#alias io="aw; cd pellucid-io"
+#alias cms="aw; cd cmsapi"
+#alias conf="aw; cd store-configs"
+#alias pal="aw; cd pal"
+#alias cmsapi="cms"
+#alias eaas="aw; cd eaas"
+#alias ghost="aw; cd ghost"
+#alias store="aw; cd store"
+#alias vaas="aw; cd vaas"
+#alias zuul="aw; cd zuul"
+#alias pm="aw; cd pellmetrics"
+#alias pellmetrics="pm"
+#alias ful="aw; cd fulfilment-tools"
+#alias pptxt="aw; cd pptxtemplate"
+#alias pptxc="aw; cd pptxconvert"
+#alias d3ful="aw; cd d3fulfillment"
+#alias d3="d3ful"
+#alias chart="aw; cd chart-renderers"
+#alias ft="aw; cd FancyTable"
+#alias fg="aw; cd FancyGrid"
+#alias mdl="aw; cd purescript-halogen-mdl"
 
 # Commands/shortcuts
-alias cloudfrontstatus="aws cloudfront list-distributions | jq '.DistributionList.Items | .[] | { id: .Id, domain: .Aliases.Items[0], status: .Status }'"
-sourceIfExists "$HOME/.saucerc"
-sourceIfExists "$HOME/.cmsapi/.cmsapirc"
-alias ecmsrc="gvim ~/.cmsapi/.cmsapirc"
-alias scmsrc="source ~/.cmsapi/.cmsapirc"
-alias ecms="gvim ~/.cmsapi/cmsapi-local.yaml"
-alias pcms="p ~/.cmsapi/cmsapi-local.yaml"
+#alias cloudfrontstatus="aws cloudfront list-distributions | jq '.DistributionList.Items | .[] | { id: .Id, domain: .Aliases.Items[0], status: .Status }'"
+#sourceIfExists "$HOME/.saucerc"
+#sourceIfExists "$HOME/.cmsapi/.cmsapirc"
+#alias ecmsrc="gvim ~/.cmsapi/.cmsapirc"
+#alias scmsrc="source ~/.cmsapi/.cmsapirc"
+#alias ecms="gvim ~/.cmsapi/cmsapi-local.yaml"
+#alias pcms="p ~/.cmsapi/cmsapi-local.yaml"
 
-alias restoredev="(echo 'yn' | ./tools/restore-db-to-local explore-dev) && (echo 'yy' | ./migrate local)"
-alias restoredevclean="(echo 'yy' | ./tools/restore-db-to-local explore-dev) && (echo 'yy' | ./migrate local)"
-alias restoreexp="(echo 'yn' | ./tools/restore-db-to-local explore) && (echo 'yy' | ./migrate local)"
-alias restoreexpclean="(echo 'yy' | ./tools/restore-db-to-local explore) && (echo 'yy' | ./migrate local)"
-alias restoremizuho="(echo 'yn' | ./tools/restore-db-to-local mizuho) && (echo 'yy' | ./migrate local)"
-alias restoremizuhoclean="(echo 'yy' | ./tools/restore-db-to-local mizuho) && (echo 'yy' | ./migrate local)"
-alias restorepilot="(echo 'yn' | ./tools/restore-db-to-local pilot) && (echo 'yy' | ./migrate local)"
-alias restorepilotclean="(echo 'yy' | ./tools/restore-db-to-local pilot) && (echo 'yy' | ./migrate local)"
+#alias restoredev="(echo 'yn' | ./tools/restore-db-to-local explore-dev) && (echo 'yy' | ./migrate local)"
+#alias restoredevclean="(echo 'yy' | ./tools/restore-db-to-local explore-dev) && (echo 'yy' | ./migrate local)"
+#alias restoreexp="(echo 'yn' | ./tools/restore-db-to-local explore) && (echo 'yy' | ./migrate local)"
+#alias restoreexpclean="(echo 'yy' | ./tools/restore-db-to-local explore) && (echo 'yy' | ./migrate local)"
+#alias restoremizuho="(echo 'yn' | ./tools/restore-db-to-local mizuho) && (echo 'yy' | ./migrate local)"
+#alias restoremizuhoclean="(echo 'yy' | ./tools/restore-db-to-local mizuho) && (echo 'yy' | ./migrate local)"
+#alias restorepilot="(echo 'yn' | ./tools/restore-db-to-local pilot) && (echo 'yy' | ./migrate local)"
+#alias restorepilotclean="(echo 'yy' | ./tools/restore-db-to-local pilot) && (echo 'yy' | ./migrate local)"
 
 # Deprecated junk
 #alias cdp="pa; cd cdp"
@@ -668,6 +684,70 @@ alias restorepilotclean="(echo 'yy' | ./tools/restore-db-to-local pilot) && (ech
 #}
 
 ################################################################################
+# Home Bay
+################################################################################
+
+# Folders
+export HB_HOME="$HOME/dev/andywhite37/homebay"
+export HB_DATOMIC_HOME="/Users/awhite/Downloads/Datomic/datomic-pro-0.9.5350"
+export HB_DATOMIC_BIN="$HB_DATOMIC_HOME/bin"
+export HB_DATOMIC_BACKUPS="$HOME/.homebay/Backups"
+
+# Database URIs
+export HB_DATOMIC_LOCAL_URI_BASE="datomic:dev://localhost:4334"
+export HB_DATOMIC_LOCAL_URI="$HB_DATOMIC_LOCAL_URI_BASE/homebay"
+
+export HB_DATOMIC_STAGING_URI_BASE="datomic:ddb://us-east-1/homebay-staging"
+export HB_DATOMIC_STAGING_URI="$HB_DATOMIC_STAGING_URI_BASE/homebay"
+
+export HB_DATOMIC_PROD_URI_BASE="datomic:ddb://us-east-1/homebay-prod"
+export HB_DATOMIC_PROD_URI="$HB_DATOMIC_PROD_URI_BASE/homebay"
+
+# cd shortcuts
+alias hb="cd $HB_HOME"
+alias mapsearch="aw && cd mapsearch"
+
+# Home Bay server/client
+#appendPathDir "$HB_DATOMIC_HOME/bin"
+alias hb_server="hb && date && ./sbt run"
+alias hb_server_watch="hb && date && ./sbt ~run"
+alias hb_client="hb && date && npm run dev"
+alias hb_idea="hb && idea ."
+
+# Home Bay Datomic
+alias hb_datomic_transactor="hb && date && $HB_DATOMIC_BIN/transactor $HB_HOME/conf/datomic/transactor-dev.properties"
+
+alias hb_datomic_backup_local_to_local_dev_dir="date && $HB_DATOMIC_BIN/datomic backup-db $HB_DATOMIC_LOCAL_URI file://$HB_DATOMIC_BACKUPS/homebay-dev"
+alias hb_datomic_restore_local_from_local_dev_dir="date && $HB_DATOMIC_BIN/datomic -Xmx4g -Xms4g restore-db file://$HB_DATOMIC_BACKUPS/homebay-dev $HB_DATOMIC_LOCAL_URI"
+
+alias hb_datomic_backup_staging_to_local_staging_dir="date && $HB_DATOMIC_BIN/datomic backup-db $HB_DATOMIC_STAGING_URI file://$HB_DATOMIC_BACKUPS/homebay-staging"
+#alias hb_datomic_restore_local_from_local_staging_dir=
+
+alias hb_datomic_restore_local_from_prod_s3_backup="date && $HB_DATOMIC_BIN/datomic   -Xmx4g -Xms4g restore-db s3://homebay-database-backups/homebay-prod $HB_DATOMIC_LOCAL_URI"
+alias hb_datomic_restore_staging_from_prod_s3_backup="date && $HB_DATOMIC_BIN/datomic -Xmx4g -Xms4g restore-db s3://homebay-database-backups/homebay-prod $HB_DATOMIC_STAGING_URI"
+
+alias hb_datomic_console_local="$HB_DATOMIC_BIN/console -p 8080 local $HB_DATOMIC_LOCAL_URI_BASE"
+alias hb_datomic_console_staging="$HB_DATOMIC_BIN/console -p 8080 staging $HB_DATOMIC_STAGING_URI_BASE"
+alias hb_datomic_console_prod="$HB_DATOMIC_BIN/console -p 8080 prod $HB_DATOMIC_PROD_URI_BASE"
+alias hb_datomic_groovysh="$HB_DATOMIC_BIN/groovysh"
+
+# SQL-Datomic
+export HB_SQL_DATOMIC_ROOT="${HOME}/dev/untangled-web/sql-datomic"
+
+alias hb_sql_datomic_root="cd ${HB_SQL_DATOMIC_ROOT}"
+alias hb_sql_datomic_local="hb_sql_datomic_root && ./bin/repl -u datomic:dev://localhost:4334/homebay"
+alias hb_sql_datomic_staging="hb_sql_datomic_root && ./bin/repl -u ${HB_DATOMIC_STAGING_URI} --pretend"
+alias hb_sql_datomic_prod="hb_sql_datomic_root && ./bin/repl -u ${HB_DATOMIC_PROD_URI} --pretend"
+
+# Home Bay ElasticSearch
+export KIBANA_HOME="/Users/awhite/Downloads/Kibana/kibana-6.2.3-darwin-x86_64"
+alias hb_elasticsearch="hb && date && elasticsearch"
+alias hb_kibana_local="cd $KIBANA_HOME && date && bin/kibana"
+
+# Mongo
+alias hb_mongod="hb && date && mongod --config /usr/local/etc/mongod.conf"
+
+################################################################################
 # Travis CI
 ################################################################################
 
@@ -683,18 +763,24 @@ sourceIfExists "$HOME/.travis/travis.sh"
 #appendPathDir "$GOROOTx"
 
 ################################################################################
+# Rust
+################################################################################
+
+appendPathDir "$HOME/.cargo/bin"
+
+################################################################################
 # Heroku
 ################################################################################
 
-logs() {
-  local appSuffix="$1"
-  heroku logs --app "pellucid-$appSuffix" --tail
-}
+# logs() {
+  #local appSuffix="$1"
+  #heroku logs --app "pellucid-$appSuffix" --tail
+#}
 
-restart() {
-  local appSuffix="$1"
-  heroku restart --app "pellucid-$appSuffix"
-}
+# restart() {
+  #local appSuffix="$1"
+  #heroku restart --app "pellucid-$appSuffix"
+#}
 
 ################################################################################
 # Docker
