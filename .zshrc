@@ -549,7 +549,7 @@ alias node-debug-11="nvm run v0.11.13 `which node-debug`"
 alias node-inspector-10="nvm run v0.10.38 `which node-inspector`"
 alias node-inspector-11="nvm run v0.11.13 `which node-inspector`"
 
-appendPathDir "node_modules/.bin"
+appendPathDir "./node_modules/.bin"
 
 ################################################################################
 # Haxe
@@ -705,6 +705,7 @@ export HB_DATOMIC_PROD_URI="$HB_DATOMIC_PROD_URI_BASE/homebay"
 
 # cd shortcuts
 alias hb="cd $HB_HOME"
+alias hbzap="cd $HOME/dev/andywhite37/homebay-zapier"
 alias mapsearch="aw && cd mapsearch"
 
 # Home Bay server/client
