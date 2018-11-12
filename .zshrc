@@ -359,6 +359,7 @@ alias sqlx="aw && cd sqlx"
 alias mtgdir="aw && cd mtg"
 alias tk="aw && cd tiki-tk"
 alias ohm="aw && cd ohm"
+alias relude="aw && cd relude"
 
 # Open source/forks
 #alias abedev="cd ~/dev/abedev"
@@ -706,6 +707,7 @@ export HB_DATOMIC_PROD_URI="$HB_DATOMIC_PROD_URI_BASE/homebay"
 # cd shortcuts
 alias hb="cd $HB_HOME"
 alias hbzap="cd $HOME/dev/andywhite37/homebay-zapier"
+alias hbcms="cd $HOME/dev/andywhite37/cms"
 alias mapsearch="aw && cd mapsearch"
 
 # Home Bay server/client
@@ -722,7 +724,7 @@ alias hb_datomic_backup_local_to_local_dev_dir="date && $HB_DATOMIC_BIN/datomic 
 alias hb_datomic_restore_local_from_local_dev_dir="date && $HB_DATOMIC_BIN/datomic -Xmx4g -Xms4g restore-db file://$HB_DATOMIC_BACKUPS/homebay-dev $HB_DATOMIC_LOCAL_URI"
 
 alias hb_datomic_backup_staging_to_local_staging_dir="date && $HB_DATOMIC_BIN/datomic backup-db $HB_DATOMIC_STAGING_URI file://$HB_DATOMIC_BACKUPS/homebay-staging"
-#alias hb_datomic_restore_local_from_local_staging_dir=
+alias hb_datomic_restore_local_from_local_staging_dir="date && $HB_DATOMIC_BIN/datomic -Xmx4g -Xms4g restore-db file://$HB_DATOMIC_BACKUPS/homebay-staging $HB_DATOMIC_LOCAL_URI"
 
 alias hb_datomic_restore_local_from_prod_s3_backup="date && $HB_DATOMIC_BIN/datomic   -Xmx4g -Xms4g restore-db s3://homebay-database-backups/homebay-prod $HB_DATOMIC_LOCAL_URI"
 alias hb_datomic_restore_staging_from_prod_s3_backup="date && $HB_DATOMIC_BIN/datomic -Xmx4g -Xms4g restore-db s3://homebay-database-backups/homebay-prod $HB_DATOMIC_STAGING_URI"
@@ -770,6 +772,14 @@ sourceIfExists "$HOME/.travis/travis.sh"
 appendPathDir "$HOME/.cargo/bin"
 
 ################################################################################
+# Apache Spark
+################################################################################
+
+export SPARK_HOME="/usr/local/Cellar/apache-spark/2.3.1/libexec/"
+
+appendPathDir "$SPARK_HOME/bin"
+
+################################################################################
 # Heroku
 ################################################################################
 
@@ -790,3 +800,10 @@ appendPathDir "$HOME/.cargo/bin"
 alias dstart='docker-machine start default'
 alias denv='eval $(docker-machine env default)'
 alias ecrlogin='eval $(aws ecr get-login --region us-east-1)'
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /Users/awhite/dev/andywhite37/resight/packages/api/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/awhite/dev/andywhite37/resight/packages/api/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /Users/awhite/dev/andywhite37/resight/packages/api/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/awhite/dev/andywhite37/resight/packages/api/node_modules/tabtab/.completions/sls.zsh

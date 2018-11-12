@@ -14,6 +14,10 @@ set shiftwidth=2
 set tabstop=2
 set softtabstop=2
 
+" Shut it up, just shut up, shut up!
+set noerrorbells
+set belloff=all
+
 " Set colorscheme
 "colorscheme torte
 "colorscheme Candycode
