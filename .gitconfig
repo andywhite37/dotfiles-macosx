@@ -1,9 +1,9 @@
 [user]
   name = Andy White
-  email = greatwhitehope@gmail.com
+  email = andywhite441@gmail.com
 
-[core]
-  excludesfile = /Users/awhite/.gitignore_global
+#[core]
+  #excludesfile = /Users/awhite/.gitignore_global
 
 [push]
   default = simple
@@ -31,6 +31,7 @@
   dtnowww     = !git diff --name-only | grep -v '^www\\/' | xargs git dt
   dtnojs      = !git diff --name-only | grep -v '\\.js$' | xargs git dt
   dtnojscss   = !git diff --name-only | grep -v '\\.js$' | grep -v '\\.css$' | xargs git dt
+  dtnohtml    = !git diff --name-only | grep -v '\\.html$' | xargs git dt
   dtjs        = !git diff --name-only | grep '\\.js$' | xargs git dt
   m           = merge
   mt          = mergetool
@@ -45,6 +46,7 @@
   pusho       = !git push origin
   pushu       = !git push upstream
   pushou      = !git push origin && git push upstream
+  pushoutags  = !git push origin --follow-tags && git push upstream --follow-tags
   pp          = !git pull && git push origin
   alias       = !git config --list | grep alias | sort | sed 's/^alias\\.//'
   pr          = !git pushot && hub pull-request
@@ -78,44 +80,46 @@
 
 [diff]
   tool = diffmerge
-
 [difftool]
   prompt = false
-
 [merge]
   tool = diffmerge
-
 [mergetool]
   prompt = false
+  keepBackup = false
 
 # SourceGear Diffmerge
 [difftool "diffmerge"]
   cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge --nosplash \"$LOCAL\" \"$REMOTE\"
-  path = 
+  path =
 [mergetool "diffmerge"]
   cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
   trustExitCode = true
 
-# P4Merge (perforce)
-[difftool "p4merge"]
-  cmd = /Applications/p4merge.app/Contents/MacOS/p4merge \"$LOCAL\" \"$REMOTE\"
-  path = 
-[mergetool "p4merge"]
-  cmd = /Applications/p4merge.app/Contents/MacOS/p4merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
-  trustExitCode = true
+#[diff]
+#  tool = kdiff3
+#  guitool = kdiff3
+#[difftool]
+#  prompt = false
+#[difftool "kdiff3"]
+#  trustExitCode = false
+#
+#[merge]
+#  tool = kdiff3
+#[mergetool]
+#  prompt = false
+#[mergetool "kdiff3"]
+#  trustExitCode = false
 
-# kdiff3
-[difftool "kdiff3"]
-  cmd = /Applications/kdiff3.app/Contents/MacOS/kdiff3 \"$LOCAL\" \"$REMOTE\"
-  path = 
-[mergetool "kdiff3"]
-  cmd = /Applications/kdiff3.app/Contents/MacOS/kdiff3 \"$BASE\" \"$LOCAL\" \"$REMOTE\" -o \"$MERGED\"
-  trustExitCode = true
-
-# SourceTree (default -> opendiff)
-[difftool "sourcetree"]
-  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-  path = 
-[mergetool "sourcetree"]
-  cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-  trustExitCode = true
+#[diff]
+#  tool = p4difftool
+#[difftool "p4difftool"]
+#  cmd = p4merge $LOCAL $REMOTE
+#
+#[merge]
+#  tool = p4mergetool
+#[mergetool]
+#  keepBackup = false
+#[mergetool "p4mergetool"]
+#  cmd = p4merge $PWD/$BASE $PWD/$REMOTE $PWD/$LOCAL $PWD/$MERGED
+#  trustExitCode = false
