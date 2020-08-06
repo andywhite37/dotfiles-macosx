@@ -50,6 +50,7 @@
   pp          = !git pull && git push origin
   alias       = !git config --list | grep alias | sort | sed 's/^alias\\.//'
   pr          = !git pushot && hub pull-request
+  prport      = !git pushot && hub pull-request --file '/Users/awhite/dev/Simspace/portal/.github/PULL_REQUEST_TEMPLATE/fe.md' --edit
   sync        = !git pull && git push origin
 
   # show "current commit" hash
