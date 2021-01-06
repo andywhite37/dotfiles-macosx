@@ -285,9 +285,9 @@ colorscheme vim-monokai-tasty
 "let g:sonokai_disable_italic_comment = 1
 "colorscheme sonokai
 
+" Color customizations
 set termguicolors
-
-" These aren't working in tmux (?)
+hi CursorLine cterm=bold ctermfg=235 ctermbg=148 gui=bold guifg=#111111 guibg=#456100
 hi CocWarningHighlight gui=undercurl term=undercurl cterm=undercurl ctermfg=11 guifg=yellow
 hi CocErrorHighlight gui=undercurl term=undercurl cterm=undercurl ctermfg=257 guifg=red
 
@@ -307,6 +307,8 @@ set smarttab
 set ignorecase
 set smartcase
 set incsearch
+set number
+set relativenumber
 
 " Use Ctrl-h/j/k/l for window navigation
 " These are now handled by vim-tmux-navigator
