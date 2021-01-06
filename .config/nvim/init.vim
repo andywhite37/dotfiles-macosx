@@ -287,7 +287,7 @@ colorscheme vim-monokai-tasty
 
 " Color customizations
 set termguicolors
-hi CursorLine cterm=bold ctermfg=235 ctermbg=148 gui=bold guifg=#111111 guibg=#456100
+hi CursorLine ctermfg=235 ctermbg=148 guifg=#aaaaaa guibg=#193300
 hi CocWarningHighlight gui=undercurl term=undercurl cterm=undercurl ctermfg=11 guifg=yellow
 hi CocErrorHighlight gui=undercurl term=undercurl cterm=undercurl ctermfg=257 guifg=red
 
@@ -322,4 +322,8 @@ augroup CursorLineOnlyInActiveWindow
   autocmd!
   autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
   autocmd WinLeave * setlocal nocursorline
+
+  " Disable cursor line while in insert mode
+  autocmd InsertEnter * setlocal nocursorline
+  autocmd InsertLeave * setlocal cursorline
 augroup END
