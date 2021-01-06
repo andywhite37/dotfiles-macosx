@@ -50,6 +50,9 @@ autocmd VimEnter * NERDTree | wincmd p
 " Exit Vim if NERDTree is the only window left.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
+" Synchronize NERDTree with open buffer (i.e. find the file in NERDTree)
+nnoremap <silent> <leader>s :NERDTreeFind<cr>
+
 "-------------------------------------------------------------------------------- 
 " CoC
 " Mostly copied from CoC README
@@ -255,12 +258,13 @@ let g:airline_theme='monokai_tasty'
 "-------------------------------------------------------------------------------- 
 
 nnoremap <silent> <Leader>b :Buffers<CR>
-nnoremap <silent> <C-p> :GFiles<CR>
-nnoremap <silent> <C-l> :Files<CR>
-nnoremap <silent> <Leader>f :Rg<CR>
+nnoremap <silent> <C-p> :Files<CR>
+"nnoremap <silent> <Leader>f :Rg<CR>
+nnoremap <silent> <Leader>f :Ag<CR>
 nnoremap <silent> <Leader>/ :BLines<CR>
 nnoremap <silent> <Leader>' :Marks<CR>
 nnoremap <silent> <Leader>g :Commits<CR>
+nnoremap <silent> <Leader>c :Commands<CR>
 nnoremap <silent> <Leader>H :Helptags<CR>
 nnoremap <silent> <Leader>hh :History<CR>
 nnoremap <silent> <Leader>h: :History:<CR>

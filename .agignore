@@ -1,0 +1,5 @@
+node_modules
+design-assets
+./packages/monorail/src/visualComponents/brand/Logo.tsx
+./packages/portal-client/src/GlobalStyles.tsx
+wmks.js
