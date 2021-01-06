@@ -255,7 +255,8 @@ let g:airline_theme='monokai_tasty'
 "-------------------------------------------------------------------------------- 
 
 nnoremap <silent> <Leader>b :Buffers<CR>
-nnoremap <silent> <C-p> :Files<CR>
+nnoremap <silent> <C-p> :GFiles<CR>
+nnoremap <silent> <C-l> :Files<CR>
 nnoremap <silent> <Leader>f :Rg<CR>
 nnoremap <silent> <Leader>/ :BLines<CR>
 nnoremap <silent> <Leader>' :Marks<CR>
