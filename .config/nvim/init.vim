@@ -231,6 +231,16 @@ nmap <leader>f <Plug>(coc-format-selection)
 " coc-eslint
 
 " coc-tsserver
+"
+" coc-jest
+" Run jest for current project
+command! -nargs=0 Jest :call  CocAction('runCommand', 'jest.projectTest')
+" Run jest for current file
+command! -nargs=0 JestCurrent :call  CocAction('runCommand', 'jest.fileTest', ['%'])
+" Run jest for current test
+nnoremap <leader>te :call CocAction('runCommand', 'jest.singleTest')<CR>
+" Init jest in current cwd, require global jest command exists
+command! JestInit :call CocAction('runCommand', 'jest.init')
 
 " coc-json
 
@@ -259,8 +269,8 @@ let g:airline_theme='monokai_tasty'
 
 nnoremap <silent> <Leader>b :Buffers<CR>
 nnoremap <silent> <C-p> :Files<CR>
-"nnoremap <silent> <Leader>f :Rg<CR>
-nnoremap <silent> <Leader>f :Ag<CR>
+nnoremap <silent> <Leader>f :Rg<CR>
+"nnoremap <silent> <Leader>f :Ag<CR>
 nnoremap <silent> <Leader>/ :BLines<CR>
 nnoremap <silent> <Leader>' :Marks<CR>
 nnoremap <silent> <Leader>g :Commits<CR>
