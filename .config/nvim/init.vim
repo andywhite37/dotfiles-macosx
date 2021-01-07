@@ -39,7 +39,9 @@ Plug 'moll/vim-bbye'
 Plug 'christoomey/vim-tmux-navigator'
 
 " vim-buffergator
-Plug 'jeetsukumaran/vim-buffergator'
+" Disabling because it's causing the left-most pane to keep expanding when opening and closing.
+" The fzf :Buffers seems to accomplish the same thing as this and is arguably more usable.
+"Plug 'jeetsukumaran/vim-buffergator'
 
 call plug#end()
 
@@ -105,7 +107,7 @@ endfunction
 if has('nvim')
   inoremap <silent><expr> <c-space> coc#refresh()
 else
-  inoremap <silent><expr> <c-@> coc#refresh()
+  inoremap <silent><expr> <c-@>     coc#refresh()
 endif
 
 " Make <CR> auto-select the first completion item and notify coc.nvim to
@@ -157,8 +159,8 @@ augroup end
 
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+xmap <leader>a   <Plug>(coc-codeaction-selected)
+nmap <leader>a   <Plug>(coc-codeaction-selected)
 
 " Remap keys for applying codeAction to the current buffer.
 nmap <leader>ac  <Plug>(coc-codeaction)
@@ -192,14 +194,14 @@ endif
 nmap <silent> <C-s> <Plug>(coc-range-select)
 xmap <silent> <C-s> <Plug>(coc-range-select)
 
-" Add `:Format` command to format current buffer.
-command! -nargs=0 Format :call CocAction('format')
+" Format buffer
+command! -nargs=0  Format :call CocAction('format')
 
-" Add `:Fold` command to fold current buffer.
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+" Fold buffer
+command! -nargs=?  Fold   :call CocAction('fold', <f-args>)
 
-" Add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+" Organize imports
+command! -nargs=0  Org    :call CocAction('runCommand', 'editor.action.organizeImport')
 
 " Add (Neo)Vim's native statusline support.
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
@@ -207,6 +209,8 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Mappings for CoCList
+" These work by holding space+other key in normal mode, which pops up a fuzzy
+" searchable list pane. I haven't figured out how best to use these yet... 
 " Show all diagnostics.
 nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions.
@@ -224,7 +228,7 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
-" awhite Coc additions
+" awhite CoC additions
 
 " coc-prettier
 command! -nargs=0 Prettier   :CocCommand prettier.formatFile
@@ -234,14 +238,14 @@ nmap              <leader>f  <Plug>(coc-format-selection)
 " coc-eslint
 
 " coc-tsserver
-"
+
 " coc-jest
-command!          JestInit    :call CocAction('runCommand', 'jest.init')
-command! -nargs=0 Jest        :call CocAction('runCommand', 'jest.projectTest')
-command! -nargs=0 JestFile    :call CocAction('runCommand', 'jest.fileTest', ['%'])
-nnoremap          <leader>jf  :call CocAction('runCommand', 'jest.fileTest')<CR>
-command! -nargs=0 JestTest    :call CocAction('runCommand', 'jest.singleTest')
-nnoremap          <leader>jt  :call CocAction('runCommand', 'jest.singleTest')<CR>
+command!           JestInit    :call CocAction('runCommand', 'jest.init')
+command! -nargs=0  Jest        :call CocAction('runCommand', 'jest.projectTest')
+command! -nargs=0  JestFile    :call CocAction('runCommand', 'jest.fileTest', ['%'])
+nnoremap           <leader>jf  :call CocAction('runCommand', 'jest.fileTest')<CR>
+command! -nargs=0  JestTest    :call CocAction('runCommand', 'jest.singleTest')
+nnoremap           <leader>jt  :call CocAction('runCommand', 'jest.singleTest')<CR>
 
 " coc-json
 
@@ -268,18 +272,40 @@ let g:airline_theme='monokai_tasty'
 " fzf
 "-------------------------------------------------------------------------------- 
 
-nnoremap <silent> <Leader>B :Buffers<CR>
-nnoremap <silent> <C-p> :Files<CR>
-nnoremap <silent> <Leader>f :Rg<CR>
-"nnoremap <silent> <Leader>f :Ag<CR>
-nnoremap <silent> <Leader>/ :BLines<CR>
-nnoremap <silent> <Leader>' :Marks<CR>
-nnoremap <silent> <Leader>g :Commits<CR>
-nnoremap <silent> <Leader>c :Commands<CR>
-nnoremap <silent> <Leader>H :Helptags<CR>
-nnoremap <silent> <Leader>hh :History<CR>
-nnoremap <silent> <Leader>h: :History:<CR>
-nnoremap <silent> <Leader>h/ :History/<CR>
+" Buffer search and selection
+nnoremap <silent>  <Leader>b   :Buffers<CR>
+
+" File path search and selection
+nnoremap <silent>  <C-p>       :Files<CR>
+
+" File contents search and navigation
+" Ripgrep seems to be the standard now (compared to Ack and Ag)
+nnoremap <silent>  <Leader>f   :Rg<CR>
+"nnoremap <silent>  <Leader>f   :Ag<CR>
+
+" Buffer content search and navigation (search current buffer and go to line)
+nnoremap <silent>  <Leader>/   :BLines<CR>
+
+" Mark search and navigation
+nnoremap <silent>  <Leader>'   :Marks<CR>
+
+" Git commit/log search
+nnoremap <silent>  <Leader>g   :Commits<CR>
+
+" Vim recent command search
+nnoremap <silent>  <Leader>c   :Commands<CR>
+
+" Vim recent help tag search
+nnoremap <silent>  <Leader>H   :Helptags<CR>
+
+" Recent file/buffer history
+nnoremap <silent>  <Leader>hf  :History<CR>
+
+" Recent vim command history (:)
+nnoremap <silent>  <Leader>hv  :History:<CR>
+
+" Recent search history (/)
+nnoremap <silent>  <Leader>hs  :History/<CR>
 
 "-------------------------------------------------------------------------------- 
 " vim-bbye
@@ -289,6 +315,8 @@ nnoremap <silent> <Leader>h/ :History/<CR>
 nnoremap <Leader>q :Bdelete<CR>
 
 " Close all buffers
+" This seems to struggle with non-text buffers like NERDTree, quick fix, etc.,
+" so avoid using it. Could probably tweak this to only close text buffers?
 "nnoremap <Leader>Q :bufdo Bdelete<CR>
 
 "-------------------------------------------------------------------------------- 
@@ -317,6 +345,11 @@ set guifont=Fira\ Code:h11
 " Mouse support
 set mouse=a
 
+" Arcane incantation to make the cursor blink
+set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
+  \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+  \,sm:block-blinkwait175-blinkoff150-blinkon175
+
 " General settings
 noswapfile
 set tabstop=2
@@ -329,6 +362,9 @@ set smartcase
 set incsearch
 set number
 set relativenumber
+
+" Clipboard stuff - not sure if this is working yet within iTerm2+tmux+nvim
+set clipboard+=unnamedplus
 
 " Use Ctrl-h/j/k/l for window navigation
 " These are now handled by vim-tmux-navigator
