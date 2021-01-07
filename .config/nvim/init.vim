@@ -32,11 +32,14 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'moll/vim-bbye'
 
 " Neomux
-" Didn't really like this
+" Didn't really like this - plain old tmux is better
 "Plug 'nikvdp/neomux'
 
 " vim-tmux-navigator
 Plug 'christoomey/vim-tmux-navigator'
+
+" vim-buffergator
+Plug 'jeetsukumaran/vim-buffergator'
 
 call plug#end()
 
@@ -224,23 +227,21 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 " awhite Coc additions
 
 " coc-prettier
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-vmap <leader>f <Plug>(coc-format-selection)
-nmap <leader>f <Plug>(coc-format-selection)
+command! -nargs=0 Prettier   :CocCommand prettier.formatFile
+vmap              <leader>f  <Plug>(coc-format-selection)
+nmap              <leader>f  <Plug>(coc-format-selection)
 
 " coc-eslint
 
 " coc-tsserver
 "
 " coc-jest
-" Run jest for current project
-command! -nargs=0 Jest :call  CocAction('runCommand', 'jest.projectTest')
-" Run jest for current file
-command! -nargs=0 JestCurrent :call  CocAction('runCommand', 'jest.fileTest', ['%'])
-" Run jest for current test
-nnoremap <leader>te :call CocAction('runCommand', 'jest.singleTest')<CR>
-" Init jest in current cwd, require global jest command exists
-command! JestInit :call CocAction('runCommand', 'jest.init')
+command!          JestInit    :call CocAction('runCommand', 'jest.init')
+command! -nargs=0 Jest        :call CocAction('runCommand', 'jest.projectTest')
+command! -nargs=0 JestFile    :call CocAction('runCommand', 'jest.fileTest', ['%'])
+nnoremap          <leader>jf  :call CocAction('runCommand', 'jest.fileTest')<CR>
+command! -nargs=0 JestTest    :call CocAction('runCommand', 'jest.singleTest')
+nnoremap          <leader>jt  :call CocAction('runCommand', 'jest.singleTest')<CR>
 
 " coc-json
 
@@ -267,7 +268,7 @@ let g:airline_theme='monokai_tasty'
 " fzf
 "-------------------------------------------------------------------------------- 
 
-nnoremap <silent> <Leader>b :Buffers<CR>
+nnoremap <silent> <Leader>B :Buffers<CR>
 nnoremap <silent> <C-p> :Files<CR>
 nnoremap <silent> <Leader>f :Rg<CR>
 "nnoremap <silent> <Leader>f :Ag<CR>
@@ -284,7 +285,11 @@ nnoremap <silent> <Leader>h/ :History/<CR>
 " vim-bbye
 "-------------------------------------------------------------------------------- 
 
+" Close current buffer
 nnoremap <Leader>q :Bdelete<CR>
+
+" Close all buffers
+"nnoremap <Leader>Q :bufdo Bdelete<CR>
 
 "-------------------------------------------------------------------------------- 
 " Other custom configs
@@ -301,7 +306,8 @@ colorscheme vim-monokai-tasty
 
 " Color customizations
 set termguicolors
-hi CursorLine ctermfg=235 ctermbg=148 guifg=#aaaaaa guibg=#193300
+"hi CursorLine cterm=bold ctermfg=235 ctermbg=148 gui=bold guifg=#eeeeee guibg=#193300
+hi CursorLine ctermbg=148 guibg=#193300
 hi CocWarningHighlight gui=undercurl term=undercurl cterm=undercurl ctermfg=11 guifg=yellow
 hi CocErrorHighlight gui=undercurl term=undercurl cterm=undercurl ctermfg=257 guifg=red
 
