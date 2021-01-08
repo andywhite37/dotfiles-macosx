@@ -19,7 +19,8 @@ ZSH_2000_DISABLE_RIGHT_PROMPT="true"
 #COMPLETION_WAITING_DOTS="true"
 
 #zsh-syntax-highlighting
-plugins=(brew colored-man extract git jsontools vi-mode aws httpie node npm web-search)
+#colored-man
+plugins=(brew extract git jsontools vi-mode aws httpie node npm web-search)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -45,6 +46,11 @@ unalias run-help &> /dev/null
 autoload run-help
 autoload -U zmv
 HELPDIR=/usr/local/share/zsh/helpfiles
+
+if [ -n $SSH_CLIENT ]; then
+  # Allow unicode chars in prompt for ssh sessions
+  export LANG=en_US.UTF-8
+fi
 
 ################################################################################
 # Echo utilities
@@ -556,6 +562,13 @@ appendPathDir "./node_modules/.bin"
 # Haxe
 ################################################################################
 
+#export HAXE_HOME="/Users/awhite/Downloads/Haxe/haxe_20190201170222_1fdd3d5"
+#prependPathDir "$HAXE_HOME"
+#export HAXE_STD_PATH="${HAXE_HOME}/std"
+
+#prependPathDir "/Users/awhite/Downloads/Haxe/haxe_20170912112327_2344f23"
+#export HAXE_STD_PATH="/Users/awhite/Downloads/Haxe/haxe_20170912112327_2344f23/std"
+
 #appendPathDir "${HOME}/Downloads/Haxe/haxe-3.1.3"
 export HAXE_STD_PATH="/usr/local/lib/haxe/std"
 #export HAXE_STD_PATH="${HOME}/Downloads/Haxe/haxe-3.1.3"
@@ -593,21 +606,22 @@ clone_fork() {
 }
 
 # Pellucid base repos
-#alias pa="cd ~/dev/pellucidanalytics"
+alias pa="cd ~/dev/pellucidanalytics"
 #alias pabootswatch="pa; cd bootlucid"
-#alias pacms="pa; cd cmsapi"
+alias cms="pa; cd cmsapi"
 #alias paeaas="pa; cd eaas"
 #alias paful="pa; cd fulfilment-tools"
-#alias painv="pa; cd inventory"
-#alias painve="pa; cd inventory-explore"
+alias inv="pa; cd inventory"
+alias inve="pa; cd inventory-explore"
 #alias painvm="pa; cd inventory-mizuho"
 #alias painvs="pa; cd inventory-spgmi"
 #alias paio="pa; cd pellucid-io"
-#alias papal="pa; cd pal"
-#alias papptx="pa; cd pptxtemplate"
-#alias pastore="pa; cd store"
+alias pal="pa; cd pal"
+alias pptx="pa; cd pptxtemplate"
+alias store="pa; cd store"
 #alias pavaas="pa; cd vaas"
-#alias pazuul="pa; cd zuul"
+alias zuul="pa; cd zuul"
+alias d3="pa; cd d3fulfillment"
 
 # andywhite37 forks
 #alias ap="cd ~/dev/andypellucid"
@@ -640,7 +654,7 @@ clone_fork() {
 # Commands/shortcuts
 #alias cloudfrontstatus="aws cloudfront list-distributions | jq '.DistributionList.Items | .[] | { id: .Id, domain: .Aliases.Items[0], status: .Status }'"
 #sourceIfExists "$HOME/.saucerc"
-#sourceIfExists "$HOME/.cmsapi/.cmsapirc"
+sourceIfExists "$HOME/.cmsapi/.cmsapirc"
 #alias ecmsrc="gvim ~/.cmsapi/.cmsapirc"
 #alias scmsrc="source ~/.cmsapi/.cmsapirc"
 #alias ecms="gvim ~/.cmsapi/cmsapi-local.yaml"
@@ -799,7 +813,7 @@ appendPathDir "$SPARK_HOME/bin"
 
 alias dstart='docker-machine start default'
 alias denv='eval $(docker-machine env default)'
-alias ecrlogin='eval $(aws ecr get-login --region us-east-1)'
+alias ecrlogin='eval $(aws ecr get-login --region us-east-1 | sed "s/-e none//")'
 
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
