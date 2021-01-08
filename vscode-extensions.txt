@@ -1,0 +1,14 @@
+dbaeumer.vscode-eslint
+eamodio.gitlens
+esbenp.prettier-vscode
+firsttris.vscode-jest-runner
+gerane.Theme-Monokai-Midnight
+gimenete.github-linker
+justusadam.language-haskell
+mike-co.import-sorter
+Orta.vscode-jest
+PKief.material-icon-theme
+rohit-gohri.format-code-action
+sldobri.daily
+sysoev.vscode-open-in-github
+vscodevim.vim
