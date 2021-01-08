@@ -43,6 +43,9 @@ Plug 'christoomey/vim-tmux-navigator'
 " The fzf :Buffers seems to accomplish the same thing as this and is arguably more usable.
 "Plug 'jeetsukumaran/vim-buffergator'
 
+" Git
+Plug 'airblade/vim-gitgutter'
+
 call plug#end()
 
 "-------------------------------------------------------------------------------- 
