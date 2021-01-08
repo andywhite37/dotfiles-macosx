@@ -52,6 +52,9 @@ call plug#end()
 " NERDTree
 "-------------------------------------------------------------------------------- 
 
+" Show hidden files
+let NERDTreeShowHidden = 1
+
 " Open NERDTree when starting vim
 autocmd VimEnter * NERDTree | wincmd p
 
