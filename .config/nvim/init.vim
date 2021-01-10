@@ -44,6 +44,7 @@ Plug 'christoomey/vim-tmux-navigator'
 "Plug 'jeetsukumaran/vim-buffergator'
 
 " Git
+Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
 call plug#end()

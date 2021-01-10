@@ -1,4 +1,38 @@
 {
+  // CoC
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "jsonc",
+    "css",
+    "markdown"
+  ],
+  // CoC custom language servers
+  "languageserver": {
+    "purescript": {
+      "command": "./node_modules/.bin/purescript-language-server",
+      "args": [
+        "--stdio"
+      ],
+      "filetypes": [
+        "purescript"
+      ],
+      "trace.server": "off",
+      "rootPatterns": [
+        "bower.json",
+        "psc-package.json",
+        "spago.dhall"
+      ],
+      "settings": {
+        "purescript": {
+          "addSpagoSources": true // etc
+        }
+      }
+    }
+  },
   // TypeScript
   //"tsserver.log": "verbose"
   // ESLint
@@ -11,16 +45,5 @@
     "typescriptreact"
   ],
   // Prettier
-  "prettier.onlyUseLocalVersion": true,
-  // CoC
-  "coc.preferences.formatOnSaveFiletypes": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "json",
-    "jsonc",
-    "css",
-    "markdown"
-  ]
+  "prettier.onlyUseLocalVersion": true
 }
