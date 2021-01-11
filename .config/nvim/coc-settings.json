@@ -8,7 +8,8 @@
     "json",
     "jsonc",
     "css",
-    "markdown"
+    "markdown",
+    "purescript"
   ],
   // CoC custom language servers
   "languageserver": {
@@ -28,6 +29,7 @@
       ],
       "settings": {
         "purescript": {
+          "addNpmPath": true,
           "addSpagoSources": true // etc
         }
       }

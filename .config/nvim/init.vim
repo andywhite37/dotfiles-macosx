@@ -153,8 +153,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+xmap <leader>F  <Plug>(coc-format-selected)
+nmap <leader>F  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -208,7 +208,8 @@ command! -nargs=0  Format :call CocAction('format')
 command! -nargs=?  Fold   :call CocAction('fold', <f-args>)
 
 " Organize imports
-command! -nargs=0  Org    :call CocAction('runCommand', 'editor.action.organizeImport')
+command! -nargs=0  OrganizeImports :call CocAction('runCommand', 'editor.action.organizeImport')
+nmap               <leader>o       :OrganizeImports<cr>
 
 " Add (Neo)Vim's native statusline support.
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
@@ -238,9 +239,7 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 " awhite CoC additions
 
 " coc-prettier
-command! -nargs=0 Prettier   :CocCommand prettier.formatFile
-vmap              <leader>f  <Plug>(coc-format-selection)
-nmap              <leader>f  <Plug>(coc-format-selection)
+command! -nargs=0  Prettier   :CocCommand prettier.formatFile
 
 " coc-eslint
 
