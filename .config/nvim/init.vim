@@ -344,6 +344,9 @@ set termguicolors
 hi CursorLine ctermbg=148 guibg=#193300
 hi CocWarningHighlight gui=undercurl term=undercurl cterm=undercurl ctermfg=11 guifg=yellow
 hi CocErrorHighlight gui=undercurl term=undercurl cterm=undercurl ctermfg=257 guifg=red
+" undercurl and guisp not currently working in tmux/nvim - probably terminal issues (?)
+"hi CocWarningHighlight gui=undercurl term=undercurl cterm=undercurl guisp=yellow
+"hi CocErrorHighlight gui=undercurl term=undercurl cterm=undercurl guisp=red
 
 " Font
 set guifont=Fira\ Code:h11
