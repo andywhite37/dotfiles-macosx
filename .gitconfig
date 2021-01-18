@@ -79,6 +79,10 @@
   type = cat-file -t
   dump = cat-file -p
 
+# Pull must be fast-forward-only
+[config "pull"]
+	ff = only
+
 [diff]
   tool = diffmerge
 [difftool]
