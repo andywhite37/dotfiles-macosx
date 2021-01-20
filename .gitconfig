@@ -9,7 +9,7 @@
   default = simple
 
 [pull]
-	ff = only
+  ff = only
 
 [color]
   ui = true
