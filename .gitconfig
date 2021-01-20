@@ -8,6 +8,9 @@
 [push]
   default = simple
 
+[pull]
+	ff = only
+
 [color]
   ui = true
 
@@ -78,10 +81,6 @@
   # low-level utilities
   type = cat-file -t
   dump = cat-file -p
-
-# Pull must be fast-forward-only
-[config "pull"]
-	ff = only
 
 [diff]
   tool = diffmerge

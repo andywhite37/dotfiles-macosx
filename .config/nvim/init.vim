@@ -8,6 +8,7 @@ call plug#begin()
 " General stuff
 Plug 'tpope/vim-sensible'
 Plug 'preservim/nerdtree'
+Plug 'preservim/nerdcommenter'
 
 " Color schemes
 "Plug 'crusoexia/vim-monokai'
@@ -371,6 +372,10 @@ set smartcase
 set incsearch
 set number
 set relativenumber
+
+" Don't continue comments on the next line
+"set formatoptions-=cro
+autocmd FileType * set fo-=c fo-=r fo-=o
 
 " Clipboard stuff - not sure if this is working yet within iTerm2+tmux+nvim
 set clipboard+=unnamedplus
