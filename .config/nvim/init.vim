@@ -47,6 +47,10 @@ Plug 'christoomey/vim-tmux-navigator'
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'knsh14/vim-github-link'
+
+" Markdown preview (in the browser)
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
 call plug#end()
 
@@ -61,7 +65,7 @@ let NERDTreeShowHidden = 1
 autocmd VimEnter * NERDTree | wincmd p
 
 " Exit Vim if NERDTree is the only window left.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+"autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 " Synchronize NERDTree with open buffer (i.e. find the file in NERDTree)
 nnoremap <silent> <leader>s :NERDTreeFind<cr>
