@@ -37,6 +37,7 @@
   },
   // TypeScript
   //"tsserver.log": "verbose"
+  "typescript.preferences.importModuleSpecifier": "non-relative",
   // ESLint
   "eslint.alwaysShowStatus": true,
   "eslint.run": "onSave",
