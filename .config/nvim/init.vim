@@ -1,4 +1,10 @@
 " awhite neovim init.vim
+
+" Map leader to <space>
+" Do this first because it only affects mappings that are initialized after it
+nnoremap <Space> <Nop>
+let mapleader=" "
+
 "-------------------------------------------------------------------------------- 
 " Vim Plug
 "-------------------------------------------------------------------------------- 
@@ -7,7 +13,11 @@ call plug#begin()
 
 " General stuff
 Plug 'tpope/vim-sensible'
+
+" File nav
 Plug 'preservim/nerdtree'
+
+" Commenting
 Plug 'preservim/nerdcommenter'
 
 " Color schemes
@@ -29,7 +39,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-" Buffer closer
+" Buffer closer/deleter
 Plug 'moll/vim-bbye'
 
 " Neomux
@@ -68,7 +78,7 @@ autocmd VimEnter * NERDTree | wincmd p
 "autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 " Synchronize NERDTree with open buffer (i.e. find the file in NERDTree)
-nnoremap <silent> <leader>s :NERDTreeFind<cr>
+nnoremap <silent> <leader>nf :NERDTreeFind<cr>
 
 "-------------------------------------------------------------------------------- 
 " CoC
@@ -181,6 +191,8 @@ nmap <leader>ac  <Plug>(coc-codeaction)
 nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Map function and class text objects
+" These are operator mappings (which are entered after an initial movement). I haven't figured out
+" what these are for yet...
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
 xmap if <Plug>(coc-funcobj-i)
 omap if <Plug>(coc-funcobj-i)
@@ -214,7 +226,7 @@ command! -nargs=?  Fold   :call CocAction('fold', <f-args>)
 
 " Organize imports
 command! -nargs=0  OrganizeImports :call CocAction('runCommand', 'editor.action.organizeImport')
-nmap               <leader>o       :OrganizeImports<cr>
+nmap               <leader>o      :OrganizeImports<cr>
 
 " Add (Neo)Vim's native statusline support.
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
@@ -222,24 +234,24 @@ nmap               <leader>o       :OrganizeImports<cr>
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Mappings for CoCList
-" These work by holding space+other key in normal mode, which pops up a fuzzy
-" searchable list pane. I haven't figured out how best to use these yet... 
+" These are fzf-like searchable lists of CoC-related things
+
 " Show all diagnostics.
-nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+nnoremap <silent><nowait> <leader>cd  :<C-u>CocList diagnostics<cr>
 " Manage extensions.
-nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+nnoremap <silent><nowait> <leader>ce  :<C-u>CocList extensions<cr>
 " Show commands.
-nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+nnoremap <silent><nowait> <leader>cc  :<C-u>CocList commands<cr>
 " Find symbol of current document.
-nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+nnoremap <silent><nowait> <leader>co  :<C-u>CocList outline<cr>
 " Search workspace symbols.
-nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+nnoremap <silent><nowait> <leader>cs  :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
-nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+nnoremap <silent><nowait> <leader>cj  :<C-u>CocNext<CR>
 " Do default action for previous item.
-nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+nnoremap <silent><nowait> <leader>ck  :<C-u>CocPrev<CR>
 " Resume latest coc list.
-nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+nnoremap <silent><nowait> <leader>cp  :<C-u>CocListResume<CR>
 
 " awhite CoC additions
 
@@ -284,51 +296,53 @@ let g:airline_theme='monokai_tasty'
 "-------------------------------------------------------------------------------- 
 
 " Buffer search and selection
-nnoremap <silent>  <Leader>b   :Buffers<CR>
+nnoremap <silent>  <leader>fb   :Buffers<CR>
 
 " File path search and selection
-nnoremap <silent>  <C-p>       :Files<CR>
+"nnoremap <silent>  <C-p>       :Files<CR>
+nnoremap <silent>  <leader>ff      :Files<CR>
 
 " File contents search and navigation
 " Ripgrep seems to be the standard now (compared to Ack and Ag)
-nnoremap <silent>  <Leader>f   :Rg<CR>
-"nnoremap <silent>  <Leader>f   :Ag<CR>
+"nnoremap <silent>  <leader>fs   :Ag<CR>
+nnoremap <silent>  <leader>fs   :Rg<CR>
 
 " Buffer content search and navigation (search current buffer and go to line)
-nnoremap <silent>  <Leader>/   :BLines<CR>
+nnoremap <silent>  <leader>fl   :BLines<CR>
 
 " Mark search and navigation
-nnoremap <silent>  <Leader>'   :Marks<CR>
+nnoremap <silent>  <leader>f'   :Marks<CR>
 
 " Git commit/log search
-nnoremap <silent>  <Leader>g   :Commits<CR>
+nnoremap <silent>  <leader>fg   :Commits<CR>
 
 " Vim recent command search
-nnoremap <silent>  <Leader>c   :Commands<CR>
+nnoremap <silent>  <leader>fc   :Commands<CR>
 
 " Vim recent help tag search
-nnoremap <silent>  <Leader>H   :Helptags<CR>
+nnoremap <silent>  <leader>ft   :Helptags<CR>
 
 " Recent file/buffer history
-nnoremap <silent>  <Leader>hf  :History<CR>
+nnoremap <silent>  <leader>fh  :History<CR>
 
 " Recent vim command history (:)
-nnoremap <silent>  <Leader>hv  :History:<CR>
+nnoremap <silent>  <leader>f:  :History:<CR>
 
 " Recent search history (/)
-nnoremap <silent>  <Leader>hs  :History/<CR>
+nnoremap <silent>  <leader>f/  :History/<CR>
 
 "-------------------------------------------------------------------------------- 
 " vim-bbye
 "-------------------------------------------------------------------------------- 
 
 " Close current buffer
-nnoremap <Leader>q :Bdelete<CR>
+nnoremap <leader>q :Bdelete<CR>
+nnoremap <leader>qa :bufdo Bdelete<CR>
 
 " Close all buffers
 " This seems to struggle with non-text buffers like NERDTree, quick fix, etc.,
 " so avoid using it. Could probably tweak this to only close text buffers?
-"nnoremap <Leader>Q :bufdo Bdelete<CR>
+"nnoremap <leader>Q :bufdo Bdelete<CR>
 
 "-------------------------------------------------------------------------------- 
 " Other custom configs
