@@ -14,9 +14,6 @@ call plug#begin()
 " General stuff
 Plug 'tpope/vim-sensible'
 
-" File nav
-Plug 'preservim/nerdtree'
-
 " Commenting
 Plug 'preservim/nerdcommenter'
 
@@ -62,6 +59,11 @@ Plug 'knsh14/vim-github-link'
 " Markdown preview (in the browser)
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
+" File nav
+Plug 'preservim/nerdtree'
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
 call plug#end()
 
 "-------------------------------------------------------------------------------- 
@@ -71,11 +73,23 @@ call plug#end()
 " Show hidden files
 let NERDTreeShowHidden = 1
 
-" Open NERDTree when starting vim
-autocmd VimEnter * NERDTree | wincmd p
+" Open NERDTree when starting vim and put the cursor in the other window
+"autocmd VimEnter * NERDTree | wincmd p
+
+" Start NERDTree when Vim starts with a directory argument.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
+    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
 
 " Exit Vim if NERDTree is the only window left.
-"autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+" If another buffer tries to replace NERDTree, put in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+
+" Toggle NERDTree
+nnoremap <silent> <leader>nt :NERDTreeToggle<cr>
 
 " Synchronize NERDTree with open buffer (i.e. find the file in NERDTree)
 nnoremap <silent> <leader>nf :NERDTreeFind<cr>
@@ -368,7 +382,7 @@ hi CocErrorHighlight gui=undercurl term=undercurl cterm=undercurl ctermfg=257 gu
 "hi CocErrorHighlight gui=undercurl term=undercurl cterm=undercurl guisp=red
 
 " Font
-set guifont=Fira\ Code:h11
+set guifont=FiraCode\ Nerd\ Font:h11
 
 " Mouse support
 set mouse=a
