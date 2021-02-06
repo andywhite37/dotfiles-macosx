@@ -85,8 +85,8 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 " If another buffer tries to replace NERDTree, put in the other window, and bring back NERDTree.
-autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+"autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    "\ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
 " Toggle NERDTree
 nnoremap <silent> <leader>nt :NERDTreeToggle<cr>
@@ -382,6 +382,10 @@ hi CocErrorHighlight gui=undercurl term=undercurl cterm=undercurl ctermfg=257 gu
 "hi CocErrorHighlight gui=undercurl term=undercurl cterm=undercurl guisp=red
 
 " Font
+" Install on mac, set as terminal font for nvim:
+" brew tap homebrew/cask-fonts
+" brew install --cask font-hack-nerd-font
+" brew install font-fira-code-nerd-font
 set guifont=FiraCode\ Nerd\ Font:h11
 
 " Mouse support
