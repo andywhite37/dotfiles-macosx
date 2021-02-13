@@ -25,6 +25,9 @@ Plug 'patstockwell/vim-monokai-tasty'
 " Syntax highlighting
 Plug 'sheerun/vim-polyglot'
 
+" Unicode
+Plug 'arthurxavierx/vim-unicoder'
+
 " Completion/language server
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
