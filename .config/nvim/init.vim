@@ -322,6 +322,11 @@ nnoremap <silent>  <leader>ff      :Files<CR>
 " File contents search and navigation
 " Ripgrep seems to be the standard now (compared to Ack and Ag)
 "nnoremap <silent>  <leader>fs   :Ag<CR>
+" Rg default command (from fzf)
+"command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case -- ".shellescape(<q-args>), 1, s:p(), <bang>0)
+" Rg command that ignores file paths in match
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case -- ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
+
 nnoremap <silent>  <leader>fs   :Rg<CR>
 
 " Buffer content search and navigation (search current buffer and go to line)

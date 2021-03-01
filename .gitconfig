@@ -29,6 +29,7 @@
   ci          = commit
   d           = diff
   dt          = difftool
+  ds          = diff --stat
   dthx        = !git diff --name-only | grep '\\.hx$' | xargs git dt
   dtnobin     = !git diff --name-only | grep -v '^bin\\/' | xargs git dt
   dtnowww     = !git diff --name-only | grep -v '^www\\/' | xargs git dt
