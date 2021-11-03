@@ -36,10 +36,14 @@
     }
   },
   // TypeScript
+  "typescript.tsserver.maxTsServerMemory": "16GB",
   //"tsserver.log": "verbose"
   "typescript.preferences.importModuleSpecifier": "non-relative",
   // ESLint
   "eslint.alwaysShowStatus": true,
+  "eslint.options": {
+    "cache": true
+  },
   "eslint.run": "onSave",
   "eslint.validate": [
     "javascript",

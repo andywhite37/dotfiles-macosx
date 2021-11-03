@@ -67,6 +67,9 @@ Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
+" Indent guides
+Plug 'nathanaelkane/vim-indent-guides'
+
 call plug#end()
 
 "-------------------------------------------------------------------------------- 
@@ -75,6 +78,9 @@ call plug#end()
 
 " Show hidden files
 let NERDTreeShowHidden = 1
+
+" UI
+let g:NERDTreeWinSize=50
 
 " Open NERDTree when starting vim and put the cursor in the other window
 "autocmd VimEnter * NERDTree | wincmd p
@@ -183,6 +189,9 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
+
+" Find references
+nmap <leader>fr <Plug>(coc-references)
 
 " Formatting selected code.
 xmap <leader>F  <Plug>(coc-format-selected)
