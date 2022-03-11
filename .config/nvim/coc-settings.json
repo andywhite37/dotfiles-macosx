@@ -11,6 +11,7 @@
     "markdown",
     "purescript"
   ],
+
   // CoC custom language servers
   "languageserver": {
     "purescript": {
@@ -35,14 +36,16 @@
       }
     }
   },
+
   // TypeScript
-  "typescript.tsserver.maxTsServerMemory": "16GB",
-  //"tsserver.log": "verbose"
-  "typescript.preferences.importModuleSpecifier": "non-relative",
+  //"typescript.tsserver.maxTsServerMemory": "16GB",
+  "typescript.preferences.importModuleSpecifier": "relative",
+  //"tsserver.log": "normal",
+
   // ESLint
   "eslint.alwaysShowStatus": true,
   "eslint.options": {
-    "cache": true
+    //"cache": true
   },
   "eslint.run": "onSave",
   "eslint.validate": [
@@ -51,6 +54,10 @@
     "typescript",
     "typescriptreact"
   ],
+  "eslint.workingDirectories": [
+    { "mode": "auto" }
+  ],
+
   // Prettier
   "prettier.onlyUseLocalVersion": true
 }

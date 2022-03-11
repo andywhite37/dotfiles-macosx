@@ -5,6 +5,9 @@
 #[core]
   #excludesfile = /Users/awhite/.gitignore_global
 
+[init]
+	defaultBranch = main
+
 [push]
   default = simple
 
