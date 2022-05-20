@@ -6,6 +6,8 @@ gerane.Theme-Monokai-Midnight
 gimenete.github-linker
 justusadam.language-haskell
 mike-co.import-sorter
+ms-azuretools.vscode-docker
+oderwat.indent-rainbow
 Orta.vscode-jest
 PKief.material-icon-theme
 rohit-gohri.format-code-action
