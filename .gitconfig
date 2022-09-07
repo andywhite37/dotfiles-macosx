@@ -87,22 +87,46 @@
   dump = cat-file -p
 
 [diff]
-  tool = diffmerge
+  #tool = diffmerge
+  #tool = meld
+  tool = p4difftool
+
 [difftool]
   prompt = false
-[merge]
-  tool = diffmerge
-[mergetool]
-  prompt = false
-  keepBackup = false
 
 # SourceGear Diffmerge
 [difftool "diffmerge"]
   cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge --nosplash \"$LOCAL\" \"$REMOTE\"
   path =
+
+# Meld
+[difftool "meld"]
+  cmd = meld "$LOCAL" "$REMOTE"
+
+[difftool "p4difftool"]
+  cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $LOCAL $REMOTE
+
+[merge]
+  #tool = diffmerge
+  #tool = meld
+  tool = p4mergetool
+
+[mergetool]
+  prompt = false
+  keepBackup = false
+
 [mergetool "diffmerge"]
   cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
   trustExitCode = true
+
+[mergetool "meld"]
+  # Choose one of these 2 lines (not both!) explained below.
+  cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
+  #cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"
+
+[mergetool "p4mergetool"]
+  cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $PWD/$BASE $PWD/$LOCAL $PWD/$REMOTE $PWD/$MERGED
+  trustExitCode = false
 
 #[diff]
 #  tool = kdiff3
@@ -111,23 +135,10 @@
 #  prompt = false
 #[difftool "kdiff3"]
 #  trustExitCode = false
-#
+
 #[merge]
 #  tool = kdiff3
 #[mergetool]
 #  prompt = false
 #[mergetool "kdiff3"]
-#  trustExitCode = false
-
-#[diff]
-#  tool = p4difftool
-#[difftool "p4difftool"]
-#  cmd = p4merge $LOCAL $REMOTE
-#
-#[merge]
-#  tool = p4mergetool
-#[mergetool]
-#  keepBackup = false
-#[mergetool "p4mergetool"]
-#  cmd = p4merge $PWD/$BASE $PWD/$REMOTE $PWD/$LOCAL $PWD/$MERGED
 #  trustExitCode = false
