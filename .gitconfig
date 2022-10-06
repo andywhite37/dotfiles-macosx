@@ -87,9 +87,9 @@
   dump = cat-file -p
 
 [diff]
-  #tool = diffmerge
+  tool = diffmerge
   #tool = meld
-  tool = p4difftool
+  #tool = p4difftool
 
 [difftool]
   prompt = false
@@ -107,9 +107,9 @@
   cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $LOCAL $REMOTE
 
 [merge]
-  #tool = diffmerge
+  tool = diffmerge
   #tool = meld
-  tool = p4mergetool
+  #tool = p4mergetool
 
 [mergetool]
   prompt = false
