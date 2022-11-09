@@ -1,9 +1,9 @@
 [user]
-  name = Andy White
-  email = andywhite441@gmail.com
+	name = Andy White
+	email = andywhite441@gmail.com
 
-#[core]
-  #excludesfile = /Users/awhite/.gitignore_global
+[core]
+	excludesfile = /Users/awhite/.gitignore_global
 
 [init]
 	defaultBranch = main
@@ -86,34 +86,55 @@
   type = cat-file -t
   dump = cat-file -p
 
+###############################################################################
+# Diff tools
+###############################################################################
+
 [diff]
+  #tool = kdiff3
+  #guitool = kdiff3
   tool = diffmerge
   #tool = meld
   #tool = p4difftool
+  #tool = sourcetree
 
 [difftool]
   prompt = false
 
-# SourceGear Diffmerge
+[difftool "kdiff3"]
+  trustExitCode = false
+
 [difftool "diffmerge"]
   cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge --nosplash \"$LOCAL\" \"$REMOTE\"
   path =
 
-# Meld
 [difftool "meld"]
   cmd = meld "$LOCAL" "$REMOTE"
 
 [difftool "p4difftool"]
   cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $LOCAL $REMOTE
 
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+
+###############################################################################
+# Merge tools
+###############################################################################
+
 [merge]
+  #tool = kdiff3
   tool = diffmerge
   #tool = meld
   #tool = p4mergetool
+  #tool = sourcetree
 
 [mergetool]
   prompt = false
   keepBackup = false
+
+[mergetool "kdiff3"]
+  trustExitCode = false
 
 [mergetool "diffmerge"]
   cmd = /Applications/DiffMerge.app/Contents/MacOS/DiffMerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
@@ -128,17 +149,9 @@
   cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $PWD/$BASE $PWD/$LOCAL $PWD/$REMOTE $PWD/$MERGED
   trustExitCode = false
 
-#[diff]
-#  tool = kdiff3
-#  guitool = kdiff3
-#[difftool]
-#  prompt = false
-#[difftool "kdiff3"]
-#  trustExitCode = false
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
 
-#[merge]
-#  tool = kdiff3
-#[mergetool]
-#  prompt = false
-#[mergetool "kdiff3"]
-#  trustExitCode = false
+[commit]
+	template = /Users/awhite/.stCommitMsg
